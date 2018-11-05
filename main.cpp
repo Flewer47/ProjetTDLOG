@@ -1,7 +1,7 @@
 #include <iostream>
 #include <Imagine/Graphics.h>
 
-// Ceci est un test git : cf Theo
+// Ceci est un test git : cf Louis
 
 /// For the canvas
 int const width = 600, height = 600;
