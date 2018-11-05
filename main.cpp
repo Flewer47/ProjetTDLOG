@@ -1,6 +1,8 @@
 #include <iostream>
 #include <Imagine/Graphics.h>
 
+// Ceci est un test git : cf Theo
+
 /// For the canvas
 int const width = 600, height = 600;
 std::string const windowTitle = "Paratroopers";
