@@ -1,0 +1,44 @@
+NOTATIONS : 
+
+-> Margins :
+	dropMargin
+	leftRightPlaneHeight
+	rightLeftPlaneHeight
+	shieldMargin
+	maxHeigthParachute
+	minHeightParachute
+	groundHeight
+
+-> Classes:
+	Cannon
+	Trooper
+	Plane
+	Bullet
+
+-> Cannon :
+	* attributes :
+		boxHeight
+		boxWidth
+		angle
+		length
+		width
+		color
+		angularVelocity
+		shootFrequency
+	* methods :
+		updatePosition
+		display
+		
+-> Trooper:
+	* attributes :
+	* methods :
+
+-> Plane :
+	* attributes :
+	* methods :
+
+
+-> Bullet :
+	* attributes :
+	* methods :
+
