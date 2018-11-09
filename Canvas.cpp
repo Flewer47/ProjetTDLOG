@@ -3,15 +3,14 @@
 
 Canvas::Canvas()
 {
-    Imagine::Window window = Imagine::openWindow(windowWidth, windowHeight, windowTitle);
-    Imagine::setActiveWindow(window);
+    Imagine::openWindow(windowWidth, windowHeight, windowTitle);
     Imagine::setBackGround(windowBackgroundColor);
-
-    activeCanvas = true;
+    Imagine::fillRect(0, windowHeight-groundHeight, windowWidth, groundHeight, groundColor);
+    isCanvasActive = true;
 }
 
 void Canvas::closeCanvas() const{
-    if (activeCanvas){
+    if (isCanvasActive){
         Imagine::endGraphics();
     }
 }

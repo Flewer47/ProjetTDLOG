@@ -17,60 +17,101 @@ NOTATIONS :
 	Bullet
 
 # Global constants for the canvas	
-dropMargin
-leftRightPlaneHeight
-rightLeftPlaneHeight
-shieldMargin
-maxHeigthParachute
-minHeightParachute
-groundHeight		
-windowWidth
-windowHeight
-windowTitle
-windowBackgroundColor
+
+int windowWidth
+int windowHeight
+int groundHeight
+Imagine::Color windowBackgroundColor
+Imagine::Color groundColor
+std::string windowTitle
+
+int dropMargin
+int leftRightPlaneHeight
+int rightLeftPlaneHeight
+int shieldMargin
+int minHeightParachute
+int maxHeigthParachute
 
 -> Canvas:
 	* attributes :
 
 		# bool to check if the canvas is active.
-		activeCanvas;
+		bool isCanvasActive
 		
 			
 	* methods :
 		
 		# Should create the canvas.
-		Canvas(); 
+		Canvas() 
 		
 		# Should put a "EndGraphics" so that the player can close the game.
-		void closeCanvas() const;
+		void closeCanvas() const
 
-# Global constants for the Cannon		
-cannonLength
-cannonWidth
-boxColor
-cannonColor
-cannonAngularVelocity
-shootFrequency
-boxHeight
-boxWidth
+# Global constants for the Cannon
+
+int boxHeight
+int boxWidth		
+Imagine::Color boxColor
+
+int cannonLength
+int cannonWidth
+
+float cannonAngularVelocity
+float cannonAngleLimit
+float defaultCannonAngle
+Imagine::Color cannonColor
+
+float shootFrequency
 
 -> Cannon :
 	* attributes :
 
-		angle;
+		float angle
 
 	* methods :
 		
 		# Should create the box & cannon. 
 		# Would not draw them as updatePosition does it anyway.
-		Cannon(); 		
+		Cannon()		
 
 		void updatePosition();
 		void display(Imagine::Color newColor1 = boxColor, Imagine::Color newColor2 = 			cannonColor) const
+
+# Global constants for the Trooper
+int trooperWidth
+int trooperHeight
+Imagine::Color trooperColor
+int parachuteWidth
+int parachuteHeight
+Imagine::Color parachuteColor
+int trooperSpeedWithParachute
+int trooperSpeedWithoutParachute
 		
 -> Trooper:
 	* attributes :
+		# Position
+		int x
+		int y
+
+		# bool to check if it has deployed its parachute
+		bool isParachuteDrawn
+
+		# height when he will deploy its parachute
+		int heightToDrawParachute
+
+		# bool to check if it has touched the ground 
+		bool isWalking
+
+		# bool to check if it has been killed
+		bool removeMe
+
 	* methods :
+
+		Trooper(int planeX, int planeY)
+
+		void display() const;
+		
+
 
 -> Plane :
 	* attributes :
