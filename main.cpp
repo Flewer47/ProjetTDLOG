@@ -1,7 +1,6 @@
 #include <iostream>
+#include "Cannon.h"
 #include <Imagine/Graphics.h>
-
-// Ceci est un test git : cf Louis
 
 /// For the canvas
 int const width = 600, height = 600;
@@ -9,12 +8,12 @@ std::string const windowTitle = "Paratroopers";
 
 /// For the player
 int const playerWidth = 50, playerHeight = 30;
-Imagine::Color playerColor = Imagine::BLACK;
+Imagine::Color playerColor = Imagine::WHITE;
 
 /// For the cannon
-float const cannonLength = 30, defaultCannonAngle = -M_PI/2, cannonAngleLimit = M_PI/4, cannonAngularVelocity = 0.1;
+float const cannonLength = 30, cannonAngularVelocity = 0.1;
 const int cannonWidth = 6;
-Imagine::Color cannonColor = Imagine::BLACK;
+Imagine::Color cannonColor = Imagine::WHITE;
 
 
 /**
@@ -47,38 +46,16 @@ int main(){
 
     Imagine::openWindow(width, height, windowTitle);
 
-    Imagine::IntPoint2 player(width/2 - playerWidth/2, height - playerHeight);
-    Imagine::IntPoint2 cannon(width/2, height - playerHeight);
+    Cannon cannon(playerWidth, playerHeight, cannonLength, cannonWidth);
 
-    Imagine::fillRect(player, playerWidth, playerHeight, playerColor);
-
-    float cannonAngle = defaultCannonAngle;
     int countdown = 0;
     int direction = 0;
     while (countdown != 100){
         countdown++;
-        Imagine::drawLine(cannon, cannon + Imagine::IntPoint2(cannonLength*std::cos(cannonAngle), cannonLength*std::sin(cannonAngle)), cannonColor, cannonWidth);
-        Imagine::milliSleep(50);
-        Imagine::drawLine(cannon, cannon + Imagine::IntPoint2(cannonLength*std::cos(cannonAngle), cannonLength*std::sin(cannonAngle)), Imagine::WHITE, cannonWidth);
-        Imagine::fillRect(player, playerWidth, playerHeight, playerColor);
         keyboard(direction);
-        if (direction == 1){
-            cannonAngle += cannonAngularVelocity;
-        }
-        else if (direction == -1){
-            cannonAngle -= cannonAngularVelocity;
-        }
-
-        if (cannonAngle < defaultCannonAngle-cannonAngleLimit){
-            cannonAngle = defaultCannonAngle-cannonAngleLimit;
-        }
-        else if (cannonAngle > defaultCannonAngle+cannonAngleLimit){
-            cannonAngle = defaultCannonAngle+cannonAngleLimit;
-        }
+        cannon.updatePosition(direction);
+        Imagine::milliSleep(50);
     }
-
-
-
     Imagine::endGraphics();
 
 

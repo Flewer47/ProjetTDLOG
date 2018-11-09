@@ -7,6 +7,6 @@ project(TestTDLOG)
 cmake_minimum_required(VERSION 2.6)
 find_package(Imagine REQUIRED)
 
-add_executable(TestTDLOG main.cpp)
+add_executable(TestTDLOG main.cpp Cannon.cpp)
 ImagineUseModules(TestTDLOG Graphics)
 
