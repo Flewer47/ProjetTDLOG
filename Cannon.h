@@ -1,32 +1,26 @@
 #pragma once
 #include "Canvas.h"
 
-const int windowWidth = 600, windowHeight = 600;
-const Imagine::Color windowBackgroundColor = Imagine::BLACK;
-const int groundHeight = 20;
+/// For the box
+const int boxWidth = 50, boxHeight = 30;
+const Imagine::Color boxColor = Imagine::WHITE;
+
+/// For the cannon
+const float cannonLength = 30, cannonAngularVelocity = 0.32;
+const int cannonWidth = 6;
+const Imagine::Color cannonColor = Imagine::WHITE;
 const float cannonAngleLimit = M_PI*0.42, defaultCannonAngle = -M_PI/2;
 
-class Cannon {
+/// For shooting
+const int shootFrequency = 0;
+
+class Cannon{
 private:
-    int boxHeight;
-    int boxWidth;
-    int length;
-    int width;
-
     float angle;
-    float angularVelocity;
-
-    Imagine::Color boxColor;
-    Imagine::Color cannonColor;
-
-    float shootFrequency;
-
 public:
 
-    Cannon(int newBoxWidth, int newBoxHeight, int newLength, int newWidth, float newAngle = defaultCannonAngle,
-           float newAngularVelocity = 0.32, Imagine::Color newBoxColor = Imagine::BLACK, Imagine::Color newCannonColor = Imagine::BLACK,
-           float newShootFrequency = 0);
+    Cannon();
 
-    void display(Imagine::Color BoxColor, Imagine::Color CannonColor);
+    void display(Imagine::Color newColor1 = boxColor, Imagine::Color newColor2 = cannonColor) const;
     void updatePosition(int direction);
 };

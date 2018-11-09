@@ -1,29 +1,16 @@
 #include "Canvas.h"
 
-Canvas::Canvas(int newWidth, int newHeight, std::string newTitle, Imagine::Color newBackgroundColor, int newDropMargin,
-               int newLeftRightPlaneHeight, int newRightLeftPlaneHeight, int newShieldMargin, int newMaxHeightParachute,
-               int newMinHeightParachute, int newGroundHeight)
-{
-    width = newWidth;
-    height = newHeight;
-    title = newTitle;
-    backgroundColor = newBackgroundColor;
-    dropMargin = newDropMargin;
-    leftRightPlaneHeight = newLeftRightPlaneHeight;
-    rightLeftPlaneHeight = newRightLeftPlaneHeight;
-    shieldMargin = newShieldMargin;
-    maxHeigthParachute = newMaxHeightParachute;
-    minHeightParachute = newMinHeightParachute;
-    groundHeight = newGroundHeight;
 
-    Imagine::Window window = Imagine::openWindow(width, height, title);
+Canvas::Canvas()
+{
+    Imagine::Window window = Imagine::openWindow(windowWidth, windowHeight, windowTitle);
     Imagine::setActiveWindow(window);
-    Imagine::setBackGround(backgroundColor);
+    Imagine::setBackGround(windowBackgroundColor);
 
     activeCanvas = true;
 }
 
-void Canvas::closeCanvas(){
+void Canvas::closeCanvas() const{
     if (activeCanvas){
         Imagine::endGraphics();
     }

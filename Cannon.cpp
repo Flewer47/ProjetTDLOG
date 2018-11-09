@@ -1,31 +1,22 @@
 #include "Cannon.h"
 
-Cannon::Cannon(int newBoxWidth, int newBoxHeight, int newLength, int newWidth, float newAngle, float newAngularVelocity,
-               Imagine::Color newBoxColor, Imagine::Color newCannonColor, float newShootFrequency){
-    boxWidth = newBoxWidth;
-    boxHeight = newBoxHeight;
-    length = newLength;
-    width = newWidth;
-    angle = newAngle;
-    angularVelocity = newAngularVelocity;
-    boxColor = newBoxColor;
-    cannonColor = newCannonColor;
-    shootFrequency = newShootFrequency;
+Cannon::Cannon() {
+    angle = defaultCannonAngle;
 }
 
-void Cannon::display(Imagine::Color BoxColor, Imagine::Color CannonColor){
-    Imagine::fillRect(windowWidth/2 - boxWidth/2, windowHeight - groundHeight - boxHeight, boxWidth, boxHeight, BoxColor);
-    Imagine::drawLine(windowWidth/2, windowHeight - groundHeight - boxHeight, windowWidth/2 + length * std::cos(angle),
-                      windowHeight - groundHeight - boxHeight + length * std::sin(angle), CannonColor, width);
+void Cannon::display(Imagine::Color newColor1, Imagine::Color newColor2) const{
+    Imagine::fillRect(windowWidth/2 - boxWidth/2, windowHeight - groundHeight - boxHeight, boxWidth, boxHeight, newColor1);
+    Imagine::drawLine(windowWidth/2, windowHeight - groundHeight - boxHeight, windowWidth/2 + cannonLength * std::cos(angle),
+                      windowHeight - groundHeight - boxHeight + cannonLength * std::sin(angle), newColor2, cannonWidth);
 }
 
 void Cannon::updatePosition(int direction){
     display(windowBackgroundColor, windowBackgroundColor);
     if (direction == -1){
-        angle -= angularVelocity;
+        angle -= cannonAngularVelocity;
     }
     else if (direction == 1){
-        angle += angularVelocity;
+        angle += cannonAngularVelocity;
     }
 
     if (angle < defaultCannonAngle-cannonAngleLimit){
@@ -34,5 +25,5 @@ void Cannon::updatePosition(int direction){
     else if (angle > defaultCannonAngle+cannonAngleLimit){
         angle = defaultCannonAngle+cannonAngleLimit;
     }
-    display(boxColor, cannonColor);
+    display();
 }

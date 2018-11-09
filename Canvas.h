@@ -4,33 +4,26 @@
 #include <iostream>
 #include <Imagine/Graphics.h>
 
+/// For the canvas
+const int windowWidth = 600, windowHeight = 600, groundHeight = 20;
+const Imagine::Color windowBackgroundColor = Imagine::BLACK;
+const std::string windowTitle = "Paratroopers";
+
+/// Drop Troopers
+const int dropMargin = 0, leftRightPlaneHeight = 0, rightLeftPlaneHeight = 0, shieldMargin = 0;
+
 class Canvas
 {
-    /// Window
-    int width;
-    int height;
-    std::string title;
-    Imagine::Color backgroundColor;
+    // Check if the canvas is active or not.
     bool activeCanvas;
 
-    /// Drop Troopers
-    int dropMargin;
-    int leftRightPlaneHeight;
-    int rightLeftPlaneHeight;
-    int shieldMargin;
-
-    /// Deploy Parachute
-    int maxHeigthParachute;
-    int minHeightParachute;
-
-    /// Score
-    int groundHeight;
-
 public:
-    Canvas(int newWidth, int newHeight, std::string newTitle, Imagine::Color newBackgroundColor, int newDropMargin, int newLeftRightPlaneHeight,
-           int newRightLeftPlaneHeight, int newShieldMargin, int newMaxHeightParachute, int newMinHeightParachute, int newGroundHeight);
 
-    void closeCanvas();
+    // Creates a canvas
+    Canvas();
+
+    // endGraphics for the canvas
+    void closeCanvas() const;
 };
 
 #endif // CANVAS_H

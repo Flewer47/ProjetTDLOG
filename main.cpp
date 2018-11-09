@@ -2,20 +2,6 @@
 #include "Cannon.h"
 #include <Imagine/Graphics.h>
 
-/// For the canvas
-int const width = 600, height = 600;
-std::string const windowTitle = "Paratroopers";
-Imagine::Color windowColor = Imagine::BLACK;
-
-/// For the player
-int const playerWidth = 50, playerHeight = 30;
-Imagine::Color playerColor = Imagine::WHITE;
-
-/// For the cannon
-float const cannonLength = 30, cannonAngularVelocity = 0.1;
-const int cannonWidth = 6;
-Imagine::Color cannonColor = Imagine::WHITE;
-
 
 /**
  * @brief keyboard management function for the cannon
@@ -45,9 +31,9 @@ void keyboard(int& direction){
 int main(){
     std::cout << "Hello World !" << std::endl;
 
-    Canvas canvas(width, height, windowTitle, windowColor, 0, 0, 0, 0, 0, 0, 0);
+    Canvas canvas;
 
-    Cannon cannon(playerWidth, playerHeight, cannonLength, cannonWidth, defaultCannonAngle, 0.32, playerColor, cannonColor, 0);
+    Cannon cannon;
 
     int countdown = 0;
     int direction = 0;

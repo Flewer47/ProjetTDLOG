@@ -16,57 +16,57 @@ NOTATIONS :
 	Plane
 	Bullet
 
-		
+# Global constants for the canvas	
+dropMargin
+leftRightPlaneHeight
+rightLeftPlaneHeight
+shieldMargin
+maxHeigthParachute
+minHeightParachute
+groundHeight		
+windowWidth
+windowHeight
+windowTitle
+windowBackgroundColor
+
 -> Canvas:
 	* attributes :
-		width
-		height
-		title
-		backgroundColor
+
+		# bool to check if the canvas is active.
+		activeCanvas;
 		
-		dropMargin
-		leftRightPlaneHeight
-		rightLeftPlaneHeight
-		shieldMargin
-		maxHeigthParachute
-		minHeightParachute
-		groundHeight		
 			
 	* methods :
 		
 		# Should create the canvas.
-		Canvas() 
+		Canvas(); 
 		
 		# Should put a "EndGraphics" so that the player can close the game.
-		closeCanvas
-		
+		void closeCanvas() const;
+
+# Global constants for the Cannon		
+cannonLength
+cannonWidth
+boxColor
+cannonColor
+cannonAngularVelocity
+shootFrequency
+boxHeight
+boxWidth
 
 -> Cannon :
 	* attributes :
-		boxHeight
-		boxWidth
-		angle
-		length
-		width
-		boxColor
-		cannonColor
-		angularVelocity
-		shootFrequency
+
+		angle;
+
 	* methods :
 		
 		# Should create the box & cannon. 
 		# Would not draw them as updatePosition does it anyway.
-		Cannon() 		
-				
+		Cannon(); 		
 
-		updatePosition
-		display
-
-		# to draw the bullets		
-		getAngle
-
-		# to manage the shot frequency in the loop
-		getShootFrequency 
+		void updatePosition();
+		void display(Imagine::Color newColor1 = boxColor, Imagine::Color newColor2 = 			cannonColor) const
 		
 -> Trooper:
 	* attributes :
