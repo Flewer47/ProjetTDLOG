@@ -5,6 +5,7 @@
 /// For the canvas
 int const width = 600, height = 600;
 std::string const windowTitle = "Paratroopers";
+Imagine::Color windowColor = Imagine::BLACK;
 
 /// For the player
 int const playerWidth = 50, playerHeight = 30;
@@ -44,9 +45,9 @@ void keyboard(int& direction){
 int main(){
     std::cout << "Hello World !" << std::endl;
 
-    Imagine::openWindow(width, height, windowTitle);
+    Canvas canvas(width, height, windowTitle, windowColor, 0, 0, 0, 0, 0, 0, 0);
 
-    Cannon cannon(playerWidth, playerHeight, cannonLength, cannonWidth);
+    Cannon cannon(playerWidth, playerHeight, cannonLength, cannonWidth, defaultCannonAngle, 0.32, playerColor, cannonColor, 0);
 
     int countdown = 0;
     int direction = 0;
@@ -56,9 +57,8 @@ int main(){
         cannon.updatePosition(direction);
         Imagine::milliSleep(50);
     }
-    Imagine::endGraphics();
 
-
+    canvas.closeCanvas();
 
     return 0;
 }

@@ -1,7 +1,7 @@
 #include "Cannon.h"
 
 Cannon::Cannon(int newBoxWidth, int newBoxHeight, int newLength, int newWidth, float newAngle, float newAngularVelocity,
-               Imagine::Color newBoxColor, Imagine::Color newCannonColor){
+               Imagine::Color newBoxColor, Imagine::Color newCannonColor, float newShootFrequency){
     boxWidth = newBoxWidth;
     boxHeight = newBoxHeight;
     length = newLength;
@@ -10,6 +10,7 @@ Cannon::Cannon(int newBoxWidth, int newBoxHeight, int newLength, int newWidth, f
     angularVelocity = newAngularVelocity;
     boxColor = newBoxColor;
     cannonColor = newCannonColor;
+    shootFrequency = newShootFrequency;
 }
 
 void Cannon::display(Imagine::Color BoxColor, Imagine::Color CannonColor){
@@ -33,6 +34,5 @@ void Cannon::updatePosition(int direction){
     else if (angle > defaultCannonAngle+cannonAngleLimit){
         angle = defaultCannonAngle+cannonAngleLimit;
     }
-
     display(boxColor, cannonColor);
 }

@@ -10,10 +10,36 @@ NOTATIONS :
 	groundHeight
 
 -> Classes:
+	Canvas
 	Cannon
 	Trooper
 	Plane
 	Bullet
+
+		
+-> Canvas:
+	* attributes :
+		width
+		height
+		title
+		backgroundColor
+		
+		dropMargin
+		leftRightPlaneHeight
+		rightLeftPlaneHeight
+		shieldMargin
+		maxHeigthParachute
+		minHeightParachute
+		groundHeight		
+			
+	* methods :
+		
+		# Should create the canvas.
+		Canvas() 
+		
+		# Should put a "EndGraphics" so that the player can close the game.
+		closeCanvas
+		
 
 -> Cannon :
 	* attributes :
@@ -22,12 +48,25 @@ NOTATIONS :
 		angle
 		length
 		width
-		color
+		boxColor
+		cannonColor
 		angularVelocity
 		shootFrequency
 	* methods :
+		
+		# Should create the box & cannon. 
+		# Would not draw them as updatePosition does it anyway.
+		Cannon() 		
+				
+
 		updatePosition
 		display
+
+		# to draw the bullets		
+		getAngle
+
+		# to manage the shot frequency in the loop
+		getShootFrequency 
 		
 -> Trooper:
 	* attributes :
