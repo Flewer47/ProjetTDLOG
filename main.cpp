@@ -31,24 +31,6 @@ void keyboard(int& direction){
     direction = (up ? 2 : (left ? -1 : (right ? 1 : 0)));
 }
 
-void spacebar(int& shoot){
-    static bool space = false;
-    Imagine::Event e;
-    do {
-        Imagine::getEvent(0, e);
-        if (e.type == Imagine::EVT_KEY_ON || e.type == Imagine::EVT_KEY_OFF) {
-            std::cout << "lol" << std::endl;
-            bool push = (e.type == Imagine::EVT_KEY_ON);
-            if(e.key == Imagine::KEY_UP){
-                space = push;
-                break;
-            }
-        }
-    } while (e.type!=Imagine::EVT_NONE);
-    shoot = (space ? 1 : 0);
-}
-
-
 int main(){
     std::cout << "Hello World !" << std::endl;
 
