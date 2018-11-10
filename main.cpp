@@ -46,9 +46,10 @@ void handleBullets(){
         (*it).updatePosition();
 
         isRemovingBullet(*it);
+
     }
 
-    for (std::vector<Bullet>::iterator it = bullets.end(); it != bullets.begin(); --it){
+    for (std::vector<Bullet>::iterator it = bullets.end()-1; it != bullets.begin()-1; --it){
         if ((*it).getRemoveMe()){
             bullets.erase(it);
         }
