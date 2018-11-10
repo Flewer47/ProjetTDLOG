@@ -47,6 +47,6 @@ void Cannon::updatePosition(int direction){
     display();
 }
 
-float Cannon::getAngle(){
+float Cannon::getAngle() const{
   return angle;
 }

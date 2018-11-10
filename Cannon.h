@@ -38,6 +38,6 @@ public:
     /**
      * @brief Return the angle of the cannon
      */
-    float getAngle();
+    float getAngle() const;
 
 };
