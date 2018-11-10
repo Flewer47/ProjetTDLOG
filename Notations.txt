@@ -25,11 +25,6 @@ Imagine::Color windowBackgroundColor
 Imagine::Color groundColor
 std::string windowTitle
 
-int dropMargin
-int leftRightPlaneHeight
-int rightLeftPlaneHeight
-int shieldMargin
-
 -> Canvas:
 	* attributes :
 
@@ -111,16 +106,47 @@ int maxHeigthParachute
 
 	* methods :
 
-		Trooper(int planeX, int planeY)
+		Trooper(int planeX, int planeY);
 
 		void display(Imagine::Color newColor1 = trooperColor, Imagine::Color newColor2 = 			parachuteColor) const;
 
 
+# Global constants for the Plane
+int dropMargin
+int leftRightPlaneHeight
+int rightLeftPlaneHeight
+int shieldMargin
+int planeVelocity
+
+const int planeWidth
+const int planeHeight
+Imagine::Color planeColor
 
 -> Plane :
 	* attributes :
-	* methods :
+	
+		int x;
+		int y;
+		int vx;
+		bool removeMe;
 
+		# to determine the direction	
+		bool isGoingLeft;
+
+		# to determine if he has spawned an enemy yet or not
+		bool hasSpawnedYet;
+
+		# to determine where to drop the enemy
+		int dropWidth;
+	
+
+	* methods :
+		
+		Plane();	
+
+		void display() const;
+
+		void updatePosition();
 
 # Global constants for the Bullet
 int bulletSpeed
