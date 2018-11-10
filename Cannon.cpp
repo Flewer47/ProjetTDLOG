@@ -46,3 +46,7 @@ void Cannon::updatePosition(int direction){
     // Redraw the cannon
     display();
 }
+
+float Cannon::getAngle(){
+  return angle;
+}

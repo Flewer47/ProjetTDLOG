@@ -35,4 +35,9 @@ public:
      * @param direction Belongs in {-1,0,1} and indicates which key is pressed if any to change the position of the cannon
      */
     void updatePosition(int direction);
+    /**
+     * @brief Return the angle of the cannon
+     */
+    float getAngle();
+
 };
