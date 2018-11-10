@@ -5,44 +5,47 @@
 
 
 /**
- * @brief keyboard management function for the cannon
- * @param direction -1 if it goes to the left, 1 if it goes to the right, 0 otherwise.
+ * @brief keyboard management function for the cannon and the shooting
+ * @param direction -1 if it goes to the left, 1 if it goes to the right, 2 if the user shoots, 0 otherwise.
  */
 void keyboard(int& direction){
-    static bool left = false, right = false;
+    static bool left = false, right = false, up = false;
     Imagine::Event e;
     do {
         Imagine::getEvent(0, e);
         if (e.type == Imagine::EVT_KEY_ON || e.type == Imagine::EVT_KEY_OFF) {
             bool push = (e.type == Imagine::EVT_KEY_ON);
             switch (e.key) {
-                case Imagine::KEY_LEFT :
-                    left = push;
-                    break;
-                case Imagine::KEY_RIGHT :
-                    right = push;
-                    break;
+            case Imagine::KEY_LEFT :
+                left = push;
+                break;
+            case Imagine::KEY_RIGHT :
+                right = push;
+                break;
+            case Imagine::KEY_UP :
+                up = push;
+                break;
             }
         }
     } while (e.type!=Imagine::EVT_NONE);
-    direction = (left ? -1 : (right ? 1 : 0));
+    direction = (up ? 2 : (left ? -1 : (right ? 1 : 0)));
 }
 
 void spacebar(int& shoot){
-  static bool space = false;
-  Imagine::Event e;
-  do {
-      Imagine::getEvent(0, e);
-      if (e.type == Imagine::EVT_KEY_ON || e.type == Imagine::EVT_KEY_OFF) {
-          bool push = (e.type == Imagine::EVT_KEY_ON);
-          std::cout << "ah" << std::endl;
-          if(e.key == Imagine::KEY_UP){
-            space = push;
-            break;
-          }
-      }
-  } while (e.type!=Imagine::EVT_NONE);
-  shoot = (space ? 1 : 0);
+    static bool space = false;
+    Imagine::Event e;
+    do {
+        Imagine::getEvent(0, e);
+        if (e.type == Imagine::EVT_KEY_ON || e.type == Imagine::EVT_KEY_OFF) {
+            std::cout << "lol" << std::endl;
+            bool push = (e.type == Imagine::EVT_KEY_ON);
+            if(e.key == Imagine::KEY_UP){
+                space = push;
+                break;
+            }
+        }
+    } while (e.type!=Imagine::EVT_NONE);
+    shoot = (space ? 1 : 0);
 }
 
 
@@ -57,18 +60,17 @@ int main(){
 
     int countdown = 0;
     int direction = 0;
-    int shoot = 0;
     while (countdown != 100){
         countdown++;
         keyboard(direction);
-        cannon.updatePosition(direction);
-        spacebar(shoot);
-        std::cout << direction << std::endl;
-        if (shoot){
-          bullets.push_back(Bullet(cannon.getAngle()));
+        if (direction!=2){
+            cannon.updatePosition(direction);
+        }
+        else{
+            bullets.push_back(Bullet(cannon.getAngle()));
         }
         for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it){
-          (*it).updatePosition();
+            (*it).updatePosition();
         }
         Imagine::milliSleep(50);
     }
