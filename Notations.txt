@@ -129,6 +129,9 @@ int bulletSize
 	float angle;
 	int x;
 	int y;
+	
+	# bool to check if it has left the screen
+	bool removeMe;
 
 	* methods :
 
@@ -137,3 +140,10 @@ int bulletSize
 	updatePosition();
 
 	void display() const;
+
+	bool getRemoveMe() const;
+	void setRemoveMe(bool newRemoveMe);
+
+	int getPositionX() const;
+
+	int getPositionY() const;

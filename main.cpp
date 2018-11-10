@@ -3,6 +3,9 @@
 #include "Bullet.h"
 #include <Imagine/Graphics.h>
 
+/// Vector of bullets
+std::vector<Bullet> bullets;
+
 
 /**
  * @brief keyboard management function for the cannon and the shooting
@@ -31,6 +34,28 @@ void keyboard(int& direction){
     direction = (up ? 2 : (left ? -1 : (right ? 1 : 0)));
 }
 
+void isRemovingBullet(Bullet& bullet){
+    int x = bullet.getPositionX(), y = bullet.getPositionY();
+    if (x < 0 || x > windowWidth || y < 0){
+        bullet.setRemoveMe(true);
+    }
+}
+
+void handleBullets(){
+    for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it){
+        (*it).updatePosition();
+
+        isRemovingBullet(*it);
+    }
+
+    for (std::vector<Bullet>::iterator it = bullets.end(); it != bullets.begin(); --it){
+        if ((*it).getRemoveMe()){
+            bullets.erase(it);
+        }
+    }
+}
+
+
 int main(){
     std::cout << "Hello World !" << std::endl;
 
@@ -38,11 +63,9 @@ int main(){
 
     Cannon cannon;
 
-    std::vector<Bullet> bullets;
-
     int countdown = 0;
     int direction = 0;
-    while (countdown != 100){
+    while (countdown != 300){
         countdown++;
         keyboard(direction);
         if (direction!=2){
@@ -51,9 +74,8 @@ int main(){
         else{
             bullets.push_back(Bullet(cannon.getAngle()));
         }
-        for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it){
-            (*it).updatePosition();
-        }
+        handleBullets();
+        std::cout << bullets.size() << std::endl;
         Imagine::milliSleep(50);
     }
 
