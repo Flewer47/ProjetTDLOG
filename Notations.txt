@@ -29,23 +29,21 @@ int dropMargin
 int leftRightPlaneHeight
 int rightLeftPlaneHeight
 int shieldMargin
-int minHeightParachute
-int maxHeigthParachute
 
 -> Canvas:
 	* attributes :
 
 		# bool to check if the canvas is active.
-		bool isCanvasActive
+		bool isCanvasActive;
 
 
 	* methods :
 
 		# Should create the canvas.
-		Canvas()
+		Canvas();
 
 		# Should put a "EndGraphics" so that the player can close the game.
-		void closeCanvas() const
+		void closeCanvas() const;
 
 # Global constants for the Cannon
 
@@ -66,16 +64,16 @@ float shootFrequency
 -> Cannon :
 	* attributes :
 
-		float angle
+		float angle;
 
 	* methods :
 
 		# Should create the box & cannon.
 		# Would not draw them as updatePosition does it anyway.
-		Cannon()
+		Cannon();
 
 		void updatePosition();
-		void display(Imagine::Color newColor1 = boxColor, Imagine::Color newColor2 = 			cannonColor) const
+		void display(Imagine::Color newColor1 = boxColor, Imagine::Color newColor2 = 			cannonColor) const;
 		float getAngle();
 
 # Global constants for the Trooper
@@ -87,30 +85,35 @@ int parachuteHeight
 Imagine::Color parachuteColor
 int trooperSpeedWithParachute
 int trooperSpeedWithoutParachute
+int trooperSpeedWalking
+
+
+int minHeightParachute
+int maxHeigthParachute
 
 -> Trooper:
 	* attributes :
 		# Position
-		int x
-		int y
+		int x;
+		int y;
 
 		# bool to check if it has deployed its parachute
-		bool isParachuteDrawn
+		bool isParachuteDrawn;
 
 		# height when he will deploy its parachute
-		int heightToDrawParachute
+		int heightToDrawParachute;
 
 		# bool to check if it has touched the ground
-		bool isWalking
+		bool isWalking;
 
 		# bool to check if it has been killed
-		bool removeMe
+		bool removeMe;
 
 	* methods :
 
 		Trooper(int planeX, int planeY)
 
-		void display() const;
+		void display(Imagine::Color newColor1 = trooperColor, Imagine::Color newColor2 = 			parachuteColor) const;
 
 
 
@@ -142,8 +145,3 @@ int bulletSize
 	void display() const;
 
 	bool getRemoveMe() const;
-	void setRemoveMe(bool newRemoveMe);
-
-	int getPositionX() const;
-
-	int getPositionY() const;

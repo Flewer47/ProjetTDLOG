@@ -24,6 +24,10 @@ void Bullet::updatePosition(){
   x += std::cos(angle)*bulletSpeed;
   y += std::sin(angle)*bulletSpeed;
 
-  // Redraw the bullet
-  display();
+  if (x < 0 || x > windowWidth || y < 0){
+      removeMe = true;
+  }
+  else {
+    display();
+  }
 }

@@ -1,7 +1,7 @@
 #ifndef TROOPER_H
 #define TROOPER_H
 
-#include "Canvas.h"
+#include "Cannon.h"
 
 /// For the trooper
 const int trooperWidth = 20;
@@ -16,6 +16,10 @@ const Imagine::Color parachuteColor = Imagine::GREEN;
 /// Speeds
 const int trooperSpeedWithParachute = 3;
 const int trooperSpeedWithoutParachute = 5;
+const int trooperSpeedWalking = 2;
+
+/// Margins
+const int minHeightParachute = 300, maxHeightParachute = 400;
 
 class Trooper
 {
@@ -45,6 +49,25 @@ public:
      * @param planeY Y coordinate of the plane that spawned the trooper
      */
     Trooper(int planeX, int planeY);
+
+    /**
+     * @brief Display the trooper and its parachute if any
+     * @param newColor1 Color of the trooper (trooperColor by default)
+     * @param newColor2 Color of the parachute (parachuteColor by default)
+     */
+    void display(Imagine::Color newColor1 = trooperColor, Imagine::Color newColor2 = parachuteColor) const;
+
+    /**
+     * @brief Update the position of the trooper at the next frame
+     */
+    void updatePosition();
+
+    /**
+     * @brief Getter of removeMe boolean
+     */
+    bool getRemoveMe() const{
+        return removeMe;
+    }
 
 };
 

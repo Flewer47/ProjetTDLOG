@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Cannon.h"
 #include "Bullet.h"
 #include <Imagine/Graphics.h>
@@ -34,18 +36,10 @@ void keyboard(int& direction){
     direction = (up ? 2 : (left ? -1 : (right ? 1 : 0)));
 }
 
-void isRemovingBullet(Bullet& bullet){
-    int x = bullet.getPositionX(), y = bullet.getPositionY();
-    if (x < 0 || x > windowWidth || y < 0){
-        bullet.setRemoveMe(true);
-    }
-}
 
 void handleBullets(){
     for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it){
         (*it).updatePosition();
-
-        isRemovingBullet(*it);
 
     }
 
@@ -56,12 +50,16 @@ void handleBullets(){
     }
 }
 
+void generateRandom(){
+    srand(time(0));
+}
 
 int main(){
+
+    generateRandom();
     std::cout << "Hello World !" << std::endl;
 
     Canvas canvas;
-
     Cannon cannon;
 
     int countdown = 0;
