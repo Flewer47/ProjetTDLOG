@@ -76,6 +76,7 @@ float shootFrequency
 
 		void updatePosition();
 		void display(Imagine::Color newColor1 = boxColor, Imagine::Color newColor2 = 			cannonColor) const
+		float getAngle();
 
 # Global constants for the Trooper
 int trooperWidth
@@ -120,7 +121,19 @@ int trooperSpeedWithoutParachute
 
 # Global constants for the Bullet
 int bulletSpeed
+int bulletSize
 
 -> Bullet :
 	* attributes :
+
+	float angle;
+	int x;
+	int y;
+
 	* methods :
+
+	Bullet(float angle0);
+
+	updatePosition();
+
+	void display() const;
