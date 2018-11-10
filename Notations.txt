@@ -1,4 +1,4 @@
-NOTATIONS : 
+NOTATIONS :
 
 -> Margins :
 	dropMargin
@@ -16,7 +16,7 @@ NOTATIONS :
 	Plane
 	Bullet
 
-# Global constants for the canvas	
+# Global constants for the canvas
 
 int windowWidth
 int windowHeight
@@ -37,20 +37,20 @@ int maxHeigthParachute
 
 		# bool to check if the canvas is active.
 		bool isCanvasActive
-		
-			
+
+
 	* methods :
-		
+
 		# Should create the canvas.
-		Canvas() 
-		
+		Canvas()
+
 		# Should put a "EndGraphics" so that the player can close the game.
 		void closeCanvas() const
 
 # Global constants for the Cannon
 
 int boxHeight
-int boxWidth		
+int boxWidth
 Imagine::Color boxColor
 
 int cannonLength
@@ -69,10 +69,10 @@ float shootFrequency
 		float angle
 
 	* methods :
-		
-		# Should create the box & cannon. 
+
+		# Should create the box & cannon.
 		# Would not draw them as updatePosition does it anyway.
-		Cannon()		
+		Cannon()
 
 		void updatePosition();
 		void display(Imagine::Color newColor1 = boxColor, Imagine::Color newColor2 = 			cannonColor) const
@@ -86,7 +86,7 @@ int parachuteHeight
 Imagine::Color parachuteColor
 int trooperSpeedWithParachute
 int trooperSpeedWithoutParachute
-		
+
 -> Trooper:
 	* attributes :
 		# Position
@@ -99,7 +99,7 @@ int trooperSpeedWithoutParachute
 		# height when he will deploy its parachute
 		int heightToDrawParachute
 
-		# bool to check if it has touched the ground 
+		# bool to check if it has touched the ground
 		bool isWalking
 
 		# bool to check if it has been killed
@@ -110,7 +110,7 @@ int trooperSpeedWithoutParachute
 		Trooper(int planeX, int planeY)
 
 		void display() const;
-		
+
 
 
 -> Plane :
@@ -118,7 +118,9 @@ int trooperSpeedWithoutParachute
 	* methods :
 
 
+# Global constants for the Bullet
+int bulletSpeed
+
 -> Bullet :
 	* attributes :
 	* methods :
-
