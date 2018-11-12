@@ -9,6 +9,9 @@ const int bulletSpeed = 10;
 /// For the size of the bullet
 const int bulletSize = 4;
 
+/// For shooting
+const int shootFrequency = 4;
+
 class Bullet{
 private:
   float angle;

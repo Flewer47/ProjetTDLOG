@@ -10,8 +10,6 @@ const int cannonLength = 30, cannonWidth = 6;
 const float cannonAngularVelocity = 0.32, cannonAngleLimit = M_PI*0.42, defaultCannonAngle = -M_PI/2;
 const Imagine::Color cannonColor = Imagine::WHITE;
 
-/// For shooting
-const int shootFrequency = 0;
 
 class Cannon{
 private:
