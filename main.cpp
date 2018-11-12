@@ -3,6 +3,7 @@
 #include <ctime>
 #include "Cannon.h"
 #include "Bullet.h"
+#include "Plane.h"
 #include <Imagine/Graphics.h>
 
 /// Vector of bullets
@@ -89,8 +90,9 @@ int main(){
     int direction = 0;
     std::vector<int> bulletsCue;
     setCue(bulletsCue);
-
+    Plane firstPlane;
     while (countdown != 300){
+        firstPlane.updatePosition();
         countdown++;
         keyboard(direction);
         if (direction!=2){
