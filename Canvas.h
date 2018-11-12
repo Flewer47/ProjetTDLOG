@@ -10,9 +10,6 @@ const Imagine::Color windowBackgroundColor = Imagine::BLACK;
 const Imagine::Color groundColor = Imagine::BLUE;
 const std::string windowTitle = "Paratroopers";
 
-/// Drop Troopers
-const int dropMargin = 0, leftRightPlaneHeight = 0, rightLeftPlaneHeight = 0, shieldMargin = 0;
-
 class Canvas
 {
     // Check if the canvas is active or not.

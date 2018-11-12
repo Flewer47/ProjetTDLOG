@@ -9,8 +9,8 @@ const int shieldMargin = boxWidth + 40;
 const int planeVelocity = 3;
 const Imagine::Color planeColor = Imagine::RED;
 
-const int planeWidth;
-const int planeHeight;
+const int planeWidth = 10;
+const int planeHeight = 10;
 
 class Plane
 {
