@@ -50,6 +50,15 @@ void handleBullets(){
     }
 }
 
+bool setBulletCue(std::vector<int> &cue)
+{
+    cue.clear();
+    for(int i = 0; i < shootFrequency - 1; i++){
+        cue.push_back(0);
+    }
+    cue.push_back(1);
+}
+
 void generateRandom(){
     srand(time(0));
 }
@@ -64,14 +73,22 @@ int main(){
 
     int countdown = 0;
     int direction = 0;
+    std::vector<int> bulletsCue;
+    setBulletCue(bulletsCue);
+
     while (countdown != 300){
         countdown++;
         keyboard(direction);
         if (direction!=2){
             cannon.updatePosition(direction);
+            setBulletCue(bulletsCue);
         }
         else{
-            bullets.push_back(Bullet(cannon.getAngle()));
+            if (bulletsCue.back() == 1 || bulletsCue.empty()){
+                bullets.push_back(Bullet(cannon.getAngle()));
+                if(bulletsCue.empty()){setBulletCue(bulletsCue);}
+            }
+            bulletsCue.pop_back();
         }
         handleBullets();
         std::cout << bullets.size() << std::endl;
