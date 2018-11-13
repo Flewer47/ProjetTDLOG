@@ -22,8 +22,11 @@ class Plane
     // Check to see if it has left the screen (for memory management purpose)
     bool removeMe;
 
-    // Determine if he has spawned an enemy yet
+    // Determine if it has spawned an enemy yet
     bool hasSpawnedYet;
+
+    // Determine if is has to spawn an enemy
+    bool isSpawningTrooper;
 
     // Determine where to drop the enemy
     int dropWidth;
@@ -35,6 +38,11 @@ public:
     void display(Imagine::Color newColor = planeColor) const;
 
     void updatePosition();
+
+    /**
+     * @brief Getter of the HasSpawnedYet boolean
+     */
+    bool getisSpawningTrooper() const;
 };
 
 #endif // PLANE_H
