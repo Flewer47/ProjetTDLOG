@@ -4,6 +4,7 @@
 #include "Cannon.h"
 #include "Bullet.h"
 #include "Plane.h"
+#include "Trooper.h"
 #include <Imagine/Graphics.h>
 
 /// Vector of bullets
@@ -55,12 +56,12 @@ void handleBullets(){
     }
 }
 
-void moveCannon(Cannon &cannon, int &count, int direction){
+void moveCannon(const int& direction, int &count, Cannon &cannon){
     cannon.updatePosition(direction);
     count = shootFrequency;
 }
 
-void shoot(int &count, std::vector<Bullet> &bullets, Cannon cannon)
+void shoot(int &count, const Cannon& cannon, std::vector<Bullet> &bullets)
 {
     if (count == shootFrequency || count == 0){
         bullets.push_back(Bullet(cannon.getAngle()));
@@ -69,6 +70,17 @@ void shoot(int &count, std::vector<Bullet> &bullets, Cannon cannon)
         }
     }
     count--;
+}
+
+
+void handleCannon(int& direction, int& count, Cannon &cannon, std::vector<Bullet> &bullets){
+    keyboard(direction);
+    if (direction != 2){
+        moveCannon(direction, count, cannon);
+    }
+    else{
+        shoot(count, cannon, bullets);
+    }
 }
 
 void generateRandom(){
@@ -88,16 +100,11 @@ int main(){
     int count = shootFrequency;
     while (countdown != 300){
         countdown++;
-        keyboard(direction);
-        if (direction!=2){
-            moveCannon(cannon, count, direction);
-        }
-        else{
-            shoot(count, bullets, cannon);
-        }
+        handleCannon(direction, count, cannon, bullets);
         handleBullets();
-        std::cout << bullets.size() << std::endl;
+        Imagine::drawString(20,50, std::to_string(bullets.size()), Imagine::RED);
         Imagine::milliSleep(50);
+        Imagine::drawString(20,50, std::to_string(bullets.size()), Imagine::BLACK);
     }
 
     canvas.closeCanvas();

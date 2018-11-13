@@ -40,7 +40,7 @@ public:
     /**
      * @brief Getter of the HasSpawnedYet boolean
      */
-    bool getisSpawningTrooper() const;
+    bool getIsSpawningTrooper() const;
 };
 
 #endif // PLANE_H
