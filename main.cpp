@@ -9,6 +9,11 @@
 /// Vector of bullets
 std::vector<Bullet> bullets;
 
+/// Vector of planes
+std::vector<Plane> planes;
+
+/// Vector of troopers
+std::vector<Trooper> troopers;
 
 /**
  * @brief keyboard management function for the cannon and the shooting
@@ -81,9 +86,7 @@ int main(){
     int countdown = 0;
     int direction = 0;
     int count = shootFrequency;
-    Plane firstPlane;
     while (countdown != 300){
-        firstPlane.updatePosition();
         countdown++;
         keyboard(direction);
         if (direction!=2){
