@@ -2,8 +2,8 @@
 
 Trooper::Trooper(int planeX, int planeY)
 {
-    x = planeX;
-    y = planeY;
+    x = planeX + planeWidth/2;
+    y = planeY + planeHeight;
     v = trooperSpeedWithoutParachute;
     isParachuteDrawn = false;
     heightToDrawParachute = minHeightParachute + rand()*(maxHeightParachute-minHeightParachute);
