@@ -6,6 +6,18 @@
 #include "Plane.h"
 #include "Trooper.h"
 #include <Imagine/Graphics.h>
+#include <sstream>
+
+namespace patch
+{
+    template < typename T > std::string to_string( const T& n )
+    {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
+}
+
 
 /// Vector of bullets
 std::vector<Bullet> bullets;
@@ -137,15 +149,15 @@ int main(){
         handleBullets();
         handleTroopers();
 
-        Imagine::drawString(20,50, std::to_string(bullets.size()), Imagine::RED);
-        Imagine::drawString(20,100, std::to_string(planes.size()), Imagine::RED);
-        Imagine::drawString(20,150, std::to_string(troopers.size()), Imagine::RED);
+        Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::RED);
+        Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::RED);
+        Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::RED);
 
         Imagine::milliSleep(50);
 
-        Imagine::drawString(20,50, std::to_string(bullets.size()), Imagine::BLACK);
-        Imagine::drawString(20,100, std::to_string(planes.size()), Imagine::BLACK);
-        Imagine::drawString(20,150, std::to_string(troopers.size()), Imagine::BLACK);
+        Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::BLACK);
+        Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::BLACK);
+        Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::BLACK);
     }
 
     canvas.closeCanvas();
