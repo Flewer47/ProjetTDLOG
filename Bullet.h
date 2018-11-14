@@ -10,7 +10,7 @@ const int bulletSpeed = 10;
 const int bulletSize = 4;
 
 /// For shooting
-const int shootFrequency = 4;
+const int shootFrequency = 5;
 
 class Bullet{
 private:

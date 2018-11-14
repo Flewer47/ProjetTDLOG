@@ -81,8 +81,7 @@ int main(){
     int countdown = 0;
     int direction = 0;
     int count = shootFrequency;
-    Plane firstPlane;
-    while (countdown != 300){
+    while (countdown != 500){
         firstPlane.updatePosition();
         countdown++;
         keyboard(direction);
