@@ -2,11 +2,11 @@
 
 Trooper::Trooper(int planeX, int planeY)
 {
-    x = planeX;
-    y = planeY;
+    x = planeX + planeWidth/2;
+    y = planeY + planeHeight;
     v = trooperSpeedWithoutParachute;
     isParachuteDrawn = false;
-    heightToDrawParachute = minHeightParachute + rand()*(maxHeightParachute-minHeightParachute);
+    heightToDrawParachute = minHeightParachute + (rand()/(float)RAND_MAX)*(maxHeightParachute-minHeightParachute);
     isWalking = false;
     removeMe = false;
 }
@@ -29,11 +29,13 @@ void Trooper::updatePosition(){
     display(windowBackgroundColor, windowBackgroundColor);
 
     if (isWalking){
-        if (x < windowWidth/2 - boxWidth/2){
+        if (x < windowWidth/2 - boxWidth/2 - trooperWidth){
             x += trooperSpeedWalking;
+            display();
         }
         else if (x > windowWidth/2 + boxWidth/2){
             x -= trooperSpeedWalking;
+            display();
         }
         else{ // Trooper comes inside the base.
             removeMe = true;

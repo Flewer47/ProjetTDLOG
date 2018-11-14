@@ -3,7 +3,7 @@
 Plane::Plane()
 {
     // Going left to right
-    if (rand() < 0.5){
+    if ((rand()/(float)RAND_MAX) < 0.5){
         vx = planeVelocity;
         x = -planeWidth;
         y = leftRightPlaneHeight;
@@ -17,8 +17,9 @@ Plane::Plane()
     }
 
     hasSpawnedYet = false;
+    isSpawningTrooper = false;
     removeMe = false;
-    dropWidth = dropMargin + rand()*(windowWidth - 2*(shieldMargin/2 + dropMargin));
+    dropWidth = dropMargin + (rand()/(float)RAND_MAX)*(windowWidth - 2*(shieldMargin/2 + dropMargin));
     if (dropWidth >= (windowWidth - shieldMargin)/2){
         dropWidth += shieldMargin;
     }
@@ -40,12 +41,37 @@ void Plane::updatePosition(){
 
     x += vx;
 
-    if (!hasSpawnedYet && ((isGoingRight && x >= dropWidth) || (!isGoingRight && x <= dropWidth))){ // need to drop a Trooper
+    // If we spawned a trooper the frame before, hasSpawnedYet would still be true in the next frame, and so we would spawn him again.
+    // My solution : we get another boolean (spawnTrooper), that help to spawn the trooper correctly. We spawn a trooper in main.cpp
+    // only if isSpawningTrooper is true (only the case for one frame)
+
+    if (hasSpawnedYet && isSpawningTrooper){
+        isSpawningTrooper = false;
+    }
+
+    if (!hasSpawnedYet && ((isGoingRight && x >= dropWidth) || (!isGoingRight && x <= dropWidth))){
         hasSpawnedYet = true;
+        isSpawningTrooper = true;
     }
     else if ((isGoingRight && x >= windowWidth) || (!isGoingRight && x <= - planeWidth)){
         removeMe = true;
     }
 
     display();
+}
+
+bool Plane::getIsSpawningTrooper() const{
+    return isSpawningTrooper;
+}
+
+int Plane::getPlaneX() const{
+    return x;
+}
+
+int Plane::getPlaneY() const{
+    return y;
+}
+
+bool Plane::getRemoveMe() const{
+    return removeMe;
 }

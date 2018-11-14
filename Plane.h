@@ -9,8 +9,6 @@ const int shieldMargin = boxWidth + 40;
 const int planeVelocity = 3;
 const Imagine::Color planeColor = Imagine::RED;
 
-const int planeWidth = 100;
-const int planeHeight = 30;
 
 class Plane
 {
@@ -22,8 +20,11 @@ class Plane
     // Check to see if it has left the screen (for memory management purpose)
     bool removeMe;
 
-    // Determine if he has spawned an enemy yet
+    // Determine if it has spawned an enemy yet
     bool hasSpawnedYet;
+
+    // Determine if is has to spawn an enemy
+    bool isSpawningTrooper;
 
     // Determine where to drop the enemy
     int dropWidth;
@@ -35,6 +36,26 @@ public:
     void display(Imagine::Color newColor = planeColor) const;
 
     void updatePosition();
+
+    /**
+     * @brief Getter of the HasSpawnedYet boolean
+     */
+    bool getIsSpawningTrooper() const;
+
+    /**
+     * @brief Getter of the x coordinate
+     */
+    int getPlaneX() const;
+
+    /**
+     * @brief Getter of the y coordinate
+     */
+    int getPlaneY() const;
+
+    /**
+     * @brief Getter of the removeMe boolean
+     */
+    bool getRemoveMe() const;
 };
 
 #endif // PLANE_H
