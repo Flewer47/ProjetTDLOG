@@ -3,7 +3,7 @@
 Plane::Plane()
 {
     // Going left to right
-    if (rand() < 0.5){
+    if ((rand()/(float)RAND_MAX) < 0.5){
         vx = planeVelocity;
         x = -planeWidth;
         y = leftRightPlaneHeight;
@@ -19,7 +19,7 @@ Plane::Plane()
     hasSpawnedYet = false;
     isSpawningTrooper = false;
     removeMe = false;
-    dropWidth = dropMargin + rand()*(windowWidth - 2*(shieldMargin/2 + dropMargin));
+    dropWidth = dropMargin + (rand()/(float)RAND_MAX)*(windowWidth - 2*(shieldMargin/2 + dropMargin));
     if (dropWidth >= (windowWidth - shieldMargin)/2){
         dropWidth += shieldMargin;
     }
@@ -62,4 +62,16 @@ void Plane::updatePosition(){
 
 bool Plane::getIsSpawningTrooper() const{
     return isSpawningTrooper;
+}
+
+int Plane::getPlaneX() const{
+    return x;
+}
+
+int Plane::getPlaneY() const{
+    return y;
+}
+
+bool Plane::getRemoveMe() const{
+    return removeMe;
 }

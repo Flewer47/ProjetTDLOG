@@ -41,6 +41,21 @@ public:
      * @brief Getter of the HasSpawnedYet boolean
      */
     bool getIsSpawningTrooper() const;
+
+    /**
+     * @brief Getter of the x coordinate
+     */
+    int getPlaneX() const;
+
+    /**
+     * @brief Getter of the y coordinate
+     */
+    int getPlaneY() const;
+
+    /**
+     * @brief Getter of the removeMe boolean
+     */
+    bool getRemoveMe() const;
 };
 
 #endif // PLANE_H

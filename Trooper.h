@@ -6,12 +6,12 @@
 /// For the trooper
 const int trooperWidth = 20;
 const int trooperHeight = 20;
-const Imagine::Color trooperColor = Imagine::BLUE;
+const Imagine::Color trooperColor = Imagine::RED;
 
 /// For the parachute
 const int parachuteWidth = 5;
 const int parachuteHeight = 5;
-const Imagine::Color parachuteColor = Imagine::GREEN;
+const Imagine::Color parachuteColor = Imagine::RED;
 
 /// Speeds
 const int trooperSpeedWithParachute = 3;
