@@ -7,6 +7,14 @@ Bullet::Bullet(float angle0){
   removeMe = false;
 }
 
+int Bullet::get_x(){
+    return x;
+}
+
+int Bullet::get_y(){
+    return y;
+}
+
 void Bullet::display(Imagine::Color newColor) const{
   // To draw faster
   Imagine::noRefreshBegin();
