@@ -2,6 +2,7 @@
 #define TROOPER_H
 
 #include "Cannon.h"
+#include "Bullet.h"
 
 /// For the trooper
 const int trooperWidth = 20;
@@ -68,6 +69,12 @@ public:
     bool getRemoveMe() const{
         return removeMe;
     }
+
+    /**
+     * @brief Checks if a bullet collides the trooper's hitbox
+     * @param bullet Bullet
+     */
+    bool isTouched(Bullet bullet);
 
 };
 
