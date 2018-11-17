@@ -46,7 +46,7 @@ void keyboard(int& direction){
             case Imagine::KEY_RIGHT :
                 right = push;
                 break;
-            case Imagine::KEY_UP :
+            case 'z' :
                 up = push;
                 break;
             }
