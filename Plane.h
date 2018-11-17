@@ -1,6 +1,7 @@
 #ifndef PLANE_H
 #define PLANE_H
 #include "Cannon.h"
+#include "Bullet.h"
 
 const int dropMargin = 20;
 const int leftRightPlaneHeight = 20;
@@ -56,6 +57,12 @@ public:
      * @brief Getter of the removeMe boolean
      */
     bool getRemoveMe() const;
+
+    /**
+     * @brief Checks if a bullet collides the plane's hitbox
+     * @param bullet Bullet
+     */
+    bool isTouched(Bullet bullet);
 };
 
 #endif // PLANE_H

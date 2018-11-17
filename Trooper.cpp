@@ -71,3 +71,10 @@ void Trooper::updatePosition(){
         }
     }
 }
+
+bool Trooper::isTouched(Bullet bullet){
+    return((x < bullet.get_x())
+           && (bullet.get_x()< x + trooperWidth)
+           && (y < bullet.get_y())
+           && (bullet.get_y() < y + trooperHeight));
+}
