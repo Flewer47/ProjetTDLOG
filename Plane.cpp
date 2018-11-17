@@ -75,3 +75,10 @@ int Plane::getPlaneY() const{
 bool Plane::getRemoveMe() const{
     return removeMe;
 }
+
+bool Plane::isTouched(Bullet bullet){
+    return((x < bullet.get_x())
+           && (bullet.get_x()< x + planeWidth)
+           && (y < bullet.get_y())
+           && (bullet.get_y() < y + planeHeight));
+}

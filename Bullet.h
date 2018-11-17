@@ -30,6 +30,16 @@ public:
   Bullet(float angle0);
 
   /**
+   * @brief Returns the x coordinate of the Bullet
+   */
+  int get_x();
+
+  /**
+   * @brief Returns the y coordinate of the Bullet
+   */
+  int get_y();
+
+  /**
    * @brief Update the position of the bullet at the next frame
    */
   void updatePosition();
