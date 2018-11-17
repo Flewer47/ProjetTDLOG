@@ -76,9 +76,13 @@ bool Plane::getRemoveMe() const{
     return removeMe;
 }
 
-bool Plane::isTouched(Bullet bullet){
-    return((x < bullet.get_x())
-           && (bullet.get_x()< x + planeWidth)
-           && (y < bullet.get_y())
-           && (bullet.get_y() < y + planeHeight));
+void Plane::Touched(Bullet bullet){
+    bool touch = ((x < bullet.get_x())
+                  && (bullet.get_x()< x + planeWidth)
+                  && (y < bullet.get_y())
+                  && (bullet.get_y() < y + planeHeight));
+    if (touch){
+        bullet.setRemoveMe(true);
+        removeMe=true;
+    }
 }

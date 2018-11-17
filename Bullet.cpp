@@ -39,3 +39,7 @@ void Bullet::updatePosition(){
     display();
   }
 }
+
+void Bullet::setRemoveMe(bool rm){
+    removeMe = rm;
+}

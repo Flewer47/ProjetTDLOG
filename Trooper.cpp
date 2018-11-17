@@ -6,6 +6,7 @@ Trooper::Trooper(int planeX, int planeY)
     y = planeY + planeHeight;
     v = trooperSpeedWithoutParachute;
     isParachuteDrawn = false;
+    isParachuteShot = false;
     heightToDrawParachute = minHeightParachute + (rand()/(float)RAND_MAX)*(maxHeightParachute-minHeightParachute);
     isWalking = false;
     removeMe = false;
@@ -31,11 +32,11 @@ void Trooper::updatePosition(){
     if (isWalking){
         if (x < windowWidth/2 - boxWidth/2 - trooperWidth){
             x += trooperSpeedWalking;
-            display();
+            display(trooperColor, windowBackgroundColor);
         }
         else if (x > windowWidth/2 + boxWidth/2){
             x -= trooperSpeedWalking;
-            display();
+            display(trooperColor, windowBackgroundColor);
         }
         else{ // Trooper comes inside the base.
             removeMe = true;
@@ -48,7 +49,12 @@ void Trooper::updatePosition(){
         y += (isParachuteDrawn ? trooperSpeedWithParachute : trooperSpeedWithoutParachute);
 
         if (y >= heightToDrawParachute){
-            isParachuteDrawn = true;
+            if (!isParachuteShot){
+                isParachuteDrawn = true;
+            }
+            else {
+                isParachuteDrawn = false;
+            }
         }
 
         if(isParachuteDrawn){
@@ -72,9 +78,45 @@ void Trooper::updatePosition(){
     }
 }
 
-bool Trooper::isTouched(Bullet bullet){
-    return((x < bullet.get_x())
-           && (bullet.get_x()< x + trooperWidth)
-           && (y < bullet.get_y())
-           && (bullet.get_y() < y + trooperHeight));
+void Trooper::Touched(Bullet bullet){
+    if (isParachuteDrawn) {
+        bool touchParachute = ((x + trooperWidth/2 - parachuteWidth/2 < bullet.get_x())
+                                && (bullet.get_x()< x + trooperWidth/2 + parachuteWidth/2)
+                                && (y - parachuteHeight < bullet.get_y())
+                                && (bullet.get_y() < y));
+        if (touchParachute) {
+            isParachuteShot=true;
+            display(trooperColor, windowBackgroundColor);
+            bullet.setRemoveMe(true);
+            std::cout << "Parachute touched !" << std::endl;
+        }
+        else {
+            bool touchBody = ((x < bullet.get_x())
+                               && (bullet.get_x()< x + trooperWidth)
+                               && (y < bullet.get_y())
+                               && (bullet.get_y() < y + trooperHeight));
+            if (touchBody){
+                display(windowBackgroundColor, windowBackgroundColor);
+                bullet.setRemoveMe(true);
+                removeMe = true;
+                std::cout << "Trooper touched !" << std::endl;
+            }
+        }
+    }
+    else {
+        bool touchBody = ((x < bullet.get_x())
+                          && (bullet.get_x()< x + trooperWidth)
+                          && (y < bullet.get_y())
+                          && (bullet.get_y() < y + trooperHeight));
+        if (touchBody){
+           display(windowBackgroundColor, windowBackgroundColor);
+           bullet.setRemoveMe(true);
+           removeMe = true;
+           std::cout << "Trooper touched !" << std::endl;
+       }
+    }
+}
+
+bool Trooper::hasParachute(){
+    return(isParachuteDrawn);
 }

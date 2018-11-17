@@ -96,51 +96,39 @@ void handleCannon(int& direction, int& count, Cannon &cannon, std::vector<Bullet
 }
 
 void handlePlanes(){
+    for (std::vector<Plane>::iterator it = planes.end()-1; it != planes.begin()-1; it--){
+            if ((*it).getRemoveMe()){
+                planes.erase(it);
+            }
+        }
+
     for (std::vector<Plane>::iterator it = planes.begin(); it != planes.end(); it++){
         (*it).updatePosition();
         if ((*it).getIsSpawningTrooper()){
             troopers.push_back(Trooper((*it).getPlaneX(), (*it).getPlaneY()));
         }
     }
-
-    for (std::vector<Plane>::iterator it = planes.end()-1; it != planes.begin()-1; it--){
-        if ((*it).getRemoveMe()){
-            planes.erase(it);
-        }
-    }
 }
 
 void handleTroopers(){
-    for (std::vector<Trooper>::iterator it = troopers.begin(); it != troopers.end(); ++it){
-        (*it).updatePosition();
-    }
-
     for (std::vector<Trooper>::iterator it = troopers.end()-1; it != troopers.begin()-1; --it){
         if ((*it).getRemoveMe()){
             troopers.erase(it);
         }
+    }
+
+    for (std::vector<Trooper>::iterator it = troopers.begin(); it != troopers.end(); ++it){
+        (*it).updatePosition();
     }
 }
 
 void handleHitboxes(){
     for (std::vector<Bullet>::iterator it_bull = bullets.begin(); it_bull !=bullets.end(); it_bull++){
         for (std::vector<Trooper>::iterator it_troop = troopers.begin(); it_troop !=troopers.end(); it_troop++){
-            if ((*it_troop).isTouched((*it_bull))){
-                (*it_bull).display(Imagine::BLACK);
-                bullets.erase(it_bull);
-                (*it_troop).display(Imagine::BLACK, Imagine::BLACK);
-                troopers.erase(it_troop);
-                std::cout << "Trooper touched !" << std::endl;
-            }
+            (*it_troop).Touched((*it_bull));
         }
         for (std::vector<Plane>::iterator it_plane = planes.begin(); it_plane !=planes.end(); it_plane++){
-            if ((*it_plane).isTouched((*it_bull))){
-                (*it_bull).display(Imagine::BLACK);
-                bullets.erase(it_bull);
-                (*it_plane).display(Imagine::BLACK);
-                planes.erase(it_plane);
-                std::cout << "Plane touched !" << std::endl;
-            }
+            (*it_plane).Touched((*it_bull));
         }
     }
 }
@@ -162,7 +150,7 @@ int main(){
     int count = shootFrequency;
     while (countdown != 300){
 
-        if (countdown % 10 == 0){
+        if (countdown % 50 == 0){
             planes.push_back(Plane());
         }
 

@@ -56,4 +56,10 @@ public:
   bool getRemoveMe() const{
       return removeMe;
   }
+
+  /**
+   * @brief Sets wether or not bullet will be remove
+   * @param rm bool (y/n)
+   */
+  void setRemoveMe(bool rm);
 };

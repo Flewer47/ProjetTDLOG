@@ -10,8 +10,8 @@ const int trooperHeight = 20;
 const Imagine::Color trooperColor = Imagine::RED;
 
 /// For the parachute
-const int parachuteWidth = 5;
-const int parachuteHeight = 5;
+const int parachuteWidth = 30;
+const int parachuteHeight = 50;
 const Imagine::Color parachuteColor = Imagine::RED;
 
 /// Speeds
@@ -34,6 +34,9 @@ class Trooper
     // Check if he has deployed its parachute
     bool isParachuteDrawn;
 
+    //Check if parachute has been shot
+    bool isParachuteShot;
+
     // Height when he will deploy its parachute
     int heightToDrawParachute;
 
@@ -42,6 +45,8 @@ class Trooper
 
     // Check if he has been killed (for memory management purpose)
     bool removeMe;
+
+    //
 
 public:
     /**
@@ -74,8 +79,12 @@ public:
      * @brief Checks if a bullet collides the trooper's hitbox
      * @param bullet Bullet
      */
-    bool isTouched(Bullet bullet);
+    void Touched(Bullet bullet);
 
+    /**
+     * @brief Checks if trooper has a parachute
+     */
+    bool hasParachute();
 };
 
 #endif // TROOPER_H

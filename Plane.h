@@ -62,7 +62,7 @@ public:
      * @brief Checks if a bullet collides the plane's hitbox
      * @param bullet Bullet
      */
-    bool isTouched(Bullet bullet);
+    void Touched(Bullet bullet);
 };
 
 #endif // PLANE_H
