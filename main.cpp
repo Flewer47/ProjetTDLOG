@@ -122,6 +122,29 @@ void handleTroopers(){
     }
 }
 
+void handleHitboxes(){
+    for (std::vector<Bullet>::iterator it_bull = bullets.begin(); it_bull !=bullets.end(); it_bull++){
+        for (std::vector<Trooper>::iterator it_troop = troopers.begin(); it_troop !=troopers.end(); it_troop++){
+            if ((*it_troop).isTouched((*it_bull))){
+                (*it_bull).display(Imagine::BLACK);
+                bullets.erase(it_bull);
+                (*it_troop).display(Imagine::BLACK, Imagine::BLACK);
+                troopers.erase(it_troop);
+                std::cout << "Trooper touched !" << std::endl;
+            }
+        }
+        for (std::vector<Plane>::iterator it_plane = planes.begin(); it_plane !=planes.end(); it_plane++){
+            if ((*it_plane).isTouched((*it_bull))){
+                (*it_bull).display(Imagine::BLACK);
+                bullets.erase(it_bull);
+                (*it_plane).display(Imagine::BLACK);
+                planes.erase(it_plane);
+                std::cout << "Plane touched !" << std::endl;
+            }
+        }
+    }
+}
+
 void generateRandom(){
     srand(time(0));
 }
@@ -148,6 +171,7 @@ int main(){
         handlePlanes();
         handleBullets();
         handleTroopers();
+        handleHitboxes();
 
         Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::RED);
         Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::RED);
