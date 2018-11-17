@@ -82,6 +82,7 @@ void Plane::Touched(Bullet bullet){
                   && (y < bullet.get_y())
                   && (bullet.get_y() < y + planeHeight));
     if (touch){
+        display(windowBackgroundColor);
         bullet.setRemoveMe(true);
         removeMe=true;
     }

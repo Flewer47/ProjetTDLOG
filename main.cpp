@@ -150,7 +150,7 @@ int main(){
     int count = shootFrequency;
     while (countdown != 300){
 
-        if (countdown % 50 == 0){
+        if (countdown % 30 == 0){
             planes.push_back(Plane());
         }
 
