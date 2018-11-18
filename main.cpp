@@ -110,9 +110,12 @@ void handlePlanes(){
     }
 }
 
-void handleTroopers(){
+void handleTroopers(int & player_lives){
     for (std::vector<Trooper>::iterator it = troopers.end()-1; it != troopers.begin()-1; --it){
         if ((*it).getRemoveMe()){
+            if((*it).hascameinBase()){
+                player_lives -= 1;
+            }
             troopers.erase(it);
         }
     }
@@ -148,7 +151,8 @@ int main(){
     int countdown = 0;
     int direction = 0;
     int count = shootFrequency;
-    while (countdown != 300){
+    int player_lives = 10;
+    while (player_lives != 0){
 
         if (countdown % 30 == 0){
             planes.push_back(Plane());
@@ -158,18 +162,21 @@ int main(){
         handleCannon(direction, count, cannon, bullets);
         handlePlanes();
         handleBullets();
-        handleTroopers();
+        handleTroopers(player_lives);
         handleHitboxes();
 
         Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::RED);
         Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::RED);
         Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::RED);
+        Imagine::drawString(20,20, patch::to_string(player_lives), Imagine::GREEN);
+
 
         Imagine::milliSleep(50);
 
         Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::BLACK);
         Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::BLACK);
         Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::BLACK);
+        Imagine::drawString(20,20, patch::to_string(player_lives), Imagine::BLACK);
     }
 
     canvas.closeCanvas();

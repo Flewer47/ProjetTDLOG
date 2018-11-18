@@ -10,6 +10,7 @@ Trooper::Trooper(int planeX, int planeY)
     heightToDrawParachute = minHeightParachute + (rand()/(float)RAND_MAX)*(maxHeightParachute-minHeightParachute);
     isWalking = false;
     removeMe = false;
+    cameinBase = false;
 }
 
 void Trooper::display(Imagine::Color newColor1, Imagine::Color newColor2) const{
@@ -42,6 +43,7 @@ void Trooper::updatePosition(){
             display(trooperColor, windowBackgroundColor);
         }
         else{ // Trooper comes inside the base.
+            cameinBase = true;
             removeMe = true;
         }
     }
@@ -123,4 +125,8 @@ void Trooper::Touched(Bullet bullet){
 
 bool Trooper::hasParachute(){
     return(isParachuteDrawn);
+}
+
+bool Trooper::hascameinBase(){
+    return(cameinBase);
 }

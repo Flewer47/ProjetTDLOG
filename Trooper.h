@@ -46,6 +46,9 @@ class Trooper
     // Check if he has been killed (for memory management purpose)
     bool removeMe;
 
+    //Check if the trooper managed to enter the base
+    bool cameinBase;
+
     //
 
 public:
@@ -85,6 +88,12 @@ public:
      * @brief Checks if trooper has a parachute
      */
     bool hasParachute();
+
+    /**
+     * @brief Checks if trooper managed to come into the base
+     */
+
+    bool hascameinBase();
 };
 
 #endif // TROOPER_H
