@@ -30,6 +30,9 @@ class Plane
     // Determine where to drop the enemy
     int dropWidth;
 
+    //Determine if the plane was shot by a bullet
+    bool planeShot;
+
 
 public:
     Plane();
@@ -63,6 +66,12 @@ public:
      * @param bullet Bullet
      */
     void Touched(Bullet bullet);
+
+    /**
+      * @brief Checks if the plane was shot
+      */
+    bool isTouched();
+
 };
 
 #endif // PLANE_H

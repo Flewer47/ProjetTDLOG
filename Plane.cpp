@@ -23,7 +23,9 @@ Plane::Plane()
     if (dropWidth >= (windowWidth - shieldMargin)/2){
         dropWidth += shieldMargin;
     }
+    planeShot = false;
 }
+
 
 void Plane::display(Imagine::Color newColor) const{
     // To draw faster
@@ -82,8 +84,13 @@ void Plane::Touched(Bullet bullet){
                   && (y < bullet.get_y())
                   && (bullet.get_y() < y + planeHeight));
     if (touch){
+        planeShot = true;
         display(windowBackgroundColor);
         bullet.setRemoveMe(true);
         removeMe=true;
     }
+}
+
+bool Plane::isTouched(){
+    return (planeShot);
 }

@@ -28,6 +28,14 @@ std::vector<Plane> planes;
 /// Vector of troopers
 std::vector<Trooper> troopers;
 
+
+//values of the score points for each shot
+
+const int points_body_touched = 5;
+const int points_parachute_touched = 3;
+const int points_bullet_used = -1;
+const int points_plane_touched = 10;
+
 /**
  * @brief keyboard management function for the cannon and the shooting
  * @param direction -1 if it goes to the left, 1 if it goes to the right, 2 if the user shoots, 0 otherwise.
@@ -56,13 +64,14 @@ void keyboard(int& direction){
 }
 
 
-void handleBullets(){
+void handleBullets(int & player_score){
     for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it){
         (*it).updatePosition();
     }
 
     for (std::vector<Bullet>::iterator it = bullets.end()-1; it != bullets.begin()-1; --it){
         if ((*it).getRemoveMe()){
+            player_score = player_score + points_bullet_used;
             bullets.erase(it);
         }
     }
@@ -95,9 +104,12 @@ void handleCannon(int& direction, int& count, Cannon &cannon, std::vector<Bullet
     }
 }
 
-void handlePlanes(){
+void handlePlanes(int & player_score){
     for (std::vector<Plane>::iterator it = planes.end()-1; it != planes.begin()-1; it--){
             if ((*it).getRemoveMe()){
+                if((*it).isTouched()){
+                    player_score = player_score + points_plane_touched;
+                }
                 planes.erase(it);
             }
         }
@@ -110,11 +122,17 @@ void handlePlanes(){
     }
 }
 
-void handleTroopers(int & player_lives){
+void handleTroopers(int & player_lives, int & player_score){
     for (std::vector<Trooper>::iterator it = troopers.end()-1; it != troopers.begin()-1; --it){
         if ((*it).getRemoveMe()){
             if((*it).hascameinBase()){
                 player_lives -= 1;
+            }
+            else if((*it).isbodyTouched()){
+                player_score = player_score + points_body_touched;
+            }
+            else if((*it).isparachuteTouched()){
+                player_score = player_score + points_parachute_touched;
             }
             troopers.erase(it);
         }
@@ -152,6 +170,7 @@ int main(){
     int direction = 0;
     int count = shootFrequency;
     int player_lives = 10;
+    int player_score = 0;
     while (player_lives != 0){
 
         if (countdown % 30 == 0){
@@ -160,15 +179,17 @@ int main(){
 
         countdown++;
         handleCannon(direction, count, cannon, bullets);
-        handlePlanes();
-        handleBullets();
-        handleTroopers(player_lives);
+        handlePlanes(player_score);
+        handleBullets(player_score);
+        handleTroopers(player_lives, player_score);
         handleHitboxes();
 
         Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::RED);
         Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::RED);
         Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::RED);
         Imagine::drawString(20,20, patch::to_string(player_lives), Imagine::GREEN);
+        Imagine::drawString(550,20, patch::to_string(player_score), Imagine::BLUE);
+
 
 
         Imagine::milliSleep(50);
@@ -177,6 +198,7 @@ int main(){
         Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::BLACK);
         Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::BLACK);
         Imagine::drawString(20,20, patch::to_string(player_lives), Imagine::BLACK);
+        Imagine::drawString(550,20, patch::to_string(player_score), Imagine::BLACK);
     }
 
     canvas.closeCanvas();

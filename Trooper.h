@@ -49,6 +49,9 @@ class Trooper
     //Check if the trooper managed to enter the base
     bool cameinBase;
 
+    //Check if the body was touched
+    bool bodyTouched;
+
     //
 
 public:
@@ -94,6 +97,18 @@ public:
      */
 
     bool hascameinBase();
+
+    /**
+     * @brief Checks if the parachute was touched
+     */
+
+    bool isparachuteTouched();
+
+    /**
+     * @brief Checks if the body of the trooper was touched
+     */
+
+    bool isbodyTouched();
 };
 
 #endif // TROOPER_H

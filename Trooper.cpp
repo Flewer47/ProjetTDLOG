@@ -11,6 +11,7 @@ Trooper::Trooper(int planeX, int planeY)
     isWalking = false;
     removeMe = false;
     cameinBase = false;
+    bodyTouched = false;
 }
 
 void Trooper::display(Imagine::Color newColor1, Imagine::Color newColor2) const{
@@ -102,6 +103,7 @@ void Trooper::Touched(Bullet bullet){
                                && (y < bullet.get_y())
                                && (bullet.get_y() < y + trooperHeight));
             if (touchBody){
+                bodyTouched = true;
                 display(windowBackgroundColor, windowBackgroundColor);
                 bullet.setRemoveMe(true);
                 removeMe = true;
@@ -117,6 +119,7 @@ void Trooper::Touched(Bullet bullet){
         if (touchBody){
            display(windowBackgroundColor, windowBackgroundColor);
            bullet.setRemoveMe(true);
+           bodyTouched = true;
            removeMe = true;
            std::cout << "Trooper touched !" << std::endl;
        }
@@ -130,3 +133,12 @@ bool Trooper::hasParachute(){
 bool Trooper::hascameinBase(){
     return(cameinBase);
 }
+
+bool Trooper::isparachuteTouched(){
+    return(isParachuteShot);
+}
+
+bool Trooper::isbodyTouched(){
+    return(bodyTouched);
+}
+
