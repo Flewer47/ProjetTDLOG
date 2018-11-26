@@ -16,9 +16,6 @@ Trooper::Trooper(int planeX, int planeY)
 }
 
 void Trooper::display(Imagine::Color newColor1, Imagine::Color newColor2) const{
-    // To draw faster
-    Imagine::noRefreshBegin();
-
     // Trooper
     Imagine::fillRect(x, y, trooperWidth, trooperHeight, newColor1);
 
@@ -26,9 +23,8 @@ void Trooper::display(Imagine::Color newColor1, Imagine::Color newColor2) const{
     Imagine::IntPoint2 p[]={Imagine::IntPoint2(x+trooperWidth/2, y),
                             Imagine::IntPoint2(x+trooperWidth/2-parachuteWidth/2, y-parachuteHeight),
                             Imagine::IntPoint2(x+trooperWidth/2+parachuteWidth/2, y-parachuteHeight)};   // triangle
-    if(isParachuteDrawn) Imagine::fillPoly(p,3,newColor2);
+    if (isParachuteDrawn) Imagine::fillPoly(p,3,newColor2);
 
-    Imagine::noRefreshEnd();
 }
 
 void Trooper::updatePosition(){
