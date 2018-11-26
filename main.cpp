@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "Cannon/Cannon.h"
-#include "Bullet/Bullet.h"
-#include "Plane/Plane.h"
-#include "Trooper/Trooper.h"
-#include <Imagine/Graphics.h>
+#include "Canvas.h"
+#include "Cannon.h"
+#include "Bullet.h"
+#include "Plane.h"
+#include "Trooper.h"
 #include <sstream>
 
 namespace patch

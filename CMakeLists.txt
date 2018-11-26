@@ -7,5 +7,5 @@ project(TestTDLOG)
 cmake_minimum_required(VERSION 2.6)
 find_package(Imagine REQUIRED)
 
-add_executable(TestTDLOG main.cpp "Cannon/Cannon.cpp" "Canvas/Canvas.cpp" "Trooper/Trooper.cpp" "Bullet/Bullet.cpp" "Plane/Plane.cpp")
+add_executable(TestTDLOG main.cpp Cannon.cpp Canvas.cpp Trooper.cpp Bullet.cpp Plane.cpp)
 ImagineUseModules(TestTDLOG Graphics)
