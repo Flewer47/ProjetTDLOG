@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include "Canvas.h"
-#include "Cannon.h"
+#include "../Canvas/Canvas.h"
+#include "../Cannon/Cannon.h"
 
 /// For the speed of the bullet
 const int bulletSpeed = 10;

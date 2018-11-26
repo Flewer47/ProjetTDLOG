@@ -1,5 +1,5 @@
 #pragma once
-#include "Canvas.h"
+#include "../Canvas/Canvas.h"
 
 /// For the box
 const int boxWidth = 50, boxHeight = 30;

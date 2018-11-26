@@ -1,8 +1,8 @@
 #ifndef TROOPER_H
 #define TROOPER_H
 
-#include "Cannon.h"
-#include "Bullet.h"
+#include "../Cannon/Cannon.h"
+#include "../Bullet/Bullet.h"
 
 /// For the trooper
 const int trooperWidth = 20;

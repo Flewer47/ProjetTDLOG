@@ -1,7 +1,7 @@
 #ifndef PLANE_H
 #define PLANE_H
-#include "Cannon.h"
-#include "Bullet.h"
+#include "../Cannon/Cannon.h"
+#include "../Bullet/Bullet.h"
 
 const int dropMargin = 20;
 const int leftRightPlaneHeight = 20;
