@@ -77,8 +77,12 @@ void Trooper::updatePosition(){
                 isWalking = true;
             }
             // Parachute has been shot and fell into the ground
+            // Display the skull
             else{
                 display(windowBackgroundColor, windowBackgroundColor);
+                Imagine::Image<Imagine::AlphaColor> skull;
+                load(skull, srcPath("skull.png"));
+                Imagine::display(skull, x+trooperWidth/2-skull.width()/2, y-3*skull.height()/4);
                 removeMe = true;
             }
         }

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <Imagine/Graphics.h>
+#include <Imagine/Images.h>
 
 /// For the canvas
 const int windowWidth = 600, windowHeight = 600, groundHeight = 20;
