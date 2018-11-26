@@ -16,13 +16,8 @@ int Bullet::get_y(){
 }
 
 void Bullet::display(Imagine::Color newColor) const{
-  // To draw faster
-  Imagine::noRefreshBegin();
-
   // Bullet
   Imagine::fillRect(x, y, bulletSize, bulletSize, newColor);
-
-  Imagine::noRefreshEnd();
 }
 
 void Bullet::updatePosition(){

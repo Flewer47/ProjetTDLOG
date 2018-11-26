@@ -1,7 +1,6 @@
 #include "Plane.h"
 
-Plane::Plane()
-{
+Plane::Plane(){
     // Going left to right
     if ((rand()/(float)RAND_MAX) < 0.5){
         vx = planeVelocity;
@@ -29,12 +28,24 @@ Plane::Plane()
 
 void Plane::display(Imagine::Color newColor) const{
     // To draw faster
-    Imagine::noRefreshBegin();
+
+
+    Imagine::Image<Imagine::AlphaColor> rightHelicopter;
+    load(rightHelicopter, srcPath("rightHelicopter.png"));
+
+    Imagine::Image<Imagine::AlphaColor> leftHelicopter;
+    load(leftHelicopter, srcPath("leftHelicopter.png"));
+
+    Imagine::fillRect(x-vx,y,rightHelicopter.width(), rightHelicopter.height(), Imagine::BLACK);
 
     // Plane
-    Imagine::fillRect(x, y, planeWidth, planeHeight, newColor);
+    if (isGoingRight){
+        Imagine::display(rightHelicopter, x, y);
+    }
+    else {
+        Imagine::display(leftHelicopter, x, y);
+    }
 
-    Imagine::noRefreshEnd();
 }
 
 void Plane::updatePosition(){

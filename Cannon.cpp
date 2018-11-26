@@ -5,17 +5,12 @@ Cannon::Cannon() {
 }
 
 void Cannon::display(Imagine::Color newColor1, Imagine::Color newColor2) const{
-    // To draw faster
-    Imagine::noRefreshBegin();
-
     // Box
     Imagine::fillRect(windowWidth/2 - boxWidth/2, windowHeight - groundHeight - boxHeight, boxWidth, boxHeight, newColor1);
 
     // Cannon
     Imagine::drawLine(windowWidth/2, windowHeight - groundHeight - boxHeight, windowWidth/2 + cannonLength * std::cos(angle),
                       windowHeight - groundHeight - boxHeight + cannonLength * std::sin(angle), newColor2, cannonWidth);
-
-    Imagine::noRefreshEnd();
 }
 
 void Cannon::updatePosition(int direction){

@@ -172,6 +172,7 @@ int main(){
     int player_lives = 10;
     int player_score = 0;
     while (player_lives != 0){
+        Imagine::noRefreshBegin();
 
         if (countdown % 30 == 0){
             planes.push_back(Plane());
@@ -199,6 +200,7 @@ int main(){
         Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::BLACK);
         Imagine::drawString(20,20, patch::to_string(player_lives), Imagine::BLACK);
         Imagine::drawString(550,20, patch::to_string(player_score), Imagine::BLACK);
+        Imagine::noRefreshEnd();
     }
 
     canvas.closeCanvas();

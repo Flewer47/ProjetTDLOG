@@ -25,7 +25,7 @@ void Trooper::display(Imagine::Color newColor1, Imagine::Color newColor2) const{
     Imagine::IntPoint2 p[]={Imagine::IntPoint2(x+trooperWidth/2, y),
                             Imagine::IntPoint2(x+trooperWidth/2-parachuteWidth/2, y-parachuteHeight),
                             Imagine::IntPoint2(x+trooperWidth/2+parachuteWidth/2, y-parachuteHeight)};   // triangle
-    Imagine::fillPoly(p,3,newColor2);
+    if(isParachuteDrawn) Imagine::fillPoly(p,3,newColor2);
 
     Imagine::noRefreshEnd();
 }
@@ -76,8 +76,7 @@ void Trooper::updatePosition(){
                 y = windowHeight - groundHeight - trooperHeight;
                 isWalking = true;
             }
-            // Parachute has been shot and fell into the ground
-            // Display the skull
+            // Parachute has been shot and fell into the ground, display the skull
             else{
                 display(windowBackgroundColor, windowBackgroundColor);
                 Imagine::Image<Imagine::AlphaColor> skull;
