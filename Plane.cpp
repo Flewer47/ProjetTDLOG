@@ -27,8 +27,6 @@ Plane::Plane(){
 
 
 void Plane::display(Imagine::Color newColor) const{
-    // To draw faster
-
 
     Imagine::Image<Imagine::AlphaColor> rightHelicopter;
     load(rightHelicopter, srcPath("rightHelicopter.png"));
@@ -36,16 +34,15 @@ void Plane::display(Imagine::Color newColor) const{
     Imagine::Image<Imagine::AlphaColor> leftHelicopter;
     load(leftHelicopter, srcPath("leftHelicopter.png"));
 
-    Imagine::fillRect(x-vx,y,rightHelicopter.width(), rightHelicopter.height(), Imagine::BLACK);
-
     // Plane
     if (isGoingRight){
+        Imagine::fillRect(x-vx,y,rightHelicopter.width(), rightHelicopter.height(), Imagine::BLACK);
         Imagine::display(rightHelicopter, x, y);
     }
     else {
+        Imagine::fillRect(x-vx,y,rightHelicopter.width(), rightHelicopter.height(), Imagine::BLACK);
         Imagine::display(leftHelicopter, x, y);
     }
-
 }
 
 void Plane::updatePosition(){

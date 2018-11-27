@@ -12,8 +12,8 @@ const Imagine::Color groundColor = Imagine::BLUE;
 const std::string windowTitle = "Paratroopers";
 
 /// For the planes
-const int planeWidth = 10;
-const int planeHeight = 10;
+const int planeWidth = 50;
+const int planeHeight = 26;
 
 class Canvas
 {

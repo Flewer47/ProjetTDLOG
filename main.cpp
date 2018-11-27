@@ -193,7 +193,7 @@ int main(){
 
 
 
-        Imagine::milliSleep(50);
+        Imagine::milliSleep(10);
 
         Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::BLACK);
         Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::BLACK);
