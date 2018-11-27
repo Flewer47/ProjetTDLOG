@@ -33,16 +33,18 @@ void Plane::display(Imagine::Color newColor) const{
 
     Imagine::Image<Imagine::AlphaColor> leftHelicopter;
     load(leftHelicopter, srcPath("leftHelicopter.png"));
+    Imagine::fillRect(x-vx,y,rightHelicopter.width(), rightHelicopter.height(), Imagine::BLACK);
 
     // Plane
     if (isGoingRight){
-        Imagine::fillRect(x-vx,y,rightHelicopter.width(), rightHelicopter.height(), Imagine::BLACK);
         Imagine::display(rightHelicopter, x, y);
     }
     else {
-        Imagine::fillRect(x-vx,y,rightHelicopter.width(), rightHelicopter.height(), Imagine::BLACK);
         Imagine::display(leftHelicopter, x, y);
     }
+
+    if (planeShot) Imagine::fillRect(x,y,rightHelicopter.width(), rightHelicopter.height(), Imagine::BLACK);
+
 }
 
 void Plane::updatePosition(){
@@ -64,6 +66,7 @@ void Plane::updatePosition(){
         isSpawningTrooper = true;
     }
     else if ((isGoingRight && x >= windowWidth) || (!isGoingRight && x <= - planeWidth)){
+
         removeMe = true;
     }
 

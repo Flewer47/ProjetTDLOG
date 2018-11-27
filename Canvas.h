@@ -6,7 +6,7 @@
 #include <Imagine/Images.h>
 
 /// For the canvas
-const int windowWidth = 600, windowHeight = 600, groundHeight = 20;
+const int windowWidth = 800, windowHeight = 600, groundHeight = 20;
 const Imagine::Color windowBackgroundColor = Imagine::BLACK;
 const Imagine::Color groundColor = Imagine::BLUE;
 const std::string windowTitle = "Paratroopers";

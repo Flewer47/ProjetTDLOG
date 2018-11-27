@@ -84,14 +84,12 @@ void Trooper::updatePosition(){
                 if (countDisplaySkull==0){
                     Imagine::fillRect(x + trooperWidth/2 - skull.width()/2,
                                       y - 3*skull.height()/4, skull.width(), skull.height(), Imagine::BLACK);
-                    Imagine::fillRect(0,0,windowWidth,windowHeight,Imagine::BLACK);
                     removeMe = true;
                 }
                 else{
                     Imagine::display(skull, x + trooperWidth/2 - skull.width()/2, y - 3*skull.height()/4);
                     countDisplaySkull--;
                 }
-
             }
         }
     }

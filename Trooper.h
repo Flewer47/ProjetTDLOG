@@ -23,7 +23,7 @@ const int trooperSpeedWalking = 2;
 const int minHeightParachute = 300, maxHeightParachute = 400;
 
 /// Images
-const int skullTimeOfDisplay = 250;
+const int skullTimeOfDisplay = 50;
 
 class Trooper
 {
