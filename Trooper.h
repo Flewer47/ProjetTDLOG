@@ -22,6 +22,9 @@ const int trooperSpeedWalking = 2;
 /// Margins
 const int minHeightParachute = 300, maxHeightParachute = 400;
 
+/// Images
+const int skullTimeOfDisplay = 250;
+
 class Trooper
 {
     // Position
@@ -37,6 +40,9 @@ class Trooper
     //Check if parachute has been shot
     bool isParachuteShot;
 
+    // Time remaining of display of the skull, -1 if skull not displayed
+    int countDisplaySkull;
+
     // Height when he will deploy its parachute
     int heightToDrawParachute;
 
@@ -51,8 +57,6 @@ class Trooper
 
     //Check if the body was touched
     bool bodyTouched;
-
-    //
 
 public:
     /**
