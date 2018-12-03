@@ -173,6 +173,7 @@ int main(){
     int player_score = 0;
 
     canvas.startMenu();
+    Imagine::fillRect(0, windowHeight-groundHeight, windowWidth, groundHeight, groundColor);
 
     while (player_lives != 0){
         Imagine::noRefreshBegin();
