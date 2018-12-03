@@ -174,6 +174,14 @@ int main(){
     while (player_lives != 0){
         Imagine::noRefreshBegin();
 
+        int letterSize = 12;
+
+        Imagine::fillRect(20,50-letterSize, 30, 15, Imagine::BLACK);
+        Imagine::fillRect(20,100-letterSize, 30, 15, Imagine::BLACK);
+        Imagine::fillRect(20,150-letterSize, 30, 15, Imagine::BLACK);
+        Imagine::fillRect(20, 20-letterSize, 30, 15, Imagine::BLACK);
+        Imagine::fillRect(550, 20-letterSize, 30, 15, Imagine::BLACK);
+
         if (countdown % 30 == 0){
             planes.push_back(Plane());
         }
@@ -185,6 +193,9 @@ int main(){
         handleTroopers(player_lives, player_score);
         handleHitboxes();
 
+
+        Imagine::noRefreshEnd();
+
         Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::RED);
         Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::RED);
         Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::RED);
@@ -193,14 +204,10 @@ int main(){
 
 
 
+
         Imagine::milliSleep(20);
 
-        Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::BLACK);
-        Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::BLACK);
-        Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::BLACK);
-        Imagine::drawString(20,20, patch::to_string(player_lives), Imagine::BLACK);
-        Imagine::drawString(550,20, patch::to_string(player_score), Imagine::BLACK);
-        Imagine::noRefreshEnd();
+
     }
 
     canvas.closeCanvas();
