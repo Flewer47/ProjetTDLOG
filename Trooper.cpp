@@ -127,7 +127,7 @@ void Trooper::Touched(Bullet bullet){
                                && (bullet.get_x() <= x + trooperWithParachutePicture.width())
                                && (y <= bullet.get_y())
                                && (bullet.get_y() <= y+trooperWithParachutePicture.height()-h));
-        if (touchParachute && y <windowHeight - groundHeight - h) {
+        if (touchParachute && y <windowHeight - groundHeight - trooperWithParachutePicture.height()) {
             isParachuteShot=true;
             displayBackground(x - trooperWithParachutePicture.width()/2 + w/2, y,
                               trooperWithParachutePicture.width(),trooperWithParachutePicture.height());
