@@ -20,6 +20,11 @@ public:
      * @brief Is the canvas is active, puts a "endGraphics" so the player can exit the game
      */
     void closeCanvas() const;
+
+    /**
+      * @brief Opens the starting menu
+      */
+    void startMenu();
 };
 
 #endif // CANVAS_H

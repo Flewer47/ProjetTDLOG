@@ -171,6 +171,9 @@ int main(){
     int count = shootFrequency;
     int player_lives = 10;
     int player_score = 0;
+
+    canvas.startMenu();
+
     while (player_lives != 0){
         Imagine::noRefreshBegin();
 
