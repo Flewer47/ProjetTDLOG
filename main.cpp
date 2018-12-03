@@ -166,55 +166,68 @@ int main(){
     Canvas canvas;
     Cannon cannon;
 
+    int mode = 0; //0:start menu / 1:game / 2:option / 3:quit
+    bool developper_mode = true;
     int countdown = 0;
     int direction = 0;
     int count = shootFrequency;
     int player_lives = 10;
     int player_score = 0;
 
-    canvas.startMenu();
-    Imagine::fillRect(0, windowHeight-groundHeight, windowWidth, groundHeight, groundColor);
+    canvas.startMenu(mode);
 
-    while (player_lives != 0){
-        Imagine::noRefreshBegin();
-
-        int letterSize = 12;
-
-        Imagine::fillRect(20,50-letterSize, 30, 15, Imagine::BLACK);
-        Imagine::fillRect(20,100-letterSize, 30, 15, Imagine::BLACK);
-        Imagine::fillRect(20,150-letterSize, 30, 15, Imagine::BLACK);
-        Imagine::fillRect(20, 20-letterSize, 30, 15, Imagine::BLACK);
-        Imagine::fillRect(550, 20-letterSize, 30, 15, Imagine::BLACK);
-
-        if (countdown % 30 == 0){
-            planes.push_back(Plane());
+    while ((0<=mode) && (mode<=3)){
+        if (mode==0){
+            canvas.startMenu(mode);
         }
 
-        countdown++;
-        handleCannon(direction, count, cannon, bullets);
-        handlePlanes(player_score);
-        handleBullets(player_score);
-        handleTroopers(player_lives, player_score);
-        handleHitboxes();
+        if (mode==1){
+            Imagine::fillRect(0, windowHeight-groundHeight, windowWidth, groundHeight, groundColor);
+            Imagine::drawString(150, 595,"Score :", Imagine::WHITE, 12, 0, true);
+
+            while (player_lives != 0){
+                Imagine::noRefreshBegin();
+
+                int letterSize = 12;
+
+                if (countdown % 30 == 0){
+                    planes.push_back(Plane());
+                }
+
+                countdown++;
+                handleCannon(direction, count, cannon, bullets);
+                handlePlanes(player_score);
+                handleBullets(player_score);
+                handleTroopers(player_lives, player_score);
+                handleHitboxes();
 
 
-        Imagine::noRefreshEnd();
+                Imagine::noRefreshEnd();
 
-        Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::RED);
-        Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::RED);
-        Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::RED);
-        Imagine::drawString(20,20, patch::to_string(player_lives), Imagine::GREEN);
-        Imagine::drawString(550,20, patch::to_string(player_score), Imagine::BLUE);
+                if (developper_mode){
+                    Imagine::fillRect(20,50-letterSize, 30, 15, Imagine::BLACK);
+                    Imagine::fillRect(20,100-letterSize, 30, 15, Imagine::BLACK);
+                    Imagine::fillRect(20,150-letterSize, 30, 15, Imagine::BLACK);
+                    Imagine::fillRect(20, 20-letterSize, 30, 15, Imagine::BLACK);
+                    Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::RED);
+                    Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::RED);
+                    Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::RED);
+                    Imagine::drawString(20,20, patch::to_string(player_lives), Imagine::GREEN);
+                }
+                Imagine::fillRect(200, 595-letterSize, 30, 15, Imagine::BLUE);
+                Imagine::drawString(200,595, patch::to_string(player_score), Imagine::WHITE);
 
 
+                Imagine::milliSleep(20);
 
 
-        Imagine::milliSleep(20);
+            }
+        }
 
-
+        if (mode==3){
+            canvas.closeCanvas();
+        }
     }
-
-    canvas.closeCanvas();
 
     return 0;
 }

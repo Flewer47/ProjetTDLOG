@@ -8,6 +8,7 @@ class Canvas
 {
     // Check if the canvas is active or not.
     bool isCanvasActive;
+    Imagine::Window window;
 
 public:
 
@@ -22,9 +23,10 @@ public:
     void closeCanvas() const;
 
     /**
-      * @brief Opens the starting menu
+      * @brief Opens the start menu
+      * @param mode Defines the action from start menu
       */
-    void startMenu();
+    void startMenu(int& mode);
 };
 
 #endif // CANVAS_H
