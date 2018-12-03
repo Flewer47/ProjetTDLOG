@@ -6,8 +6,6 @@
 
 class Canvas
 {
-    // Check if the canvas is active or not.
-    bool isCanvasActive;
     Imagine::Window window;
 
 public:

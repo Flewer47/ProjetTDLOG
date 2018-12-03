@@ -5,13 +5,10 @@ Canvas::Canvas()
 {
     window = Imagine::openWindow(windowWidth, windowHeight, windowTitle);
     Imagine::setBackGround(windowBackgroundColor);
-    isGameActive = false;
 }
 
 void Canvas::closeCanvas() const{
-    if (isCanvasActive){
-        Imagine::closeWindow(window);
-    }
+    Imagine::closeWindow(window);
 }
 
 void Canvas::startMenu(int& mode){
@@ -44,5 +41,4 @@ void Canvas::startMenu(int& mode){
         }
     }
     Imagine::fillRect(0,0,windowWidth,windowHeight,windowBackgroundColor);
-    isGameActive = true;
 }
