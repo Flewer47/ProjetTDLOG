@@ -5,14 +5,11 @@ Canvas::Canvas()
 {
     Imagine::openWindow(windowWidth, windowHeight, windowTitle);
     Imagine::setBackGround(windowBackgroundColor);
-    Imagine::fillRect(0, windowHeight-groundHeight, windowWidth, groundHeight, groundColor);
-    isCanvasActive = true;
+    isGameActive = false;
 }
 
 void Canvas::closeCanvas() const{
-    if (isCanvasActive){
-        Imagine::endGraphics();
-    }
+    Imagine::endGraphics();
 }
 
 void Canvas::startMenu(){
@@ -27,4 +24,5 @@ void Canvas::startMenu(){
         Imagine::milliSleep(5);
     }
     Imagine::fillRect(0,0,windowWidth,windowHeight,windowBackgroundColor);
+    isGameActive = true;
 }

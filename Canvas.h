@@ -7,7 +7,7 @@
 class Canvas
 {
     // Check if the canvas is active or not.
-    bool isCanvasActive;
+    bool isGameActive;
 
 public:
 
