@@ -205,6 +205,7 @@ int main(){
                 Imagine::noRefreshEnd();
 
                 if (developper_mode){
+
                     Imagine::fillRect(20,50-letterSize, 30, 15, Imagine::BLACK);
                     Imagine::fillRect(20,100-letterSize, 30, 15, Imagine::BLACK);
                     Imagine::fillRect(20,150-letterSize, 30, 15, Imagine::BLACK);
@@ -217,15 +218,23 @@ int main(){
                 Imagine::fillRect(200, 595-letterSize, 30, 15, Imagine::BLUE);
                 Imagine::drawString(200,595, patch::to_string(player_score), Imagine::WHITE);
 
+                Imagine::noRefreshEnd();
+
 
                 Imagine::milliSleep(20);
 
 
             }
+
+            if (player_lives == 0){
+                mode = 3;
+            }
+
         }
 
         if (mode==3){
             canvas.closeCanvas();
+            break;
         }
     }
 
