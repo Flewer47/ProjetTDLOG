@@ -97,9 +97,6 @@ void Trooper::updatePosition(){
 
         // Landed
         if (y > windowHeight - groundHeight - trooperWithParachutePicture.height() && isParachuteDrawn){
-
-
-
             displayBackground(x - trooperWithParachutePicture.width()/2 + w/2,
                               windowHeight - groundHeight - trooperWithParachutePicture.height(),
                               trooperWithParachutePicture.width(),trooperWithParachutePicture.height());
@@ -127,7 +124,7 @@ void Trooper::Touched(Bullet bullet){
                                && (bullet.get_x() <= x + trooperWithParachutePicture.width())
                                && (y <= bullet.get_y())
                                && (bullet.get_y() <= y+trooperWithParachutePicture.height()-h));
-        if (touchParachute && y <windowHeight - groundHeight - trooperWithParachutePicture.height()) {
+        if (touchParachute && y < windowHeight - groundHeight - trooperWithParachutePicture.height()) {
             isParachuteShot=true;
             displayBackground(x - trooperWithParachutePicture.width()/2 + w/2, y,
                               trooperWithParachutePicture.width(),trooperWithParachutePicture.height());
@@ -137,10 +134,10 @@ void Trooper::Touched(Bullet bullet){
             std::cout << "Parachute touched !" << std::endl;
         }
         else {
-            bool touchBody = ((x < bullet.get_x())
-                              && (bullet.get_x()< x + w)
-                              && (y+trooperWithParachutePicture.height()-h < bullet.get_y())
-                              && (bullet.get_y() < y +trooperWithParachutePicture.height()));
+            bool touchBody = ((x <= bullet.get_x())
+                              && (bullet.get_x() <= x + w)
+                              && (y + trooperWithParachutePicture.height() - h <= bullet.get_y())
+                              && (bullet.get_y() <= y + trooperWithParachutePicture.height()));
             if (touchBody){
                 bodyTouched = true;
                 displayBackground(x - trooperWithParachutePicture.width()/2 + w/2, y,
@@ -152,10 +149,10 @@ void Trooper::Touched(Bullet bullet){
         }
     }
     else {
-        bool touchBody = ((x < bullet.get_x())
-                          && (bullet.get_x()< x + trooperWidth)
-                          && (y < bullet.get_y())
-                          && (bullet.get_y() < y + trooperHeight));
+        bool touchBody = ((x <= bullet.get_x())
+                          && (bullet.get_x() <= x + w)
+                          && (y <= bullet.get_y())
+                          && (bullet.get_y() <= y + h));
         if (touchBody){
             displayBackground(x,y,w,h);
             bullet.setRemoveMe(true);
