@@ -20,7 +20,7 @@ const int planeWidth = 50;
 const int planeHeight = 26;
 
 
-const int dropMargin = 20;
+const int dropMargin = 30;
 const int leftRightPlaneHeight = 20;
 const int rightLeftPlaneHeight = 70;
 const int planeVelocity = 3;
@@ -66,7 +66,7 @@ const int trooperSpeedWalking = 2;
 
 /// Margins
 const int minHeightParachute = 300, maxHeightParachute = 400;
-const int shieldMargin = boxWidth + 40;
+const int shieldMargin = boxWidth + 50;
 
 
 /// For the images
