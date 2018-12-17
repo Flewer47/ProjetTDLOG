@@ -205,8 +205,6 @@ int main(){
                 handleHitboxes();
 
 
-                Imagine::noRefreshEnd();
-
                 if (developper_mode){
                     Imagine::fillRect(700, 595-letterSize, 30, 15, Imagine::BLUE);
                     Imagine::drawString(700,595, patch::to_string(player_lives), Imagine::WHITE);
