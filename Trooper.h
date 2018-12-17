@@ -68,7 +68,7 @@ public:
      * @param w Width of the rectangle
      * @param h Height of the rectangle
      */
-    void displayBackground(int x1, int y1, int w, int h) const;
+    void displayBackground(int x1, int y1, int w1, int h1) const;
 
     /**
      * @brief Display the trooper with a parachute

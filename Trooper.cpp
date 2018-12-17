@@ -2,7 +2,8 @@
 
 Trooper::Trooper(int planeX, int planeY)
 {
-
+    x = planeX + planeWidth/2;
+    y = planeY + planeHeight;
     v = trooperSpeedWithoutParachute;
     isParachuteDrawn = false;
     isParachuteShot = false;
@@ -20,24 +21,27 @@ Trooper::Trooper(int planeX, int planeY)
 
     w = trooperWithoutParachutePicture.width();
     h = trooperWithoutParachutePicture.height();
-    x = planeX + planeWidth/2 - w/2;
-    y = planeY + planeHeight;
 }
 
-void Trooper::displayBackground(int x1, int y1, int w, int h) const {
-    Imagine::fillRect(x1, y1, w, h, Imagine::BLACK);
+void Trooper::displayBackground(int x1, int y1, int w1, int h1) const {
+    Imagine::fillRect(x1, y1, w1, h1, Imagine::BLACK);
 }
 
 void Trooper::displayFreeFall() const{
     displayBackground(x, y - trooperSpeedWithoutParachute, w, h);
-    Imagine::display(trooperWithoutParachutePicture, x, y);
+    Imagine::AlphaColor *AC;
+    int Aw, Ah;
+    Imagine::loadAlphaColorImage(srcPath("Images/trooperWithoutParachute.png"), AC, Aw, Ah);
+    Imagine::putAlphaColorImage(x,y,AC,Aw,Ah);
 }
 
 void Trooper::displayTrooperWithParachute() const{
-    displayBackground(x - trooperWithParachutePicture.width()/2 + w/2, y - trooperSpeedWithoutParachute
-                      , trooperWithParachutePicture.width(), trooperWithParachutePicture.height());
-    Imagine::display(trooperWithParachutePicture, x - trooperWithParachutePicture.width()/2 + w/2, y);
-
+    displayBackground(x - trooperWithParachutePicture.width()/2 + w/2, y - trooperSpeedWithoutParachute,
+                      trooperWithParachutePicture.width(), trooperWithParachutePicture.height());
+    Imagine::AlphaColor *AC;
+    int Aw, Ah;
+    Imagine::loadAlphaColorImage(srcPath("Images/trooperWithParachute.png"), AC, Aw, Ah);
+    Imagine::putAlphaColorImage(x - trooperWithParachutePicture.width()/2 + w/2,y,AC,Aw,Ah);
 }
 
 void Trooper::displayWalkingTrooper(bool isGoingRight) const {
@@ -52,7 +56,12 @@ void Trooper::displaySkull() const{
                           y - 3*skull.height()/4, skull.width(), skull.height(), Imagine::BLACK);
     }
     else {
-        Imagine::display(skull, x + trooperWidth/2 - skull.width()/2, y - 3*skull.height()/4);
+        Imagine::AlphaColor *AC;
+        int Aw, Ah;
+        Imagine::loadAlphaColorImage(srcPath("Images/skull.png"), AC, Aw, Ah);
+        Imagine::putAlphaColorImage(x + trooperWidth/2 - skull.width()/2,
+                                    y - 3*skull.height()/4,AC,Aw,Ah);            // Display Image with Alpha channel
+
     }
 }
 
