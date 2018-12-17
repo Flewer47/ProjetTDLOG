@@ -184,6 +184,9 @@ int main(){
         if (mode==1){
             Imagine::fillRect(0, windowHeight-groundHeight, windowWidth, groundHeight, groundColor);
             Imagine::drawString(150, 595,"Score :", Imagine::WHITE, 12, 0, true);
+            Imagine::drawString(650, 595,"Lives :", Imagine::WHITE, 12, 0, true);
+
+
 
             while (player_lives != 0){
                 Imagine::noRefreshBegin();
@@ -205,14 +208,8 @@ int main(){
                 Imagine::noRefreshEnd();
 
                 if (developper_mode){
-                    Imagine::fillRect(20,50-letterSize, 30, 15, Imagine::BLACK);
-                    Imagine::fillRect(20,100-letterSize, 30, 15, Imagine::BLACK);
-                    Imagine::fillRect(20,150-letterSize, 30, 15, Imagine::BLACK);
-                    Imagine::fillRect(20, 20-letterSize, 30, 15, Imagine::BLACK);
-                    Imagine::drawString(20,50, patch::to_string(bullets.size()), Imagine::RED);
-                    Imagine::drawString(20,100, patch::to_string(planes.size()), Imagine::RED);
-                    Imagine::drawString(20,150, patch::to_string(troopers.size()), Imagine::RED);
-                    Imagine::drawString(20,20, patch::to_string(player_lives), Imagine::GREEN);
+                    Imagine::fillRect(700, 595-letterSize, 30, 15, Imagine::BLUE);
+                    Imagine::drawString(700,595, patch::to_string(player_lives), Imagine::WHITE);
                 }
                 Imagine::fillRect(200, 595-letterSize, 30, 15, Imagine::BLUE);
                 Imagine::drawString(200,595, patch::to_string(player_score), Imagine::WHITE);
