@@ -64,7 +64,19 @@ public:
       * @brief Checks if the plane was shot
       */
     bool isTouched();
+    /**
+     * @brief get_dropwidth
+     * @return the drop width related ton the plane
+     */
+    int get_dropwidth();
 
 };
+
+/**
+ * @brief test_drop_width
+ * @param n : number of plane tested
+ * @return true if every plane tested has a dropmargin compatible with constraints, else false
+ */
+bool test_drop_width(int n);
 
 #endif // PLANE_H

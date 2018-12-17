@@ -106,3 +106,17 @@ void Plane::Touched(Bullet bullet){
 bool Plane::isTouched(){
     return (planeShot);
 }
+
+int Plane::get_dropwidth(){
+    return(dropWidth);
+}
+
+bool test_drop_width(int n){
+    for(int i=0; i<n; i++){
+        Plane plane_test;
+        if(!(((plane_test.get_dropwidth() >= dropMargin)&&(plane_test.get_dropwidth()<= windowWidth/2 - shieldMargin/2)) ||((plane_test.get_dropwidth() >= windowWidth/2 + shieldMargin/2)&&(plane_test.get_dropwidth()<= windowWidth - dropMargin)))){
+            return(false);
+        }
+    }
+    return(true);
+}
