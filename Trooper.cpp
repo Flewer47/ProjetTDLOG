@@ -127,8 +127,8 @@ void Trooper::Touched(Bullet bullet){
         if (touchParachute && y < windowHeight - groundHeight - trooperWithParachutePicture.height()) {
             isParachuteShot=true;
             displayBackground(x - trooperWithParachutePicture.width()/2 + w/2, y,
-                              trooperWithParachutePicture.width(),trooperWithParachutePicture.height());
-            y += trooperWithParachutePicture.height() - trooperWithoutParachutePicture.height();
+                              trooperWithParachutePicture.width(), trooperWithParachutePicture.height());
+            y += trooperWithParachutePicture.height() - h;
             displayFreeFall();
             bullet.setRemoveMe(true);
             std::cout << "Parachute touched !" << std::endl;
