@@ -73,4 +73,12 @@ const int shieldMargin = boxWidth + 50;
 
 const int skullTimeOfDisplay = 50;
 
+
+/// For the score
+
+const int points_body_touched = 5;
+const int points_parachute_touched = 3;
+const int points_bullet_used = -1;
+const int points_plane_touched = 10;
+
 #endif

@@ -29,12 +29,6 @@ std::vector<Plane> planes;
 std::vector<Trooper> troopers;
 
 
-//values of the score points for each shot
-
-const int points_body_touched = 5;
-const int points_parachute_touched = 3;
-const int points_bullet_used = -1;
-const int points_plane_touched = 10;
 
 /**
  * @brief keyboard management function for the cannon and the shooting
