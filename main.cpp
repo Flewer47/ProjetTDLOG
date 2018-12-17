@@ -210,8 +210,6 @@ int main(){
                 if (developper_mode){
                     Imagine::fillRect(700, 595-letterSize, 30, 15, Imagine::BLUE);
                     Imagine::drawString(700,595, patch::to_string(player_lives), Imagine::WHITE);
-
-                    Imagine::drawString(20,20, patch::to_string(player_lives), Imagine::GREEN);
                 }
                 Imagine::fillRect(200, 595-letterSize, 30, 15, Imagine::BLUE);
                 Imagine::drawString(200,595, patch::to_string(player_score), Imagine::WHITE);
