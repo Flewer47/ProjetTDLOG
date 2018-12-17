@@ -2,8 +2,7 @@
 
 Trooper::Trooper(int planeX, int planeY)
 {
-    x = planeX + planeWidth/2;
-    y = planeY + planeHeight;
+
     v = trooperSpeedWithoutParachute;
     isParachuteDrawn = false;
     isParachuteShot = false;
@@ -21,6 +20,8 @@ Trooper::Trooper(int planeX, int planeY)
 
     w = trooperWithoutParachutePicture.width();
     h = trooperWithoutParachutePicture.height();
+    x = planeX + planeWidth/2 - w/2;
+    y = planeY + planeHeight;
 }
 
 void Trooper::displayBackground(int x1, int y1, int w, int h) const {
