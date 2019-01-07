@@ -13,30 +13,46 @@ void Canvas::closeCanvas() const{
 
 void Canvas::startMenu(int& mode){
     int x=0, y=0;
-    Imagine::fillRect(200, 50, 400, 150, Imagine::RED);
-    Imagine::fillRect(300, 275, 200, 50, Imagine::YELLOW); // Start Button
-    Imagine::drawString(390, 310, "START", Imagine::GREEN);
-    Imagine::fillRect(300, 375, 200, 50, Imagine::YELLOW); // Option Button
-    Imagine::drawString(390, 410, "OPTIONS (Ne pas cliquer)", Imagine::GREEN);
-    Imagine::fillRect(300, 475, 200, 50, Imagine::YELLOW); // Quit Button
-    Imagine::drawString(390, 510, "QUIT", Imagine::GREEN);
+
+    Imagine::Image<Imagine::AlphaColor> title;
+    load(title, srcPath("Images/Title.png"));
+    Imagine::display(title, 100, 50);           // Title
+
+    Imagine::Image<Imagine::AlphaColor> start;
+    load(start, srcPath("Images/start.png"));
+    Imagine::display(start, 300, 275);           // Start
+
+    Imagine::Image<Imagine::AlphaColor> options;
+    load(options, srcPath("Images/options.png"));
+    Imagine::display(options, 300, 375);         // Options
+    Imagine::drawString(325, 450, "Do not click on OPTIONS", Imagine::YELLOW);
+
+
+    Imagine::Image<Imagine::AlphaColor> quit;
+    load(quit, srcPath("Images/quit.png"));
+    Imagine::display(quit, 300, 475);             // Quit
+
+    load(start, srcPath("Images/start_clicked.png"));
+    load(options, srcPath("Images/options_clicked.png"));
+    load(quit, srcPath("Images/quit_clicked.png"));
+
     while(mode==0){
         Imagine::getMouse(x,y);
         Imagine::milliSleep(10);
         if ((300<=x) && (x<=500) && (275<=y) && (y<=325)){
             mode=1;
-            Imagine::fillRect(300, 275, 200, 50, Imagine::BLUE);
+            Imagine::display(start, 300, 275);
             Imagine::milliSleep(80);
         }
         else if ((300<=x) && (x<=500) && (375<=y) && (y<=425)){
             // NE PAS CLIQUER SUR OPTION !!!
             mode=2;
-            Imagine::fillRect(300, 375, 200, 50, Imagine::BLUE);
+            Imagine::display(options, 300, 375);
             Imagine::milliSleep(80);
         }
         else if ((300<=x) && (x<=500) && (475<=y) && (y<=525)){
             mode=3;
-            Imagine::fillRect(300, 475, 200, 50, Imagine::BLUE);
+            Imagine::display(quit, 300, 475);
             Imagine::milliSleep(80);
         }
     }
