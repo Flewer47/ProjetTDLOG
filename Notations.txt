@@ -1,0 +1,173 @@
+NOTATIONS :
+
+-> Margins :
+	dropMargin
+	leftRightPlaneHeight
+	rightLeftPlaneHeight
+	shieldMargin
+	maxHeigthParachute
+	minHeightParachute
+	groundHeight
+
+-> Classes:
+	Canvas
+	Cannon
+	Trooper
+	Plane
+	Bullet
+
+# Global constants for the canvas
+
+int windowWidth
+int windowHeight
+int groundHeight
+Imagine::Color windowBackgroundColor
+Imagine::Color groundColor
+std::string windowTitle
+
+-> Canvas:
+	* attributes :
+
+		# bool to check if the canvas is active.
+		bool isCanvasActive;
+
+
+	* methods :
+
+		# Should create the canvas.
+		Canvas();
+
+		# Should put a "EndGraphics" so that the player can close the game.
+		void closeCanvas() const;
+
+# Global constants for the Cannon
+
+int boxHeight
+int boxWidth
+Imagine::Color boxColor
+
+int cannonLength
+int cannonWidth
+
+float cannonAngularVelocity
+float cannonAngleLimit
+float defaultCannonAngle
+Imagine::Color cannonColor
+
+float shootFrequency
+
+-> Cannon :
+	* attributes :
+
+		float angle;
+
+	* methods :
+
+		# Should create the box & cannon.
+		# Would not draw them as updatePosition does it anyway.
+		Cannon();
+
+		void updatePosition();
+		void display(Imagine::Color newColor1 = boxColor, Imagine::Color newColor2 = 			cannonColor) const;
+		float getAngle();
+
+# Global constants for the Trooper
+int trooperWidth
+int trooperHeight
+Imagine::Color trooperColor
+int parachuteWidth
+int parachuteHeight
+Imagine::Color parachuteColor
+int trooperSpeedWithParachute
+int trooperSpeedWithoutParachute
+int trooperSpeedWalking
+
+
+int minHeightParachute
+int maxHeigthParachute
+
+-> Trooper:
+	* attributes :
+		# Position
+		int x;
+		int y;
+
+		# bool to check if it has deployed its parachute
+		bool isParachuteDrawn;
+
+		# height when he will deploy its parachute
+		int heightToDrawParachute;
+
+		# bool to check if it has touched the ground
+		bool isWalking;
+
+		# bool to check if it has been killed
+		bool removeMe;
+
+	* methods :
+
+		Trooper(int planeX, int planeY);
+
+		void display(Imagine::Color newColor1 = trooperColor, Imagine::Color newColor2 = 			parachuteColor) const;
+
+
+# Global constants for the Plane
+int dropMargin
+int leftRightPlaneHeight
+int rightLeftPlaneHeight
+int shieldMargin
+int planeVelocity
+
+const int planeWidth
+const int planeHeight
+Imagine::Color planeColor
+
+-> Plane :
+	* attributes :
+	
+		int x;
+		int y;
+		int vx;
+		bool removeMe;
+
+		# to determine the direction	
+		bool isGoingLeft;
+
+		# to determine if he has spawned an enemy yet or not
+		bool hasSpawnedYet;
+
+		# to determine where to drop the enemy
+		int dropWidth;
+	
+
+	* methods :
+		
+		Plane();	
+
+		void display() const;
+
+		void updatePosition();
+
+# Global constants for the Bullet
+int bulletSpeed
+int bulletSize
+
+-> Bullet :
+	* attributes :
+
+	float angle;
+	int x;
+	int y;
+	
+	# bool to check if it has left the screen
+	bool removeMe;
+
+	* methods :
+
+	Bullet(float angle0);
+
+	updatePosition();
+
+	void display() const;
+
+	bool getRemoveMe() const;

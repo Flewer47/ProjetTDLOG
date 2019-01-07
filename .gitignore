@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# CMakeLists.txt.user files
+*.txt.user
+
+# Autosaves
+*.cpp.autosave
