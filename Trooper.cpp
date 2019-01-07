@@ -36,12 +36,14 @@ void Trooper::displayFreeFall() const{
 }
 
 void Trooper::displayTrooperWithParachute() const{
-    displayBackground(x - trooperWithParachutePicture.width()/2 + w/2, y - trooperSpeedWithoutParachute,
-                      trooperWithParachutePicture.width(), trooperWithParachutePicture.height());
+
     Imagine::AlphaColor *AC;
+    Imagine::Color *C;
     int Aw, Ah;
+    Imagine::loadColorImage(srcPath("Images/trooperWithParachuteBlack.png"), C, Aw, Ah);
+    Imagine::putColorImage(x - Aw/2 + w/2,y - trooperSpeedWithParachute,C,Aw,Ah);
     Imagine::loadAlphaColorImage(srcPath("Images/trooperWithParachute.png"), AC, Aw, Ah);
-    Imagine::putAlphaColorImage(x - trooperWithParachutePicture.width()/2 + w/2,y,AC,Aw,Ah);
+    Imagine::putAlphaColorImage(x - Aw/2 + w/2,y,AC,Aw,Ah);
 }
 
 void Trooper::displayWalkingTrooper(bool isGoingRight) const {
@@ -59,8 +61,8 @@ void Trooper::displaySkull() const{
         Imagine::AlphaColor *AC;
         int Aw, Ah;
         Imagine::loadAlphaColorImage(srcPath("Images/skull.png"), AC, Aw, Ah);
-        Imagine::putAlphaColorImage(x + trooperWidth/2 - skull.width()/2,
-                                    y - 3*skull.height()/4,AC,Aw,Ah);            // Display Image with Alpha channel
+        Imagine::putAlphaColorImage(x + trooperWidth/2 - Aw/2,
+                                    y - 3*Ah/4,AC,Aw,Ah);            // Display Image with Alpha channel
 
     }
 }
