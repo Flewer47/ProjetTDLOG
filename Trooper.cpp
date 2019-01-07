@@ -1,4 +1,5 @@
 #include "Trooper.h"
+#include "Plane.h"
 
 Trooper::Trooper(int planeX, int planeY)
 {
@@ -130,10 +131,7 @@ void Trooper::updatePosition(){
 
 void Trooper::Touched(Bullet bullet){
     if (isParachuteDrawn) {
-        bool touchParachute = ((x <= bullet.get_x())
-                               && (bullet.get_x() <= x + parachuteWidth)
-                               && (y <= bullet.get_y())
-                               && (bullet.get_y() <= y + parachuteHeight-trooperHeight));
+        bool touchParachute = ball_in_rectangle(bullet.get_x(), bullet.get_y(),x, x+ parachuteWidth, y, y + parachuteHeight-trooperHeight);
         if (touchParachute && y < windowHeight - groundHeight - parachuteHeight) {
             isParachuteShot=true;
             displayBackground(x - parachuteWidth/2 + w/2, y,
@@ -144,10 +142,7 @@ void Trooper::Touched(Bullet bullet){
             std::cout << "Parachute touched !" << std::endl;
         }
         else {
-            bool touchBody = ((x <= bullet.get_x())
-                              && (bullet.get_x() <= x + w)
-                              && (y + parachuteHeight - trooperHeight <= bullet.get_y())
-                              && (bullet.get_y() <= y + parachuteHeight));
+            bool touchBody = ball_in_rectangle(bullet.get_x(), bullet.get_y(),x, x+ w, y + parachuteHeight - trooperHeight,y + parachuteHeight);
             if (touchBody){
                 bodyTouched = true;
                 displayBackground(x - parachuteWidth/2 + w/2, y,
@@ -159,10 +154,7 @@ void Trooper::Touched(Bullet bullet){
         }
     }
     else {
-        bool touchBody = ((x <= bullet.get_x())
-                          && (bullet.get_x() <= x + trooperWidth)
-                          && (y <= bullet.get_y())
-                          && (bullet.get_y() <= y + trooperHeight));
+        bool touchBody = ball_in_rectangle(bullet.get_x(), bullet.get_y(),x, x + trooperWidth, y ,y + trooperHeight);
         if (touchBody){
             displayBackground(x,y,trooperWidth,trooperHeight);
             bullet.setRemoveMe(true);
