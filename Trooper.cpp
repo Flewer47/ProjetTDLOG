@@ -36,24 +36,29 @@ void Trooper::displayFreeFall() const{
 
 void Trooper::displayTrooperWithParachute() const{
     Imagine::AlphaColor *AC;
-    Imagine::Color *C;
     int Aw, Ah;
-    Imagine::loadColorImage(srcPath("Images/trooperWithParachuteBlack.png"), C, Aw, Ah);
-    Imagine::putColorImage(x - Aw/2 + w/2,y - trooperSpeedWithParachute,C,Aw,Ah);
+    Imagine::loadAlphaColorImage(srcPath("Images/trooperWithParachuteBlack.png"), AC, Aw, Ah);
+    Imagine::putAlphaColorImage(x - Aw/2 + w/2,y - trooperSpeedWithParachute,AC,Aw,Ah);
     Imagine::loadAlphaColorImage(srcPath("Images/trooperWithParachute.png"), AC, Aw, Ah);
     Imagine::putAlphaColorImage(x - Aw/2 + w/2,y,AC,Aw,Ah);
 }
 
 void Trooper::displayWalkingTrooper(bool isGoingRight) const {
-    if (isGoingRight) displayBackground(x - trooperSpeedWalking, y, w, h);
-    else displayBackground(x + trooperSpeedWalking, y, w, h);
+    Imagine::AlphaColor *AC;
+    int Aw, Ah;
+    Imagine::loadAlphaColorImage(srcPath("Images/trooperWithoutParachuteBlack.png"), AC, Aw, Ah);
+    if (isGoingRight) Imagine::putAlphaColorImage(x - trooperSpeedWalking,y,AC,Aw,Ah);
+    else Imagine::putAlphaColorImage(x + trooperSpeedWalking,y,AC,Aw,Ah);
     Imagine::display(trooperWithoutParachutePicture, x, y);
 }
 
 void Trooper::displaySkull() const{
     if (countDisplaySkull == 0) {
-        Imagine::fillRect(x + trooperWidth/2 - skull.width()/2,
-                          y - 3*skull.height()/4, skull.width(), skull.height(), Imagine::BLACK);
+        Imagine::AlphaColor *AC;
+        int Aw, Ah;
+        Imagine::loadAlphaColorImage(srcPath("Images/skullBlack.png"), AC, Aw, Ah);
+        Imagine::putAlphaColorImage(x + trooperWidth/2 - Aw/2,
+                                    y - 3*Ah/4,AC,Aw,Ah);
     }
     else {
         Imagine::AlphaColor *AC;
