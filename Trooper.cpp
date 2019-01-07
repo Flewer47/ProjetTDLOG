@@ -26,49 +26,43 @@ void Trooper::displayBackground(int x1, int y1, int w1, int h1) const {
     Imagine::fillRect(x1, y1, w1, h1, Imagine::BLACK);
 }
 
-void Trooper::displayFreeFall() const{
+void Trooper::displayPicture(int x1, int y1, std::string filename) const{
     Imagine::AlphaColor *AC;
     int Aw, Ah;
-    Imagine::loadAlphaColorImage(srcPath("Images/trooperWithoutParachuteBlack.png"), AC, Aw, Ah);
-    Imagine::putAlphaColorImage(x, y - trooperSpeedWithoutParachute,AC,Aw,Ah);
-    Imagine::loadAlphaColorImage(srcPath("Images/trooperWithoutParachute.png"), AC, Aw, Ah);
-    Imagine::putAlphaColorImage(x,y,AC,Aw,Ah);
+    Imagine::loadAlphaColorImage(filename, AC, Aw, Ah);
+    Imagine::putAlphaColorImage(x1, y1,AC,Aw,Ah);
+}
+
+void Trooper::displayFreeFall() const{
+    displayPicture(x, y - trooperSpeedWithoutParachute,
+                   srcPath("Images/trooperWithoutParachuteBlack.png"));
+    displayPicture(x, y,srcPath("Images/trooperWithoutParachute.png"));
 
 }
 
-void Trooper::displayTrooperWithParachute() const{
-    Imagine::AlphaColor *AC;
-    int Aw, Ah;
-    Imagine::loadAlphaColorImage(srcPath("Images/trooperWithParachuteBlack.png"), AC, Aw, Ah);
-    Imagine::putAlphaColorImage(x - Aw/2 + w/2,y - trooperSpeedWithParachute,AC,Aw,Ah);
-    Imagine::loadAlphaColorImage(srcPath("Images/trooperWithParachute.png"), AC, Aw, Ah);
-    Imagine::putAlphaColorImage(x - Aw/2 + w/2,y,AC,Aw,Ah);
+void Trooper::displayTrooperWithParachute() const{    
+    displayPicture(x - parachuteWidth/2 + trooperWidth/2,y - trooperSpeedWithParachute,
+                   srcPath("Images/trooperWithParachuteBlack.png"));
+    displayPicture(x - parachuteWidth/2 + trooperWidth/2,y,
+                   srcPath("Images/trooperWithParachute.png"));
 }
 
 void Trooper::displayWalkingTrooper(bool isGoingRight) const {
-    Imagine::AlphaColor *AC;
-    int Aw, Ah;
-    Imagine::loadAlphaColorImage(srcPath("Images/trooperWithoutParachuteBlack.png"), AC, Aw, Ah);
-    if (isGoingRight) Imagine::putAlphaColorImage(x - trooperSpeedWalking,y,AC,Aw,Ah);
-    else Imagine::putAlphaColorImage(x + trooperSpeedWalking,y,AC,Aw,Ah);
-    Imagine::display(trooperWithoutParachutePicture, x, y);
+    if (isGoingRight) displayPicture(x-trooperSpeedWalking,y,
+                                     srcPath("Images/trooperWithoutParachuteBlack.png"));
+    else displayPicture(x+trooperSpeedWalking,y,
+                        srcPath("Images/trooperWithoutParachuteBlack.png"));
+    displayPicture(x,y,srcPath("Images/trooperWithoutParachute.png"));
 }
 
 void Trooper::displaySkull() const{
     if (countDisplaySkull == 0) {
-        Imagine::AlphaColor *AC;
-        int Aw, Ah;
-        Imagine::loadAlphaColorImage(srcPath("Images/skullBlack.png"), AC, Aw, Ah);
-        Imagine::putAlphaColorImage(x + trooperWidth/2 - Aw/2,
-                                    y - 3*Ah/4,AC,Aw,Ah);
+        displayPicture(x + trooperWidth/2 - skull.width()/2,
+                       y - 3*skull.height()/4,srcPath("Images/skullBlack.png"));
     }
     else {
-        Imagine::AlphaColor *AC;
-        int Aw, Ah;
-        Imagine::loadAlphaColorImage(srcPath("Images/skull.png"), AC, Aw, Ah);
-        Imagine::putAlphaColorImage(x + trooperWidth/2 - Aw/2,
-                                    y - 3*Ah/4,AC,Aw,Ah);
-
+        displayPicture(x + trooperWidth/2 - skull.width()/2,
+                       y - 3*skull.height()/4,srcPath("Images/skull.png"));
     }
 }
 

@@ -64,11 +64,19 @@ public:
     /**
      * @brief Display a rectangle of the color of the background
      * @param x1 X coordinate of the upper right angle of the rectangle
-     * @param y1 y coordinate of the upper right angle of the rectangle
+     * @param y1 Y coordinate of the upper right angle of the rectangle
      * @param w Width of the rectangle
      * @param h Height of the rectangle
      */
     void displayBackground(int x1, int y1, int w1, int h1) const;
+
+    /**
+     * @brief Display an AlphaColorImage
+     * @param x1 X coordinate of the upper right angle of the picture
+     * @param y1 Y coordinate of the upper right angle of the picture
+     * @param filename name of the file
+     */
+    void displayPicture(int x1, int y1, std::string filename) const;
 
     /**
      * @brief Display the trooper with a parachute
