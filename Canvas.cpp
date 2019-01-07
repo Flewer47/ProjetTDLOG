@@ -22,18 +22,11 @@ void Canvas::startMenu(int& mode){
     load(start, srcPath("Images/start.png"));
     Imagine::display(start, 300, 275);           // Start
 
-    Imagine::Image<Imagine::AlphaColor> options;
-    load(options, srcPath("Images/options.png"));
-    Imagine::display(options, 300, 375);         // Options
-    Imagine::drawString(325, 450, "Do not click on OPTIONS", Imagine::YELLOW);
-
-
     Imagine::Image<Imagine::AlphaColor> quit;
     load(quit, srcPath("Images/quit.png"));
     Imagine::display(quit, 300, 475);             // Quit
 
     load(start, srcPath("Images/start_clicked.png"));
-    load(options, srcPath("Images/options_clicked.png"));
     load(quit, srcPath("Images/quit_clicked.png"));
 
     while(mode==0){
@@ -42,12 +35,6 @@ void Canvas::startMenu(int& mode){
         if ((300<=x) && (x<=500) && (275<=y) && (y<=325)){
             mode=1;
             Imagine::display(start, 300, 275);
-            Imagine::milliSleep(80);
-        }
-        else if ((300<=x) && (x<=500) && (375<=y) && (y<=425)){
-            // NE PAS CLIQUER SUR OPTION !!!
-            mode=2;
-            Imagine::display(options, 300, 375);
             Imagine::milliSleep(80);
         }
         else if ((300<=x) && (x<=500) && (475<=y) && (y<=525)){

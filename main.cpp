@@ -28,7 +28,13 @@ std::vector<Plane> planes;
 /// Vector of troopers
 std::vector<Trooper> troopers;
 
-
+void resetVariables(int &score, int &player_lives, std::vector<Bullet> &bullets, std::vector<Trooper> &troopers, std::vector<Plane> &planes){
+    score = 0;
+    player_lives = 7;
+    bullets.clear();
+    troopers.clear();
+    planes.clear();
+}
 
 /**
  * @brief keyboard management function for the cannon and the shooting
@@ -168,7 +174,7 @@ int main(){
     int countdown = 0;
     int direction = 0;
     int count = shootFrequency;
-    int player_lives = 10;
+    int player_lives = 7;
     int player_score = 0;
 
     canvas.startMenu(mode);
@@ -218,8 +224,39 @@ int main(){
             }
 
             if (player_lives == 0){
-                mode = 3;
+                bool gameOver = true;
+
+                Imagine::Image<Imagine::AlphaColor> start;
+                load(start, srcPath("Images/start.png"));
+                Imagine::display(start, 300, 275);           // Start
+
+                Imagine::Image<Imagine::AlphaColor> quit;
+                load(quit, srcPath("Images/quit.png"));
+                Imagine::display(quit, 300, 475);             // Quit
+
+                load(start, srcPath("Images/start_clicked.png"));
+                load(quit, srcPath("Images/quit_clicked.png"));
+
+                while(gameOver){
+                    int x,y;
+                    Imagine::getMouse(x,y);
+                    Imagine::milliSleep(10);
+                    if ((300<=x) && (x<=500) && (275<=y) && (y<=325)){
+                        mode=1;
+                        Imagine::display(start, 300, 275);
+                        Imagine::milliSleep(80);
+                        gameOver = false;
+                        resetVariables(player_score,player_lives,bullets,troopers,planes);
+                    }
+                    else if ((300<=x) && (x<=500) && (475<=y) && (y<=525)){
+                        mode=3;
+                        Imagine::display(quit, 300, 475);
+                        Imagine::milliSleep(80);
+                        gameOver = false;
+                    }
+                }
             }
+            Imagine::fillRect(0,0,windowWidth, windowHeight, windowBackgroundColor);
 
         }
 
