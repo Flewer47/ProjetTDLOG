@@ -152,7 +152,10 @@ void generateRandom(){
     srand(time(0));
 }
 
+
 int main(){
+
+    std::cout<< test_drop_width(100)<<std::endl;
 
     generateRandom();
     std::cout << "Hello World !" << std::endl;
