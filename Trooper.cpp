@@ -27,11 +27,13 @@ void Trooper::displayBackground(int x1, int y1, int w1, int h1) const {
 }
 
 void Trooper::displayFreeFall() const{
-    displayBackground(x, y - trooperSpeedWithoutParachute, w, h);
     Imagine::AlphaColor *AC;
     int Aw, Ah;
+    Imagine::loadAlphaColorImage(srcPath("Images/trooperWithoutParachuteBlack.png"), AC, Aw, Ah);
+    Imagine::putAlphaColorImage(x, y - trooperSpeedWithoutParachute,AC,Aw,Ah);
     Imagine::loadAlphaColorImage(srcPath("Images/trooperWithoutParachute.png"), AC, Aw, Ah);
     Imagine::putAlphaColorImage(x,y,AC,Aw,Ah);
+
 }
 
 void Trooper::displayTrooperWithParachute() const{
