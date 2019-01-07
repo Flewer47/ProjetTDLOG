@@ -120,3 +120,11 @@ bool test_drop_width(int n){
     }
     return(true);
 }
+
+bool ball_in_rectangle(int ball_x, int ball_y, int x1, int x2, int y1, int y2){
+    bool inretangle = ((x1 < ball_x)
+                  && (ball_x< x2)
+                  && (y1 < ball_y)
+                  && (ball_y < y2));
+    return inretangle;
+}
