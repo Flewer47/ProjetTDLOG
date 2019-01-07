@@ -209,7 +209,7 @@ int main(){
                 Imagine::noRefreshEnd();
 
 
-                Imagine::milliSleep(20);
+                Imagine::milliSleep(30);
 
 
             }

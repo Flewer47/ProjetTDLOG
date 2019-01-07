@@ -20,7 +20,7 @@ const int planeWidth = 50;
 const int planeHeight = 26;
 
 
-const int dropMargin = 30;
+const int dropMargin = 80;
 const int leftRightPlaneHeight = 20;
 const int rightLeftPlaneHeight = 70;
 const int planeVelocity = 3;
@@ -51,13 +51,12 @@ const int shootFrequency = 5;
 
 /// For the troopers
 
-
-const int trooperWidth = 20;
-const int trooperHeight = 20;
+const int trooperWidth = 21;
+const int trooperHeight = 45;
 const Imagine::Color trooperColor = Imagine::RED;
 
-const int parachuteWidth = 30;
-const int parachuteHeight = 50;
+const int parachuteWidth = 100;
+const int parachuteHeight = 100;
 const Imagine::Color parachuteColor = Imagine::RED;
 
 const int trooperSpeedWithParachute = 3;
@@ -66,7 +65,7 @@ const int trooperSpeedWalking = 2;
 
 /// Margins
 const int minHeightParachute = 300, maxHeightParachute = 400;
-const int shieldMargin = boxWidth + 50;
+const int shieldMargin = boxWidth + 130;
 
 
 /// For the images

@@ -18,7 +18,6 @@ Trooper::Trooper(int planeX, int planeY)
     Imagine::load(trooperWithParachutePicture, srcPath("Images/trooperWithParachute.png"));
     Imagine::load(trooperWithoutParachutePicture, srcPath("Images/trooperWithoutParachute.png"));
     Imagine::load(skull, srcPath("Images/skull.png"));
-
     w = trooperWithoutParachutePicture.width();
     h = trooperWithoutParachutePicture.height();
 }
@@ -36,7 +35,6 @@ void Trooper::displayFreeFall() const{
 }
 
 void Trooper::displayTrooperWithParachute() const{
-
     Imagine::AlphaColor *AC;
     Imagine::Color *C;
     int Aw, Ah;
@@ -62,14 +60,14 @@ void Trooper::displaySkull() const{
         int Aw, Ah;
         Imagine::loadAlphaColorImage(srcPath("Images/skull.png"), AC, Aw, Ah);
         Imagine::putAlphaColorImage(x + trooperWidth/2 - Aw/2,
-                                    y - 3*Ah/4,AC,Aw,Ah);            // Display Image with Alpha channel
+                                    y - 3*Ah/4,AC,Aw,Ah);
 
     }
 }
 
 void Trooper::updatePosition(){
 
-    displayBackground(x, y, w, h);
+    displayBackground(x, y, trooperWidth, trooperHeight);
 
     if (isWalking){
         if (x < windowWidth/2 - boxWidth/2 - trooperWidth){
@@ -88,19 +86,18 @@ void Trooper::updatePosition(){
 
     // In the air
     else{
-
-        y += (isParachuteDrawn ? trooperSpeedWithParachute : trooperSpeedWithoutParachute);
-
+        if(y<windowHeight - groundHeight - h){
+            y += (isParachuteDrawn ? trooperSpeedWithParachute : trooperSpeedWithoutParachute);
+        }
         if (y >= heightToDrawParachute){
             if (!parachuteOpening) {
-                y -= trooperWithParachutePicture.height() - trooperWithoutParachutePicture.height();
+                y -= parachuteHeight - trooperHeight;
                 parachuteOpening = true;
             }
             isParachuteDrawn = !isParachuteShot;
-              }
+        }
 
         if(isParachuteDrawn){
-
             displayTrooperWithParachute();
         }
         else{
@@ -108,19 +105,19 @@ void Trooper::updatePosition(){
         }
 
         // Landed
-        if (y > windowHeight - groundHeight - trooperWithParachutePicture.height() && isParachuteDrawn){
-            displayBackground(x - trooperWithParachutePicture.width()/2 + w/2,
-                              windowHeight - groundHeight - trooperWithParachutePicture.height(),
-                              trooperWithParachutePicture.width(),trooperWithParachutePicture.height());
-            y = windowHeight - groundHeight - h;
+        if (y > windowHeight - groundHeight - parachuteHeight && isParachuteDrawn){
+            displayBackground(x - parachuteWidth/2 + trooperWidth/2,
+                              windowHeight - groundHeight - parachuteHeight,
+                              parachuteWidth,parachuteHeight);
+            y = windowHeight - groundHeight - trooperHeight;
 
             isWalking = true;
         }
 
         // Parachute has been shot and fell into the ground, display the skull
-        else if (y > windowHeight - groundHeight - h && !isParachuteDrawn){
-            displayBackground(x,windowHeight - groundHeight - h,w,h);
-            y = windowHeight - groundHeight - h;
+        else if (y >= windowHeight - groundHeight - trooperHeight && !isParachuteDrawn){
+            displayBackground(x,windowHeight - groundHeight - trooperHeight,trooperWidth,trooperHeight);
+            y = windowHeight - groundHeight - trooperHeight;
             displaySkull();
 
             if (countDisplaySkull==0){ removeMe = true; }
@@ -133,14 +130,14 @@ void Trooper::updatePosition(){
 void Trooper::Touched(Bullet bullet){
     if (isParachuteDrawn) {
         bool touchParachute = ((x <= bullet.get_x())
-                               && (bullet.get_x() <= x + trooperWithParachutePicture.width())
+                               && (bullet.get_x() <= x + parachuteWidth)
                                && (y <= bullet.get_y())
-                               && (bullet.get_y() <= y+trooperWithParachutePicture.height()-h));
-        if (touchParachute && y < windowHeight - groundHeight - trooperWithParachutePicture.height()) {
+                               && (bullet.get_y() <= y + parachuteHeight-trooperHeight));
+        if (touchParachute && y < windowHeight - groundHeight - parachuteHeight) {
             isParachuteShot=true;
-            displayBackground(x - trooperWithParachutePicture.width()/2 + w/2, y,
-                              trooperWithParachutePicture.width(), trooperWithParachutePicture.height());
-            y += trooperWithParachutePicture.height() - h;
+            displayBackground(x - parachuteWidth/2 + w/2, y,
+                              parachuteWidth, parachuteHeight);
+            y += parachuteHeight - trooperHeight;
             displayFreeFall();
             bullet.setRemoveMe(true);
             std::cout << "Parachute touched !" << std::endl;
@@ -148,12 +145,12 @@ void Trooper::Touched(Bullet bullet){
         else {
             bool touchBody = ((x <= bullet.get_x())
                               && (bullet.get_x() <= x + w)
-                              && (y + trooperWithParachutePicture.height() - h <= bullet.get_y())
-                              && (bullet.get_y() <= y + trooperWithParachutePicture.height()));
+                              && (y + parachuteHeight - trooperHeight <= bullet.get_y())
+                              && (bullet.get_y() <= y + parachuteHeight));
             if (touchBody){
                 bodyTouched = true;
-                displayBackground(x - trooperWithParachutePicture.width()/2 + w/2, y,
-                                  trooperWithParachutePicture.width(),trooperWithParachutePicture.height());
+                displayBackground(x - parachuteWidth/2 + w/2, y,
+                                  parachuteWidth,parachuteHeight);
                 bullet.setRemoveMe(true);
                 removeMe = true;
                 std::cout << "Trooper touched !" << std::endl;
@@ -162,11 +159,11 @@ void Trooper::Touched(Bullet bullet){
     }
     else {
         bool touchBody = ((x <= bullet.get_x())
-                          && (bullet.get_x() <= x + w)
+                          && (bullet.get_x() <= x + trooperWidth)
                           && (y <= bullet.get_y())
-                          && (bullet.get_y() <= y + h));
+                          && (bullet.get_y() <= y + trooperHeight));
         if (touchBody){
-            displayBackground(x,y,w,h);
+            displayBackground(x,y,trooperWidth,trooperHeight);
             bullet.setRemoveMe(true);
             bodyTouched = true;
             removeMe = true;
