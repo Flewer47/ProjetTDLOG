@@ -25,6 +25,14 @@ public:
       * @param mode Defines the action from start menu
       */
     void startMenu(int& mode);
+
+    /**
+      * @brief Opens the Game Over pop-up
+      * @param mode Defines the action from start menu
+      * @param player_lives Number of lives
+      * @param score Score
+      */
+    void gameOverScreen(int& mode, int&player_lives, int score);
 };
 
 #endif // CANVAS_H

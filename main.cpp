@@ -174,23 +174,24 @@ int main(){
     int countdown = 0;
     int direction = 0;
     int count = shootFrequency;
-    int player_lives = 7;
+    int player_lives = 3;
     int player_score = 0;
 
     canvas.startMenu(mode);
 
     while ((0<=mode) && (mode<=3)){
+        //--------------------------------- START MENU ------------------------------------
         if (mode==0){
             canvas.startMenu(mode);
         }
 
+        //-------------------------------- GAME --------------------------------------
         if (mode==1){
             Imagine::fillRect(0, windowHeight-groundHeight, windowWidth, groundHeight, groundColor);
             Imagine::drawString(150, 595,"Score :", Imagine::WHITE, 12, 0, true);
             Imagine::drawString(650, 595,"Lives :", Imagine::WHITE, 12, 0, true);
 
-
-
+            // Playing
             while (player_lives != 0){
                 Imagine::noRefreshBegin();
 
@@ -207,7 +208,6 @@ int main(){
                 handleTroopers(player_lives, player_score);
                 handleHitboxes();
 
-
                 if (developper_mode){
                     Imagine::fillRect(700, 595-letterSize, 30, 15, Imagine::BLUE);
                     Imagine::drawString(700,595, patch::to_string(player_lives), Imagine::WHITE);
@@ -217,49 +217,19 @@ int main(){
 
                 Imagine::noRefreshEnd();
 
-
                 Imagine::milliSleep(20);
-
-
             }
 
+            // Display Game Over pop-up
             if (player_lives == 0){
-                bool gameOver = true;
-
-                Imagine::Image<Imagine::AlphaColor> start;
-                load(start, srcPath("Images/start.png"));
-                Imagine::display(start, 300, 275);           // Start
-
-                Imagine::Image<Imagine::AlphaColor> quit;
-                load(quit, srcPath("Images/quit.png"));
-                Imagine::display(quit, 300, 475);             // Quit
-
-                load(start, srcPath("Images/start_clicked.png"));
-                load(quit, srcPath("Images/quit_clicked.png"));
-
-                while(gameOver){
-                    int x,y;
-                    Imagine::getMouse(x,y);
-                    Imagine::milliSleep(10);
-                    if ((300<=x) && (x<=500) && (275<=y) && (y<=325)){
-                        mode=1;
-                        Imagine::display(start, 300, 275);
-                        Imagine::milliSleep(80);
-                        gameOver = false;
-                        resetVariables(player_score,player_lives,bullets,troopers,planes);
-                    }
-                    else if ((300<=x) && (x<=500) && (475<=y) && (y<=525)){
-                        mode=3;
-                        Imagine::display(quit, 300, 475);
-                        Imagine::milliSleep(80);
-                        gameOver = false;
-                    }
-                }
+                canvas.gameOverScreen(mode, player_lives, player_score);
+                resetVariables(player_score,player_lives,bullets,troopers,planes);
             }
-            Imagine::fillRect(0,0,windowWidth, windowHeight, windowBackgroundColor);
 
+            Imagine::fillRect(0,0,windowWidth, windowHeight, windowBackgroundColor);
         }
 
+        //------------------------------------ QUIT ---------------------------------
         if (mode==3){
             canvas.closeCanvas();
             break;
