@@ -6,7 +6,7 @@
 
 /// For the canvas
 
-const int windowWidth = 800, windowHeight = 600, groundHeight = 20;
+const int windowWidth = 800, windowHeight = 600, groundHeight = windowHeight/30;
 const Imagine::Color windowBackgroundColor = Imagine::BLACK;
 const Imagine::Color groundColor = Imagine::BLUE;
 const std::string windowTitle = "Paratroopers";
@@ -16,13 +16,13 @@ const std::string windowTitle = "Paratroopers";
 
 /// For the planes
 
-const int planeWidth = 50;
+const int planeWidth = windowWidth/16;
 const int planeHeight = 26;
 
 
-const int dropMargin = 80;
-const int leftRightPlaneHeight = 20;
-const int rightLeftPlaneHeight = 70;
+const int dropMargin = windowWidth/10;
+const int leftRightPlaneHeight = windowHeight/30;
+const int rightLeftPlaneHeight = int(windowHeight*7/60);
 const int planeVelocity = 3;
 const Imagine::Color planeColor = Imagine::RED;
 
