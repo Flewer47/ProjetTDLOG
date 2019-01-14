@@ -11,3 +11,6 @@ add_executable(TestTDLOG main.cpp Cannon.cpp Canvas.cpp Trooper.cpp Bullet.cpp P
 ImagineUseModules(TestTDLOG Graphics)
 
 
+add_executable(TestTDLOG_tests tests.cpp Cannon.cpp Canvas.cpp Trooper.cpp Bullet.cpp Plane.cpp)
+ImagineUseModules(TestTDLOG_tests Graphics)
+

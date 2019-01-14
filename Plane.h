@@ -80,3 +80,15 @@ public:
 bool test_drop_width(int n);
 
 #endif // PLANE_H
+
+/**
+ * @brief ball_in_rectangle
+ * @param ball_x
+ * @param ball_y
+ * @param x1
+ * @param x2
+ * @param y1
+ * @param y2
+ * @return true if the ball is in the rectangle defined by the four points
+ */
+bool ball_in_rectangle(int ball_x, int ball_y, int x1, int x2, int y1, int y2);

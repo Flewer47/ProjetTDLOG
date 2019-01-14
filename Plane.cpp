@@ -91,10 +91,7 @@ bool Plane::getRemoveMe() const{
 }
 
 void Plane::Touched(Bullet bullet){
-    bool touch = ((x < bullet.get_x())
-                  && (bullet.get_x()< x + planeWidth)
-                  && (y < bullet.get_y())
-                  && (bullet.get_y() < y + planeHeight));
+    bool touch = ball_in_rectangle(bullet.get_x(), bullet.get_y(),x, x+ planeWidth, y, y + planeHeight);
     if (touch){
         planeShot = true;
         display(windowBackgroundColor);
@@ -119,4 +116,12 @@ bool test_drop_width(int n){
         }
     }
     return(true);
+}
+
+bool ball_in_rectangle(int ball_x, int ball_y, int x1, int x2, int y1, int y2){
+    bool inretangle = ((x1 < ball_x)
+                  && (ball_x< x2)
+                  && (y1 < ball_y)
+                  && (ball_y < y2));
+    return inretangle;
 }
