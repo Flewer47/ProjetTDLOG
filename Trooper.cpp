@@ -58,12 +58,12 @@ void Trooper::displayWalkingTrooper(bool isGoingRight) const {
 
 void Trooper::displaySkull() const{
     if (countDisplaySkull == 0) {
-        displayPicture(x + trooperWidth/2 - skull.width()/2,
-                       y - 3*skull.height()/4,srcPath("Images/skullBlack.png"));
+        Imagine::fillRect(x + trooperWidth/2 - skull.width()/2,
+                       y - 3*skull.height()/4, skull.width(), skull.height(), Imagine::BLACK);
     }
     else {
         displayPicture(x + trooperWidth/2 - skull.width()/2,
-                       y - 3*skull.height()/4,srcPath("Images/skull.png"));
+                       y - 3*skull.height()/4, srcPath("Images/skull.png"));
     }
 }
 
@@ -88,7 +88,7 @@ void Trooper::updatePosition(){
 
     // In the air
     else{
-        if(y<windowHeight - groundHeight - h){
+        if(y<windowHeight - groundHeight - trooperHeight){
             y += (isParachuteDrawn ? trooperSpeedWithParachute : trooperSpeedWithoutParachute);
         }
         if (y >= heightToDrawParachute){
