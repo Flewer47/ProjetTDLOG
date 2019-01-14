@@ -22,7 +22,7 @@ const int planeHeight = 26;
 
 const int dropMargin = windowWidth/10;
 const int leftRightPlaneHeight = windowHeight/30;
-const int rightLeftPlaneHeight = int(windowHeight*7/60);
+const int rightLeftPlaneHeight = (int)(windowHeight*7/60);
 const int planeVelocity = 3;
 const Imagine::Color planeColor = Imagine::RED;
 
