@@ -30,7 +30,7 @@ std::vector<Trooper> troopers;
 
 void resetVariables(int &score, int &player_lives, std::vector<Bullet> &bullets, std::vector<Trooper> &troopers, std::vector<Plane> &planes){
     score = 0;
-    player_lives = 7;
+    player_lives = 3;
     bullets.clear();
     troopers.clear();
     planes.clear();
@@ -222,6 +222,7 @@ int main(){
 
             // Display Game Over pop-up
             if (player_lives == 0){
+                direction = 0;  // Disable Shooting
                 canvas.gameOverScreen(mode, player_lives, player_score);
                 resetVariables(player_score,player_lives,bullets,troopers,planes);
             }
