@@ -92,7 +92,7 @@ void Trooper::updatePosition(){
             y += (isParachuteDrawn ? trooperSpeedWithParachute : trooperSpeedWithoutParachute);
         }
         if (y >= heightToDrawParachute){
-            if (!parachuteOpening) {
+            if (!parachuteOpening && !isParachuteShot) {
                 y -= parachuteHeight - trooperHeight;
                 parachuteOpening = true;
             }
@@ -106,7 +106,7 @@ void Trooper::updatePosition(){
             displayFreeFall();
         }
 
-        // Landed
+        // Landed with parachute
         if (y > windowHeight - groundHeight - parachuteHeight && isParachuteDrawn){
             displayBackground(x - parachuteWidth/2 + trooperWidth/2,
                               windowHeight - groundHeight - parachuteHeight,
@@ -116,8 +116,8 @@ void Trooper::updatePosition(){
             isWalking = true;
         }
 
-        // Parachute has been shot and fell into the ground, display the skull
-        else if (y >= windowHeight - groundHeight - trooperHeight && !isParachuteDrawn){
+        // Parachute has been shot and trooper fell into the ground, display the skull
+        else if (y >= windowHeight - groundHeight - trooperHeight && isParachuteShot){
             displayBackground(x,windowHeight - groundHeight - trooperHeight,trooperWidth,trooperHeight);
             y = windowHeight - groundHeight - trooperHeight;
             displaySkull();
