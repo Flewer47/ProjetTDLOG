@@ -181,3 +181,11 @@ bool Trooper::isbodyTouched(){
     return(bodyTouched);
 }
 
+bool Trooper::testYContinuity(){
+    int y1 = y;
+    updatePosition();
+    int y2 = y;
+    return (y2-y1 > trooperSpeedWithParachute);
+
+}
+

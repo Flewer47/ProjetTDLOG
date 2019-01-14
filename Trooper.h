@@ -139,6 +139,11 @@ public:
      */
 
     bool isbodyTouched();
+
+    /**
+     * @brief Checks if there is a rupture of continuity in the Y movement of a trooper
+     */
+    bool testYContinuity();
 };
 
 #endif // TROOPER_H
