@@ -33,7 +33,7 @@ const Imagine::IntPoint2 pos_ScoreVAR_GO = Imagine::IntPoint2(400, 400);
 
 /// For the planes
 
-const int planeWidth = (int)(windowWidth/16);//constantes car ce sont des tailles d images
+const int planeWidth = (int)(windowWidth/16);//fixed because of the picture
 const int planeHeight = 26;
 
 
@@ -51,7 +51,7 @@ const int boxWidth = (int)(windowWidth/16), boxHeight =(int)(windowHeight/20);
 const Imagine::Color boxColor = Imagine::WHITE;
 
 const int cannonLength = (int)(windowHeight/20), cannonWidth = (int)(windowHeight/100);
-const float cannonAngularVelocity = 0.32, cannonAngleLimit = M_PI/2, defaultCannonAngle = -M_PI/2;//constantes independantes de la fenetre
+const float cannonAngularVelocity = 0.32, cannonAngleLimit = M_PI/2, defaultCannonAngle = -M_PI/2;//do not depend on the dimensions of the window
 const Imagine::Color cannonColor = Imagine::WHITE;
 
 
@@ -68,30 +68,30 @@ const int shootFrequency = 5;
 
 /// For the troopers
 
-const int trooperWidth = 21;//fixe car image
-const int trooperHeight = 45;//fixe car image
+const int trooperWidth = 21;//fixed because of the picture
+const int trooperHeight = 45;//fixed because of the picture
 const Imagine::Color trooperColor = Imagine::RED;
 
-const int parachuteWidth = 100;//fixe car image
-const int parachuteHeight = 100;//fixe car image
+const int parachuteWidth = 100;//fixed because of the picture
+const int parachuteHeight = 100;//fixed because of the picture
 const Imagine::Color parachuteColor = Imagine::RED;
 
-const int trooperSpeedWithParachute = 2;
-const int trooperSpeedWithoutParachute = 4;
-const int trooperSpeedWalking = 2;
+const int trooperSpeedWithParachute = (int)(windowHeight/300);
+const int trooperSpeedWithoutParachute = (int) (windowHeight/150);
+const int trooperSpeedWalking = (int)(windowWidth/400);
 
 /// Margins
-const int minHeightParachute = 300, maxHeightParachute = 400;
-const int shieldMargin = boxWidth + 130;
+const int minHeightParachute = (int) (windowHeight/2), maxHeightParachute = (int) (2*windowHeight/3);
+const int shieldMargin = boxWidth + (int)(13*windowWidth/80);
 
 
 /// For the images
 
-const int skullTimeOfDisplay = 50;
+const int skullTimeOfDisplay = 50;//fixed, does not depend on the screen dimensions
 
 
 /// For the score
-
+//do not depend on the dimensions
 const int points_body_touched = 5;
 const int points_parachute_touched = 3;
 const int points_bullet_used = -1;

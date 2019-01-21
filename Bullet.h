@@ -1,9 +1,12 @@
+/// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
+
 #pragma once
 #include <iostream>
 #include "Constants.h"
 
+
 class Bullet{
-private:
+ private:
   float angle;
   int x;
   int y;
@@ -11,13 +14,12 @@ private:
   // Check to see if it has left the screen (for memory management purpose)
   bool removeMe;
 
-public:
-
+ public:
   /**
    * @brief Create at bullet object
    * @param angle0 Angle of the cannon
    */
-  Bullet(float angle0);
+  explicit Bullet(float angle0);
 
   /**
    * @brief Returns the x coordinate of the Bullet
@@ -43,7 +45,7 @@ public:
   /**
    * @brief Getter of removeMe boolean
    */
-  bool getRemoveMe() const{
+  bool getRemoveMe() const {
       return removeMe;
   }
 

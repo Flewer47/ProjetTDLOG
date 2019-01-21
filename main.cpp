@@ -1,6 +1,8 @@
-#include "game.h"
+#include "./game.h"
 
-int main(){
+/// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
+
+int main() {
     game();
     return EXIT_SUCCESS;
 }

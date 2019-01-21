@@ -163,7 +163,6 @@ void game(){
 
 
     generateRandom();
-    std::cout << "Hello World !" << std::endl;
 
     Canvas canvas;
     Cannon cannon;
