@@ -11,8 +11,8 @@ windowHeight, windowTitle);
 test_drop_width(100) << std::endl;
 
     //
-    int planeX = dropMargin + (rand_r()/static_cast<float>RAND_MAX)*
-windowWidth - 2*(shieldMargin/2 + dropMargin));
+    int planeX = dropMargin + (rand()/static_cast<float>(RAND_MAX))*
+(windowWidth - 2*(shieldMargin/2 + dropMargin));
     int planeY = planeHeight;
     Trooper trooperTest(planeX, planeY);
     std::cout << "Test on the continuity of the trooper's trajectory : "

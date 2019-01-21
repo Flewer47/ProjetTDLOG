@@ -48,7 +48,7 @@ size_Button.y(), windowBackgroundColor);
         } else if (isInRect(pos_Quit, size_Button, p)) {
             mode = 3;
             Imagine::fillRect(pos_Quit, size_Button.x(), size_Button.y(),
-indowBackgroundColor);
+windowBackgroundColor);
             Imagine::display(quit, pos_Quit.x(), pos_Quit.y());
             Imagine::milliSleep(click_Inertia);
         }

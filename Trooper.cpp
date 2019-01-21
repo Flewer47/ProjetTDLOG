@@ -15,7 +15,7 @@ Trooper::Trooper(int planeX, int planeY) {
     bodyTouched = false;
     parachuteOpening = false;
     heightToDrawParachute = minHeightParachute +
-(rand_r()/static_cast<float>RAND_MAX)*
+(rand()/static_cast<float>(RAND_MAX))*
 (maxHeightParachute-minHeightParachute);
     countDisplaySkull = skullTimeOfDisplay;
 
@@ -201,7 +201,7 @@ bool Trooper::isbodyTouched() {
 bool Trooper::testYContinuity() {
     srand(time(0));
     y = planeHeight;
-    x = dropMargin + (rand_r()/static_cast<float>RAND_MAX)*
+    x = dropMargin + (rand()/static_cast<float>(RAND_MAX))*
 (windowWidth - 2*(shieldMargin/2 + dropMargin));
     isParachuteDrawn = true;
     int y1;
