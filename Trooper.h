@@ -100,6 +100,26 @@ public:
     void displaySkull() const;
 
     /**
+     * @brief Update the position of the trooper if he is walking
+     */
+    void updateWalkingTrooper();
+
+    /**
+     * @brief Update the position of the trooper if he is in the air
+     */
+    void updateTrooperInTheAir();
+
+    /**
+     * @brief Update the position of the trooper if he has landed
+     */
+    void updateLandedTrooper();
+
+    /**
+     * @brief Update the position of the trooper if he has crashed on the ground
+     */
+    void updateTrooperCrashed();
+
+    /**
      * @brief Update the position of the trooper at the next frame
      */
     void updatePosition();

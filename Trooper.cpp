@@ -59,7 +59,7 @@ void Trooper::displayWalkingTrooper(bool isGoingRight) const {
 void Trooper::displaySkull() const{
     if (countDisplaySkull == 0) {
         Imagine::fillRect(x + trooperWidth/2 - skull.width()/2,
-                       y - 3*skull.height()/4, skull.width(), skull.height(), Imagine::BLACK);
+                          y - 3*skull.height()/4, skull.width(), skull.height(), Imagine::BLACK);
     }
     else {
         displayPicture(x + trooperWidth/2 - skull.width()/2,
@@ -67,64 +67,78 @@ void Trooper::displaySkull() const{
     }
 }
 
+void Trooper::updateWalkingTrooper(){
+    if (x < windowWidth/2 - boxWidth/2 - trooperWidth){
+        x += trooperSpeedWalking;
+        displayWalkingTrooper(true);
+    }
+    else if (x > windowWidth/2 + boxWidth/2){
+        x -= trooperSpeedWalking;
+        displayWalkingTrooper(false);
+    }
+    else{ // Trooper comes inside the base.
+        cameinBase = true;
+        removeMe = true;
+    }
+}
+
+void Trooper::updateTrooperInTheAir(){
+    if(y<windowHeight - groundHeight - trooperHeight){
+        y += (isParachuteDrawn ? trooperSpeedWithParachute : trooperSpeedWithoutParachute);
+    }
+    if (y >= heightToDrawParachute){
+        if (!parachuteOpening && !isParachuteShot) {
+            y -= parachuteHeight - trooperHeight;
+            parachuteOpening = true;
+        }
+        isParachuteDrawn = !isParachuteShot;
+    }
+
+    if(isParachuteDrawn){
+        displayTrooperWithParachute();
+    }
+    else{
+        displayFreeFall();
+    }
+}
+
+void Trooper::updateLandedTrooper(){
+    if (y > windowHeight - groundHeight - parachuteHeight && isParachuteDrawn){
+        displayBackground(x - parachuteWidth/2 + trooperWidth/2,
+                          windowHeight - groundHeight - parachuteHeight,
+                          parachuteWidth,parachuteHeight);
+        y = windowHeight - groundHeight - trooperHeight;
+
+        isWalking = true;
+    }
+}
+
+void Trooper::updateTrooperCrashed(){
+    if (y >= windowHeight - groundHeight - trooperHeight && isParachuteShot){
+        displayBackground(x,windowHeight - groundHeight - trooperHeight,trooperWidth,trooperHeight);
+        y = windowHeight - groundHeight - trooperHeight;
+        displaySkull();
+
+        if (countDisplaySkull==0){ removeMe = true; }
+        else { countDisplaySkull--; }
+    }
+}
+
 void Trooper::updatePosition(){
 
     displayBackground(x, y, trooperWidth, trooperHeight);
 
-    if (isWalking){
-        if (x < windowWidth/2 - boxWidth/2 - trooperWidth){
-            x += trooperSpeedWalking;
-            displayWalkingTrooper(true);
-        }
-        else if (x > windowWidth/2 + boxWidth/2){
-            x -= trooperSpeedWalking;
-            displayWalkingTrooper(false);
-        }
-        else{ // Trooper comes inside the base.
-            cameinBase = true;
-            removeMe = true;
-        }
-    }
+    if (isWalking){ updateWalkingTrooper(); }
 
     // In the air
     else{
-        if(y<windowHeight - groundHeight - trooperHeight){
-            y += (isParachuteDrawn ? trooperSpeedWithParachute : trooperSpeedWithoutParachute);
-        }
-        if (y >= heightToDrawParachute){
-            if (!parachuteOpening && !isParachuteShot) {
-                y -= parachuteHeight - trooperHeight;
-                parachuteOpening = true;
-            }
-            isParachuteDrawn = !isParachuteShot;
-        }
+        updateTrooperInTheAir();
 
-        if(isParachuteDrawn){
-            displayTrooperWithParachute();
-        }
-        else{
-            displayFreeFall();
-        }
-
-        // Landed with parachute
-        if (y > windowHeight - groundHeight - parachuteHeight && isParachuteDrawn){
-            displayBackground(x - parachuteWidth/2 + trooperWidth/2,
-                              windowHeight - groundHeight - parachuteHeight,
-                              parachuteWidth,parachuteHeight);
-            y = windowHeight - groundHeight - trooperHeight;
-
-            isWalking = true;
-        }
+        // If landed with parachute
+        updateLandedTrooper();
 
         // Parachute has been shot and trooper fell into the ground, display the skull
-        else if (y >= windowHeight - groundHeight - trooperHeight && isParachuteShot){
-            displayBackground(x,windowHeight - groundHeight - trooperHeight,trooperWidth,trooperHeight);
-            y = windowHeight - groundHeight - trooperHeight;
-            displaySkull();
-
-            if (countDisplaySkull==0){ removeMe = true; }
-            else { countDisplaySkull--; }
-        }
+        updateTrooperCrashed();
 
     }
 }
