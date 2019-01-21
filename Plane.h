@@ -1,11 +1,10 @@
-#ifndef PLANE_H
-#define PLANE_H
-#include "Constants.h"
-#include "Bullet.h"
+/// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
+#pragma once
+#include "./Constants.h"
+#include "./Bullet.h"
 
 
-class Plane
-{
+class Plane {
     int x;
     int y;
     int vx;
@@ -23,11 +22,11 @@ class Plane
     // Determine where to drop the enemy
     int dropWidth;
 
-    //Determine if the plane was shot by a bullet
+    // Determine if the plane was shot by a bullet
     bool planeShot;
 
 
-public:
+ public:
     Plane();
 
     void display(Imagine::Color newColor = planeColor) const;
@@ -69,7 +68,6 @@ public:
      * @return the drop width related ton the plane
      */
     int get_dropwidth();
-
 };
 
 /**
@@ -78,8 +76,6 @@ public:
  * @return true if every plane tested has a dropmargin compatible with constraints, else false
  */
 bool test_drop_width(int n);
-
-#endif // PLANE_H
 
 /**
  * @brief ball_in_rectangle
