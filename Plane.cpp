@@ -15,7 +15,6 @@ Plane::Plane(){
         y = rightLeftPlaneHeight;
         isGoingRight = false;
     }
-
     hasSpawnedYet = false;
     isSpawningTrooper = false;
     removeMe = false;

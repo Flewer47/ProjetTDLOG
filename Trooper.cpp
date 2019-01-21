@@ -8,12 +8,12 @@ Trooper::Trooper(int planeX, int planeY)
     v = trooperSpeedWithoutParachute;
     isParachuteDrawn = false;
     isParachuteShot = false;
-    heightToDrawParachute = minHeightParachute + (rand()/(float)RAND_MAX)*(maxHeightParachute-minHeightParachute);
     isWalking = false;
     removeMe = false;
     cameinBase = false;
     bodyTouched = false;
     parachuteOpening = false;
+    heightToDrawParachute = minHeightParachute + (rand()/(float)RAND_MAX)*(maxHeightParachute-minHeightParachute);
     countDisplaySkull = skullTimeOfDisplay;
 
     Imagine::load(trooperWithParachutePicture, srcPath("Images/trooperWithParachute.png"));

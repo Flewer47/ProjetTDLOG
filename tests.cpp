@@ -1,6 +1,7 @@
 #include "game.h"
 
 int main(){
+<<<<<<< HEAD
     Imagine::Window window = Imagine::openWindow(windowWidth, windowHeight, windowTitle);
     Imagine::setActiveWindow(window);
 
@@ -14,4 +15,6 @@ int main(){
     std::cout << "Test on the continuity of the trooper's trajectory : " << trooperTest.testYContinuity() << std::endl;
 
     Imagine::closeWindow(window);
+return EXIT_SUCCESS;
+
 }
