@@ -1,7 +1,6 @@
 #include "game.h"
 
 int main(){
-<<<<<<< HEAD
     Imagine::Window window = Imagine::openWindow(windowWidth, windowHeight, windowTitle);
     Imagine::setActiveWindow(window);
 
