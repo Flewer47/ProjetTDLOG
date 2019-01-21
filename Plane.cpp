@@ -13,17 +13,12 @@ Plane::Plane(){
         vx = -planeVelocity;
         x = windowWidth;
         y = rightLeftPlaneHeight;
-        isGoingRight = false;
     }
 
-    hasSpawnedYet = false;
-    isSpawningTrooper = false;
-    removeMe = false;
     dropWidth = dropMargin + (rand()/(float)RAND_MAX)*(windowWidth - 2*(shieldMargin/2 + dropMargin));
     if (dropWidth >= (windowWidth - shieldMargin)/2){
         dropWidth += shieldMargin;
     }
-    planeShot = false;
 }
 
 
