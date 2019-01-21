@@ -1,11 +1,11 @@
-#ifndef TROOPER_H
-#define TROOPER_H
+/// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
 
-#include "Constants.h"
-#include "Bullet.h"
+#pragma once
+#include <string>
+#include "./Constants.h"
+#include "./Bullet.h"
 
-class Trooper
-{
+class Trooper {
     // Position
     int x;
     int y;
@@ -29,7 +29,7 @@ class Trooper
     // Check if he has deployed its parachute
     bool isParachuteDrawn;
 
-    //Check if parachute has been shot
+    // Check if parachute has been shot
     bool isParachuteShot;
 
     // Time remaining of display of the skull, -1 if skull not displayed
@@ -53,7 +53,7 @@ class Trooper
     // Check if this is the instant where the parachute opened
     bool parachuteOpening;
 
-public:
+ public:
     /**
      * @brief Creates a trooper
      * @param planeX X coordinate of the plane that spawned the trooper
@@ -127,7 +127,7 @@ public:
     /**
      * @brief Getter of removeMe boolean
      */
-    bool getRemoveMe() const{
+    bool getRemoveMe() const {
         return removeMe;
     }
 
@@ -165,5 +165,3 @@ public:
      */
     bool testYContinuity();
 };
-
-#endif // TROOPER_H
