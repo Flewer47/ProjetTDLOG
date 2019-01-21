@@ -5,7 +5,7 @@
 
 Plane::Plane() {
     // Going left to right
-    if ((rand_r()/dynamic_cast<float>RAND_MAX) < 0.5) {
+    if ((rand_r()/static_cast<float>RAND_MAX) < 0.5) {
         vx = planeVelocity;
         x = -planeWidth;
         y = leftRightPlaneHeight;
@@ -19,7 +19,7 @@ Plane::Plane() {
     hasSpawnedYet = false;
     isSpawningTrooper = false;
     removeMe = false;
-    dropWidth = dropMargin + rand_r()/dynamic_cast<float>RAND_MAX)*
+    dropWidth = dropMargin + rand_r()/static_cast<float>RAND_MAX)*
 windowWidth - 2*(shieldMargin/2 + dropMargin));
     if (dropWidth >= (windowWidth - shieldMargin)/2) {
         dropWidth += shieldMargin;
