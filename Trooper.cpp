@@ -6,6 +6,13 @@ Trooper::Trooper(int planeX, int planeY)
     x = planeX + planeWidth/2;
     y = planeY + planeHeight;
     v = trooperSpeedWithoutParachute;
+    isParachuteDrawn = false;
+    isParachuteShot = false;
+    isWalking = false;
+    removeMe = false;
+    cameinBase = false;
+    bodyTouched = false;
+    parachuteOpening = false;
     heightToDrawParachute = minHeightParachute + (rand()/(float)RAND_MAX)*(maxHeightParachute-minHeightParachute);
     countDisplaySkull = skullTimeOfDisplay;
 

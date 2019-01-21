@@ -4,6 +4,7 @@ Bullet::Bullet(float angle0){
   angle = angle0;
   x = (windowWidth/2) + std::cos(angle0)*(cannonLength + 1.5*bulletSize);
   y = windowHeight - groundHeight - boxHeight + std::sin(angle0)*(cannonLength + 1.5*bulletSize);
+  removeMe = false;
 }
 
 int Bullet::get_x(){

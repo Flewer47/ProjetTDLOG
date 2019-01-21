@@ -6,4 +6,5 @@ int main(){
         int planeY = planeHeight;
         Trooper trooperTest(planeX, planeY);
         std::cout << trooperTest.testYContinuity() << std::endl;
+        return EXIT_SUCCESS;
 }
