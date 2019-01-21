@@ -35,4 +35,6 @@ public:
     void gameOverScreen(int& mode, int&player_lives, int score);
 };
 
+bool isInRect(Imagine::IntPoint2 pos, Imagine::IntPoint2 size, Imagine::IntPoint2 pt);
+
 #endif // CANVAS_H

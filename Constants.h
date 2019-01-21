@@ -12,6 +12,23 @@ const Imagine::Color groundColor = Imagine::BLUE;
 const std::string windowTitle = "Paratroopers";
 
 
+const Imagine::IntPoint2 pos_Title = Imagine::IntPoint2(100, 50);
+const Imagine::IntPoint2 size_Button = Imagine::IntPoint2(200, 50);
+const Imagine::IntPoint2 pos_Start = Imagine::IntPoint2(300, 250);
+const Imagine::IntPoint2 pos_TUTORIAL = Imagine::IntPoint2(335, 380);
+const Imagine::IntPoint2 pos_Tuto1 = Imagine::IntPoint2(235, 420);
+const Imagine::IntPoint2 pos_Tuto2 = Imagine::IntPoint2(335, 443);
+const Imagine::IntPoint2 pos_Quit = Imagine::IntPoint2(300, 500);
+const int click_Inertia = 80;
+const Imagine::IntPoint2 pos_WhiteRectGO = Imagine::IntPoint2(200, 200);
+const Imagine::IntPoint2 size_WhiteRectGO = Imagine::IntPoint2(400, 350);
+const int width_WhiteRectGo = 10;
+const Imagine::IntPoint2 pos_txtGO = Imagine::IntPoint2(300, 250);
+const Imagine::IntPoint2 pos_YOULOSE = Imagine::IntPoint2(320, 450);
+const Imagine::IntPoint2 pos_Start_GO = Imagine::IntPoint2(300, 275);
+const Imagine::IntPoint2 pos_Quit_GO = Imagine::IntPoint2(300, 475);
+const Imagine::IntPoint2 pos_ScoreTXT_GO = Imagine::IntPoint2(350, 400);
+const Imagine::IntPoint2 pos_ScoreVAR_GO = Imagine::IntPoint2(400, 400);
 
 
 /// For the planes
