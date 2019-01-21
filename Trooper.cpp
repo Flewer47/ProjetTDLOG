@@ -182,10 +182,18 @@ bool Trooper::isbodyTouched(){
 }
 
 bool Trooper::testYContinuity(){
-    int y1 = y;
-    updatePosition();
-    int y2 = y;
-    return (y2-y1 > trooperSpeedWithParachute);
+    srand(time(0));
+    y = planeHeight;
+    x = dropMargin + (rand()/(float)RAND_MAX)*(windowWidth - 2*(shieldMargin/2 + dropMargin));
+    isParachuteDrawn = true;
+    int y1;
+    while(!isWalking){
+        y1 = y;
+        updatePosition();
+        if(y-y1 > trooperSpeedWithParachute && !isWalking){return false;}
+    }
+    return true;
+
 
 }
 
