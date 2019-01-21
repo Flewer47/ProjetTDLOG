@@ -128,6 +128,7 @@ void Trooper::updatePosition(){
 
     displayBackground(x, y, trooperWidth, trooperHeight);
 
+    // On the ground
     if (isWalking){ updateWalkingTrooper(); }
 
     // In the air
@@ -137,7 +138,7 @@ void Trooper::updatePosition(){
         // If landed with parachute
         updateLandedTrooper();
 
-        // Parachute has been shot and trooper fell into the ground, display the skull
+        // If parachute has been shot and trooper fell into the ground, display the skull
         updateTrooperCrashed();
 
     }

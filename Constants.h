@@ -50,7 +50,7 @@ const Imagine::Color planeColor = Imagine::RED;
 /// For the cannon
 
 
-const int boxWidth = static_const<int>(windowWidth/16),
+const int boxWidth = static_cast<int>(windowWidth/16),
 boxHeight = static_cast<int>(windowHeight/20);
 const Imagine::Color boxColor = Imagine::WHITE;
 
