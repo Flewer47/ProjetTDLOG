@@ -102,22 +102,22 @@ class Trooper {
     /**
      * @brief Update the position of the trooper if he is walking
      */
-    void updateWalkingTrooper();
+    void updateIfTrooperWalking();
 
     /**
      * @brief Update the position of the trooper if he is in the air
      */
-    void updateTrooperInTheAir();
+    void updateIfTrooperInTheAir();
 
     /**
      * @brief Update the position of the trooper if he has landed
      */
-    void updateLandedTrooper();
+    void updateIfTrooperLanded();
 
     /**
      * @brief Update the position of the trooper if he has crashed on the ground
      */
-    void updateTrooperCrashed();
+    void updateIfTrooperCrashed();
 
     /**
      * @brief Update the position of the trooper at the next frame
@@ -132,10 +132,22 @@ class Trooper {
     }
 
     /**
-     * @brief Checks if a bullet collides the trooper's hitbox
+     * @brief Update if a bullet collides the parachute's hitbox
      * @param bullet Bullet
      */
-    void Touched(Bullet bullet);
+    void updateIfParachuteTouched(Bullet bullet);
+
+    /**
+     * @brief Update if a bullet collides the trooper's body hitbox
+     * @param bullet Bullet
+     */
+    void updateIfBodyTouched(Bullet bullet);
+
+    /**
+     * @brief Update if a bullet collides the trooper's body or parachute's hitbox
+     * @param bullet Bullet
+     */
+    void updateIfTouched(Bullet bullet);
 
     /**
      * @brief Checks if trooper has a parachute

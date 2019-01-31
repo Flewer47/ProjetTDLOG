@@ -54,10 +54,10 @@ class Plane {
     bool getRemoveMe() const;
 
     /**
-     * @brief Checks if a bullet collides the plane's hitbox
+     * @brief Update if a bullet collides the plane's hitbox
      * @param bullet Bullet
      */
-    void Touched(Bullet bullet);
+    void updateIfTouched(Bullet bullet);
 
     /**
       * @brief Checks if the plane was shot

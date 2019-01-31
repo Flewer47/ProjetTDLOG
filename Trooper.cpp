@@ -40,25 +40,41 @@ void Trooper::displayPicture(int x1, int y1, std::string filename) const {
 }
 
 void Trooper::displayFreeFall() const {
-    displayPicture(x, y - trooperSpeedWithoutParachute,
-                   srcPath("Images/trooperWithoutParachuteBlack.png"));
-    displayPicture(x, y, srcPath("Images/trooperWithoutParachute.png"));
+    if(!bodyTouched){
+        displayPicture(x, y - trooperSpeedWithoutParachute,
+                       srcPath("Images/trooperWithoutParachuteBlack.png"));
+        displayPicture(x, y, srcPath("Images/trooperWithoutParachute.png"));
+    }
+    else{
+        displayPicture(x, y,
+                       srcPath("Images/trooperWithoutParachuteBlack.png"));
+    }
 }
 
-void Trooper::displayTrooperWithParachute() const {
-    displayPicture(x - parachuteWidth/2 + trooperWidth/2,
-                   y - trooperSpeedWithParachute,
-                   srcPath("Images/trooperWithParachuteBlack.png"));
-    displayPicture(x - parachuteWidth/2 + trooperWidth/2, y,
-                   srcPath("Images/trooperWithParachute.png"));
+void Trooper::displayTrooperWithParachute() const {    
+    if(!(isParachuteShot || bodyTouched)){
+        displayPicture(x - parachuteWidth/2 + trooperWidth/2,
+                       y - trooperSpeedWithParachute,
+                       srcPath("Images/trooperWithParachuteBlack.png"));
+        displayPicture(x - parachuteWidth/2 + trooperWidth/2, y,
+                       srcPath("Images/trooperWithParachute.png"));
+    }
+    else{
+        displayPicture(x - parachuteWidth/2 + trooperWidth/2, y,
+                       srcPath("Images/trooperWithParachuteBlack.png"));
+    }
 }
 
 void Trooper::displayWalkingTrooper(bool isGoingRight) const {
-    if (isGoingRight) {displayPicture(x-trooperSpeedWalking, y,
-                                      srcPath("Images/trooperWithoutParachuteBlack.png"));} else {displayPicture(
-                    x+trooperSpeedWalking, y,
-                    srcPath("Images/trooperWithoutParachuteBlack.png"));
-        displayPicture(x, y, srcPath("Images/trooperWithoutParachute.png"));}
+    if (isGoingRight) {
+        displayPicture(x-trooperSpeedWalking, y,
+                       srcPath("Images/trooperWithoutParachuteBlack.png"));
+    }
+    else {
+        displayPicture(x+trooperSpeedWalking, y,
+                       srcPath("Images/trooperWithoutParachuteBlack.png"));
+    }
+        displayPicture(x, y, srcPath("Images/trooperWithoutParachute.png"));
 }
 
 void Trooper::displaySkull() const {
@@ -71,7 +87,7 @@ void Trooper::displaySkull() const {
     }
 }
 
-void Trooper::updateWalkingTrooper() {
+void Trooper::updateIfTrooperWalking() {
     if (x < windowWidth/2 - boxWidth/2 - trooperWidth) {
         x += trooperSpeedWalking;
         displayWalkingTrooper(true);
@@ -84,7 +100,7 @@ void Trooper::updateWalkingTrooper() {
     }
 }
 
-void Trooper::updateTrooperInTheAir() {
+void Trooper::updateIfTrooperInTheAir() {
     if (y < windowHeight - groundHeight - trooperHeight) {
         y += (isParachuteDrawn ? trooperSpeedWithParachute :
                                  trooperSpeedWithoutParachute);
@@ -104,7 +120,7 @@ void Trooper::updateTrooperInTheAir() {
     }
 }
 
-void Trooper::updateLandedTrooper() {
+void Trooper::updateIfTrooperLanded() {
     if (y > windowHeight - groundHeight - parachuteHeight && isParachuteDrawn) {
         displayBackground(x - parachuteWidth/2 + trooperWidth/2,
                           windowHeight - groundHeight - parachuteHeight,
@@ -115,7 +131,7 @@ void Trooper::updateLandedTrooper() {
     }
 }
 
-void Trooper::updateTrooperCrashed() {
+void Trooper::updateIfTrooperCrashed() {
     if (y >= windowHeight - groundHeight - trooperHeight && isParachuteShot) {
         displayBackground(x, windowHeight - groundHeight -
                           trooperHeight, trooperWidth, trooperHeight);
@@ -131,55 +147,63 @@ void Trooper::updatePosition() {
     displayBackground(x, y, trooperWidth, trooperHeight);
 
     // On the ground
-    if (isWalking) { updateWalkingTrooper(); } else {  // In the air
-        updateTrooperInTheAir();
+    if (isWalking) { updateIfTrooperWalking(); } else {  // In the air
+        updateIfTrooperInTheAir();
 
         // If landed with parachute
-        updateLandedTrooper();
+        updateIfTrooperLanded();
 
         // If parachute has been shot and trooper fell into the ground,
         // display the skull
-        updateTrooperCrashed();
+        updateIfTrooperCrashed();
     }
 }
 
-void Trooper::Touched(Bullet bullet) {
+void Trooper::updateIfParachuteTouched(Bullet bullet){
+    isParachuteShot = true;
+    displayTrooperWithParachute();
+    y += parachuteHeight - trooperHeight;
+    displayFreeFall();
+    bullet.setRemoveMe(true);
+}
+
+void Trooper::updateIfBodyTouched(Bullet bullet){
+    bodyTouched = true;
+    if(isParachuteDrawn){
+        displayTrooperWithParachute();
+    }
+    else{
+        displayFreeFall();
+    }
+    bullet.setRemoveMe(true);
+    removeMe = true;
+}
+
+void Trooper::updateIfTouched(Bullet bullet) {
     if (isParachuteDrawn) {
         bool touchParachute = ball_in_rectangle(bullet.get_x(), bullet.get_y(),
                                                 x, x + parachuteWidth, y, y + parachuteHeight-trooperHeight);
         if (touchParachute && y < windowHeight -
                 groundHeight - parachuteHeight) {
-            isParachuteShot = true;
-            displayBackground(x - parachuteWidth/2 + w/2, y,
-                              parachuteWidth, parachuteHeight);
-            y += parachuteHeight - trooperHeight;
-            displayFreeFall();
-            bullet.setRemoveMe(true);
-            std::cout << "Parachute touched !" << std::endl;
-        } else {
+            updateIfParachuteTouched(bullet);
+        }
+        else {
             bool touchBody = ball_in_rectangle(bullet.get_x(), bullet.get_y(),
                                                x, x + w, y + parachuteHeight - trooperHeight, y + parachuteHeight);
             if (touchBody) {
-                bodyTouched = true;
-                displayBackground(x - parachuteWidth/2 + w/2, y,
-                                  parachuteWidth, parachuteHeight);
-                bullet.setRemoveMe(true);
-                removeMe = true;
-                std::cout << "Trooper touched !" << std::endl;
+                updateIfBodyTouched(bullet);
             }
         }
     } else {
         bool touchBody = ball_in_rectangle(bullet.get_x(),
                                            bullet.get_y(), x, x + trooperWidth, y , y + trooperHeight);
         if (touchBody) {
-            displayBackground(x, y, trooperWidth, trooperHeight);
-            bullet.setRemoveMe(true);
-            bodyTouched = true;
-            removeMe = true;
-            std::cout << "Trooper touched !" << std::endl;
+            updateIfBodyTouched(bullet);
         }
     }
 }
+
+///////// Getters
 
 bool Trooper::hasParachute() {
     return(isParachuteDrawn);
@@ -196,6 +220,8 @@ bool Trooper::isparachuteTouched() {
 bool Trooper::isbodyTouched() {
     return(bodyTouched);
 }
+
+///////// Test of continuity on the trajectory of the trooper
 
 bool Trooper::testYContinuity() {
     srand(time(0));

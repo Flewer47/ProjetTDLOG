@@ -157,11 +157,11 @@ void handleHitboxes() {
 it_bull !=bullets.end(); it_bull++) {
         for (std::vector<Trooper>::iterator it_troop = troopers.begin();
 it_troop !=troopers.end(); it_troop++) {
-            (*it_troop).Touched((*it_bull));
+            (*it_troop).updateIfTouched((*it_bull));
         }
         for (std::vector<Plane>::iterator it_plane = planes.begin();
 it_plane !=planes.end(); it_plane++) {
-            (*it_plane).Touched((*it_bull));
+            (*it_plane).updateIfTouched((*it_bull));
         }
     }
 }

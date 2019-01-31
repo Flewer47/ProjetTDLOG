@@ -91,7 +91,7 @@ bool Plane::getRemoveMe() const {
     return removeMe;
 }
 
-void Plane::Touched(Bullet bullet) {
+void Plane::updateIfTouched(Bullet bullet) {
     bool touch = ball_in_rectangle(bullet.get_x(), bullet.get_y(), x,
 x+ planeWidth, y, y + planeHeight);
     if (touch) {
