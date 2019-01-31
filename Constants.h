@@ -58,7 +58,7 @@ const int cannonLength = static_cast<int>(windowHeight/20),
 cannonWidth = static_cast<int>(windowHeight/100);
 // Do not depend on the dimensions of the window
 const float cannonAngularVelocity = 0.32,
-cannonAngleLimit = M_PI/2, defaultCannonAngle = -M_PI/2;
+cannonAngleLimit = 0.9*M_PI/2, defaultCannonAngle = -M_PI/2;
 const Imagine::Color cannonColor = Imagine::WHITE;
 
 
