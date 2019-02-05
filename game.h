@@ -96,6 +96,7 @@ void game() {
 
             if (player_lives == 0) {
                 canvas.gameOverScreen(mode, player_lives, player_score);
+                resetVariables(player_score, player_lives, bullets, troopers, planes);
             }
 
             Imagine::fillRect(0, 0, windowWidth,
