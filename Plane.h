@@ -1,4 +1,5 @@
 /// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
+
 #pragma once
 #include "./Constants.h"
 #include "./Bullet.h"

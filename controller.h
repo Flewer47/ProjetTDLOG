@@ -1,3 +1,5 @@
+/// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
+
 /**
  * @brief keyboard management function for the cannon and the shooting
  * @param direction -1 if it goes to the left, 1 if it goes to the right, 2 if the user shoots, 0 otherwise.
