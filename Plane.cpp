@@ -7,7 +7,7 @@ Plane::Plane() {
     // Going left to right
     if ((rand()/static_cast<float>(RAND_MAX) < 0.5)) {
         vx = planeVelocity;
-        x = -planeWidth;
+        x = -planeWidth;//initial coordinates
         y = leftRightPlaneHeight;
         isGoingRight = true;
     } else {
@@ -16,15 +16,15 @@ Plane::Plane() {
         y = rightLeftPlaneHeight;
         isGoingRight = false;
     }
-    hasSpawnedYet = false;
-    isSpawningTrooper = false;
-    removeMe = false;
+    hasSpawnedYet = false;//for the trooper
+    isSpawningTrooper = false;//please read the part about spawning issues in our report to have precisions
+    removeMe = false;//for the destructor
     dropWidth = dropMargin + (rand()/static_cast<float>(RAND_MAX))*
-(windowWidth - 2*(shieldMargin/2 + dropMargin));
+(windowWidth - 2*(shieldMargin/2 + dropMargin));//uniform distribution : we consider an interval
     if (dropWidth >= (windowWidth - shieldMargin)/2) {
-        dropWidth += shieldMargin;
+        dropWidth += shieldMargin;//if the point in the previous interval corresponds to a point after the shield margin
     }
-    planeShot = false;
+    planeShot = false;//if shot by the cannon
 }
 
 
@@ -35,17 +35,17 @@ void Plane::display(Imagine::Color newColor) const {
     Imagine::Image<Imagine::AlphaColor> leftHelicopter;
     load(leftHelicopter, srcPath("Images/leftHelicopter.png"));
     Imagine::fillRect(x-vx, y, rightHelicopter.width(),
-rightHelicopter.height(), Imagine::BLACK);
+rightHelicopter.height(), Imagine::BLACK);//to erase the former position
 
     // Plane
-    if (isGoingRight) {
+    if (isGoingRight) {//we display the adequate picture depending on the direction
         Imagine::display(rightHelicopter, x, y);
     } else {
         Imagine::display(leftHelicopter, x, y);
     }
 
     if (planeShot) Imagine::fillRect(x, y, rightHelicopter.width(),
-rightHelicopter.height(), Imagine::BLACK);
+rightHelicopter.height(), Imagine::BLACK);//if the plane is shot we erase it
 }
 
 void Plane::updatePosition() {
@@ -69,7 +69,7 @@ void Plane::updatePosition() {
         isSpawningTrooper = true;
     } else if ((isGoingRight && x >= windowWidth) ||
 (!isGoingRight && x <= - planeWidth)) {
-        removeMe = true;
+        removeMe = true;//we will use the destructor if the plane goes out of the screen
     }
 
     display();
@@ -91,7 +91,7 @@ bool Plane::getRemoveMe() const {
     return removeMe;
 }
 
-void Plane::updateIfTouched(Bullet bullet) {
+void Plane::updateIfTouched(Bullet bullet) {// we manage collisions with bullets in order to use the destructor then
     bool touch = ball_in_rectangle(bullet.get_x(), bullet.get_y(), x,
 x+ planeWidth, y, y + planeHeight);
     if (touch) {
@@ -110,7 +110,7 @@ int Plane::get_dropwidth() {
     return(dropWidth);
 }
 
-bool test_drop_width(int n) {
+bool test_drop_width(int n) {//we test wether the abscisse of the spawning point can be accepted regarding the margins
     for (int i = 0; i < n; i++) {
         Plane plane_test;
         if (!(((plane_test.get_dropwidth() >= dropMargin)
