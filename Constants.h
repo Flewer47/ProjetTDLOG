@@ -6,13 +6,13 @@
 
 /// For the canvas
 
-const int windowWidth = 800, windowHeight = 600,
-groundHeight = static_cast<int>(windowHeight/30);
+const int windowWidth = 800, windowHeight = 600,  // Window dimensions
+groundHeight = static_cast<int>(windowHeight/30);  // Line of the ground in the canvas
 const Imagine::Color windowBackgroundColor = Imagine::BLACK;
 const Imagine::Color groundColor = Imagine::BLUE;
-const char windowTitle[] = "Paratroopers";
+const char windowTitle[] = "Paratroopers";  // Title of the game
 
-
+// Positions for buttons and effects for click event
 const Imagine::IntPoint2 pos_Title = Imagine::IntPoint2(100, 50);
 const Imagine::IntPoint2 size_Button = Imagine::IntPoint2(200, 50);
 const Imagine::IntPoint2 pos_Start = Imagine::IntPoint2(300, 250);
@@ -40,10 +40,10 @@ const int planeWidth = static_cast<int>(windowWidth/16);
 const int planeHeight = 26;
 
 
-const int dropMargin = static_cast<int>(windowWidth/10);
-const int leftRightPlaneHeight = static_cast<int>(windowHeight/30);
+const int dropMargin = static_cast<int>(windowWidth/10); // To not spawn a trooper on the edge of the screen
+const int leftRightPlaneHeight = static_cast<int>(windowHeight/30); // Same height for every plane (for one direction)
 const int rightLeftPlaneHeight = static_cast<int>(windowHeight*7/60);
-const int planeVelocity = static_cast<int>(windowWidth*3/800);
+const int planeVelocity = static_cast<int>(windowWidth*3/800); // Same speed for every plane
 const Imagine::Color planeColor = Imagine::RED;
 
 
@@ -51,11 +51,11 @@ const Imagine::Color planeColor = Imagine::RED;
 
 
 const int boxWidth = static_cast<int>(windowWidth/16),
-boxHeight = static_cast<int>(windowHeight/20);
+boxHeight = static_cast<int>(windowHeight/20); // Dimensions of the box undearneath the cannon
 const Imagine::Color boxColor = Imagine::WHITE;
 
 const int cannonLength = static_cast<int>(windowHeight/20),
-cannonWidth = static_cast<int>(windowHeight/100);
+cannonWidth = static_cast<int>(windowHeight/100); // Dimensions of the cannon itself
 // Do not depend on the dimensions of the window
 const float cannonAngularVelocity = 0.32,
 cannonAngleLimit = 0.9*M_PI/2, defaultCannonAngle = -M_PI/2;
@@ -65,40 +65,39 @@ const Imagine::Color cannonColor = Imagine::WHITE;
 
 /// For the bullets
 
-
+// Same characteristics for every bullet
 const int bulletSpeed = static_cast<int>(windowHeight/60);
-
 const int bulletSize = static_cast<int>(windowWidth/200);
-
-const int shootFrequency = 5;
+const int shootFrequency = 5; // Can shoot a bullet every 5 frame at least
 
 
 /// For the troopers
 
 // Fixed because of the picture
 const int trooperWidth = 21;
-const int trooperHeight = 45;
+const int trooperHeight = 45; // Trooper dimensions
 const Imagine::Color trooperColor = Imagine::RED;
 
 // Fixed because of the picture
 const int parachuteWidth = 100;
-const int parachuteHeight = 100;
+const int parachuteHeight = 100; // Parachute dimensions
 const Imagine::Color parachuteColor = Imagine::RED;
 
+// Different speeds for the paratrooper
 const int trooperSpeedWithParachute = static_cast<int>(windowHeight/300);
 const int trooperSpeedWithoutParachute = static_cast<int>(windowHeight/150);
 const int trooperSpeedWalking = static_cast<int>(windowWidth/400);
 
 /// Margins
 const int minHeightParachute = static_cast<int>(windowHeight/2),
-maxHeightParachute = static_cast<int>(2*windowHeight/3);
-const int shieldMargin = boxWidth + static_cast<int>(13*windowWidth/80);
+maxHeightParachute = static_cast<int>(2*windowHeight/3); // Define an interval where to deploy the parachute
+const int shieldMargin = boxWidth + static_cast<int>(13*windowWidth/80); // Cannot spawn a trooper onto the cannon
 
 
 /// For the images
 
 // Fixed, does not depend on the screen dimensions
-const int skullTimeOfDisplay = 50;
+const int skullTimeOfDisplay = 50; // Letting the skull stay a bit (after a trooper being dead on the ground)
 
 
 /// For the score
