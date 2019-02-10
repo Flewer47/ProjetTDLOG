@@ -2,7 +2,7 @@
 
 #pragma once
 #include <iostream>
-#include "Constants.h"
+#include "./Constants.h"
 
 class Canvas {
     Imagine::Window window;

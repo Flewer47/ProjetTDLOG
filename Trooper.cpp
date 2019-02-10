@@ -1,7 +1,7 @@
 /// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
 
-#include "Trooper.h"
-#include "Plane.h"
+#include "./Trooper.h"
+#include "./Plane.h"
 
 Trooper::Trooper(int planeX, int planeY) {
     x = planeX + planeWidth/2;

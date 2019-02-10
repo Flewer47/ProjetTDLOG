@@ -7,12 +7,12 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include "Canvas.h"
-#include "Cannon.h"
-#include "Bullet.h"
-#include "Plane.h"
-#include "Trooper.h"
-#include "controller.h"
+#include "./Canvas.h"
+#include "./Cannon.h"
+#include "./Bullet.h"
+#include "./Plane.h"
+#include "./Trooper.h"
+#include "./controller.h"
 
 
 namespace patch {

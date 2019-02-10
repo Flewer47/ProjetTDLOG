@@ -1,7 +1,7 @@
 /// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
 
-#include "Canvas.h"
-#include "Constants.h"
+#include "./Canvas.h"
+#include "./Constants.h"
 
 Canvas::Canvas() {
     window = Imagine::openWindow(windowWidth, windowHeight, windowTitle);
