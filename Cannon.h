@@ -8,6 +8,7 @@
 
 class Cannon{
  private:
+    // Angle of the cannon
     float angle;
 
  public:
