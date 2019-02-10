@@ -14,7 +14,7 @@
 #include "./Trooper.h"
 #include "./controller.h"
 
-
+// Patch that is needed for the to_string method, as Theo could not make it work
 namespace patch {
 template < typename T > std::string to_string(const T& n ) {
     std::ostringstream stm;
@@ -23,16 +23,25 @@ template < typename T > std::string to_string(const T& n ) {
 }
 }
 
-
+/**
+ * @brief generateRandom
+ * Creates a random seed
+ */
 void generateRandom() {
     srand(time(0));
 }
 
-
+/**
+ * @brief Paratroopers game.
+ */
 void game() {
+    // Random seed
     generateRandom();
 
+    // Main window
     Canvas canvas;
+
+    // Player
     Cannon cannon;
 
     // 0 : Start Menu / 1 : Game / 2 : Option / 3 : Quit
@@ -52,6 +61,7 @@ void game() {
         }
 
         if (mode == 1) {
+            // Displaying main HUD
             Imagine::fillRect(0, windowHeight-groundHeight,
                               windowWidth, groundHeight, groundColor);
             Imagine::drawString(150, 595, "Score :",
@@ -59,31 +69,34 @@ void game() {
             Imagine::drawString(650, 595, "Lives :",
                                 Imagine::WHITE, 12, 0, true);
 
-
-
             while (player_lives != 0) {
                 Imagine::noRefreshBegin();
 
-                int letterSize = 12;
+                int letterSize = 12;  // To display HUD
 
+                // Spawning planes every 30 frames
                 if (countdown % 30 == 0) {
                     planes.push_back(Plane());
                 }
 
-                countdown++;
+                countdown++;  // A frame has passed
+
+                // Handling everything
                 handleCannon(direction, count, cannon, bullets);
                 handlePlanes(player_score);
                 handleBullets(player_score);
                 handleTroopers(player_lives, player_score);
                 handleHitboxes();
 
-
+                // Displaying player lives
                 if (developper_mode) {
                     Imagine::fillRect(700, 595-letterSize, 30,
                                       15, Imagine::BLUE);
                     Imagine::drawString(700, 595,
                                         patch::to_string(player_lives), Imagine::WHITE);
                 }
+
+                // Displaying player score
                 Imagine::fillRect(200, 595-letterSize, 30, 15, Imagine::BLUE);
                 Imagine::drawString(200, 595,
                                     patch::to_string(player_score), Imagine::WHITE);
@@ -91,18 +104,21 @@ void game() {
                 Imagine::noRefreshEnd();
 
 
-                Imagine::milliSleep(20);
+                Imagine::milliSleep(20);  // Refreshing rate
             }
 
-            if (player_lives == 0) {
+            if (player_lives == 0) {  // Game over
                 canvas.gameOverScreen(mode, player_lives, player_score);
+                // If we did not quit the game, we reset everything for the next game
                 resetVariables(player_score, player_lives, bullets, troopers, planes);
             }
 
+            // Black screen
             Imagine::fillRect(0, 0, windowWidth,
                               windowHeight, windowBackgroundColor);
         }
 
+        // Exiting the game
         if (mode == 3) {
             canvas.closeCanvas();
             break;
