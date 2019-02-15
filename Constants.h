@@ -6,29 +6,36 @@
 
 /// For the canvas
 
+// Relative positions only work if windowWidth > 800 and windowHeight > 600 !
+
 const int windowWidth = 800, windowHeight = 600, groundHeight = (int)(windowHeight/30);
 const Imagine::Color windowBackgroundColor = Imagine::BLACK;
 const Imagine::Color groundColor = Imagine::BLUE;
 const std::string windowTitle = "Paratroopers";
-
-
-const Imagine::IntPoint2 pos_Title = Imagine::IntPoint2(100, 50);
-const Imagine::IntPoint2 size_Button = Imagine::IntPoint2(200, 50);
-const Imagine::IntPoint2 pos_Start = Imagine::IntPoint2(300, 250);
-const Imagine::IntPoint2 pos_TUTORIAL = Imagine::IntPoint2(335, 380);
-const Imagine::IntPoint2 pos_Tuto1 = Imagine::IntPoint2(235, 420);
-const Imagine::IntPoint2 pos_Tuto2 = Imagine::IntPoint2(335, 443);
-const Imagine::IntPoint2 pos_Quit = Imagine::IntPoint2(300, 500);
 const int click_Inertia = 80;
-const Imagine::IntPoint2 pos_WhiteRectGO = Imagine::IntPoint2(200, 200);
-const Imagine::IntPoint2 size_WhiteRectGO = Imagine::IntPoint2(400, 350);
-const int width_WhiteRectGo = 10;
-const Imagine::IntPoint2 pos_txtGO = Imagine::IntPoint2(300, 250);
-const Imagine::IntPoint2 pos_YOULOSE = Imagine::IntPoint2(320, 450);
-const Imagine::IntPoint2 pos_Start_GO = Imagine::IntPoint2(300, 275);
-const Imagine::IntPoint2 pos_Quit_GO = Imagine::IntPoint2(300, 475);
-const Imagine::IntPoint2 pos_ScoreTXT_GO = Imagine::IntPoint2(350, 400);
-const Imagine::IntPoint2 pos_ScoreVAR_GO = Imagine::IntPoint2(400, 400);
+
+
+const Imagine::IntPoint2 size_Title = Imagine::IntPoint2(600, 150); // fixed
+const Imagine::IntPoint2 pos_Title = Imagine::IntPoint2((windowWidth-size_Title.x())/2, windowHeight/12);
+
+const Imagine::IntPoint2 size_Button = Imagine::IntPoint2(200, 50); // fixed
+const Imagine::IntPoint2 pos_Start = Imagine::IntPoint2((int)((windowWidth-size_Button.x())/2), (int)(windowHeight/2.4));
+const Imagine::IntPoint2 pos_TUTORIAL = Imagine::IntPoint2((int)(windowWidth/2.4), (int)(windowHeight/1.6));
+const Imagine::IntPoint2 pos_Tuto1 = Imagine::IntPoint2((int)(windowWidth/3.5), (int)(windowHeight/1.4));
+const Imagine::IntPoint2 pos_Tuto2 = Imagine::IntPoint2((int)(windowWidth/2.4), (int)(windowHeight/1.3));
+const Imagine::IntPoint2 pos_Quit = Imagine::IntPoint2((int)((windowWidth-size_Button.x())/2), (int)(windowHeight/1.2));
+
+const Imagine::IntPoint2 size_WhiteRectGO = Imagine::IntPoint2(400, 350); // fixed
+const Imagine::IntPoint2 pos_WhiteRectGO = Imagine::IntPoint2((int)((windowWidth-size_WhiteRectGO.x())/2),
+                                                              (int)((windowWidth-size_WhiteRectGO.y())/2));
+const int width_WhiteRectGo = 10; // Do not exceed 40 * size_WhiteRectGO.x()
+
+const Imagine::IntPoint2 pos_txtGO = Imagine::IntPoint2((int)(windowWidth/2-100), (int)(windowHeight/2.35));
+const Imagine::IntPoint2 pos_YOULOSE = Imagine::IntPoint2((int)(windowWidth/2-90), (int)(windowHeight/1.4));
+const Imagine::IntPoint2 pos_Start_GO = Imagine::IntPoint2((int)(windowWidth/2-size_Button.x()/2), (int)(windowHeight/2.2));
+const Imagine::IntPoint2 pos_Quit_GO = Imagine::IntPoint2((int)(windowWidth/2-size_Button.x()/2), (int)(windowHeight/1.3));
+const Imagine::IntPoint2 pos_ScoreTXT_GO = Imagine::IntPoint2((int)(windowWidth/2-40), (int)(windowHeight/1.6));
+const Imagine::IntPoint2 pos_ScoreVAR_GO = Imagine::IntPoint2((int)(windowWidth/2+10), (int)(windowHeight/1.6));
 
 
 /// For the planes

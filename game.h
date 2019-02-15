@@ -172,7 +172,7 @@ void game(){
     int countdown = 0;
     int direction = 0;
     int count = shootFrequency;
-    int player_lives = 7;
+    int player_lives = 1;
     int player_score = 0;
 
     canvas.startMenu(mode);
