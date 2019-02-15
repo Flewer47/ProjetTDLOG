@@ -2,12 +2,15 @@
 
 #pragma once
 #include <iostream>
-#include "Constants.h"
+#include "./Constants.h"
 
 
 class Bullet{
  private:
+  // Angle of the bullet relative to the ground (to compute the trajectory)
   float angle;
+
+  // Position
   int x;
   int y;
 

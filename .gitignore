@@ -36,3 +36,4 @@
 
 # Autosaves
 *.cpp.autosave
+*.h.autosave

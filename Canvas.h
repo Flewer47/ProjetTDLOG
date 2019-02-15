@@ -1,15 +1,13 @@
-#ifndef CANVAS_H
-#define CANVAS_H
+/// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
 
+#pragma once
 #include <iostream>
-#include "Constants.h"
+#include "./Constants.h"
 
-class Canvas
-{
+class Canvas {
     Imagine::Window window;
 
-public:
-
+ public:
     /**
      * @brief Creates a canvas
      */
@@ -35,6 +33,5 @@ public:
     void gameOverScreen(int& mode, int&player_lives, int score);
 };
 
-bool isInRect(Imagine::IntPoint2 pos, Imagine::IntPoint2 size, Imagine::IntPoint2 pt);
-
-#endif // CANVAS_H
+bool isInRect(Imagine::IntPoint2 pos, Imagine::IntPoint2 size,
+Imagine::IntPoint2 pt);

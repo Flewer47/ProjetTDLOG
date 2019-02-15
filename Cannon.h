@@ -1,14 +1,17 @@
+/// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
+
 #pragma once
-#include "Constants.h"
+#include "./Constants.h"
 
 
 
 
 class Cannon{
-private:
+ private:
+    // Angle of the cannon
     float angle;
-public:
 
+ public:
     /**
      * @brief Creates a cannon object
      */
@@ -19,7 +22,8 @@ public:
      * @param newColor1 Color of the box (boxColor by default)
      * @param newColor2 Color of the cannon (cannonColor by default)
      */
-    void display(Imagine::Color newColor1 = boxColor, Imagine::Color newColor2 = cannonColor) const;
+    void display(Imagine::Color newColor1 = boxColor,
+Imagine::Color newColor2 = cannonColor) const;
 
     /**
      * @brief Update the position of the cannon
@@ -30,5 +34,4 @@ public:
      * @brief Return the angle of the cannon
      */
     float getAngle() const;
-
 };

@@ -1,6 +1,6 @@
-#include "./Bullet.h"
-
 /// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
+
+#include "./Bullet.h"
 
 Bullet::Bullet(float angle0) {
   angle = angle0;

@@ -1,11 +1,11 @@
-#ifndef TROOPER_H
-#define TROOPER_H
+/// "Copyright 2019 BOUVIER-GATELLIER-GIRAUDON-SANTET"
 
-#include "Constants.h"
-#include "Bullet.h"
+#pragma once
+#include <string>
+#include "./Constants.h"
+#include "./Bullet.h"
 
-class Trooper
-{
+class Trooper {
     // Position
     int x;
     int y;
@@ -29,7 +29,7 @@ class Trooper
     // Check if he has deployed its parachute
     bool isParachuteDrawn;
 
-    //Check if parachute has been shot
+    // Check if parachute has been shot
     bool isParachuteShot;
 
     // Time remaining of display of the skull, -1 if skull not displayed
@@ -53,7 +53,7 @@ class Trooper
     // Check if this is the instant where the parachute opened
     bool parachuteOpening;
 
-public:
+ public:
     /**
      * @brief Creates a trooper
      * @param planeX X coordinate of the plane that spawned the trooper
@@ -100,6 +100,26 @@ public:
     void displaySkull() const;
 
     /**
+     * @brief Update the position of the trooper if he is walking
+     */
+    void updateIfTrooperWalking();
+
+    /**
+     * @brief Update the position of the trooper if he is in the air
+     */
+    void updateIfTrooperInTheAir();
+
+    /**
+     * @brief Update the position of the trooper if he has landed
+     */
+    void updateIfTrooperLanded();
+
+    /**
+     * @brief Update the position of the trooper if he has crashed on the ground
+     */
+    void updateIfTrooperCrashed();
+
+    /**
      * @brief Update the position of the trooper at the next frame
      */
     void updatePosition();
@@ -107,15 +127,27 @@ public:
     /**
      * @brief Getter of removeMe boolean
      */
-    bool getRemoveMe() const{
+    bool getRemoveMe() const {
         return removeMe;
     }
 
     /**
-     * @brief Checks if a bullet collides the trooper's hitbox
+     * @brief Update if a bullet collides the parachute's hitbox
      * @param bullet Bullet
      */
-    void Touched(Bullet bullet);
+    void updateIfParachuteTouched(Bullet bullet);
+
+    /**
+     * @brief Update if a bullet collides the trooper's body hitbox
+     * @param bullet Bullet
+     */
+    void updateIfBodyTouched(Bullet bullet);
+
+    /**
+     * @brief Update if a bullet collides the trooper's body or parachute's hitbox
+     * @param bullet Bullet
+     */
+    void updateIfTouched(Bullet bullet);
 
     /**
      * @brief Checks if trooper has a parachute
@@ -145,5 +177,3 @@ public:
      */
     bool testYContinuity();
 };
-
-#endif // TROOPER_H
